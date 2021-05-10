@@ -2,13 +2,13 @@ package gruppe5.alphasolutions.models;
 
 import java.time.LocalDate;
 
-public class Task {
+public class Assignment {
     private String title;
     private String description;
     private LocalDate startDate;
     private LocalDate deadline;
 
-    public Task(String title, String description, LocalDate startDate, LocalDate deadline) {
+    public Assignment(String title, String description, LocalDate startDate, LocalDate deadline) {
         this.title = title;
         this.description = description;
         this.startDate = startDate;
