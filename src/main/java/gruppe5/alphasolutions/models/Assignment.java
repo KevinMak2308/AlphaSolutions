@@ -14,6 +14,8 @@ public class Assignment {
         this.startDate = startDate;
         this.deadline = deadline;
     }
+    public Assignment() {
+    }
 
     public String getTitle() {
         return title;

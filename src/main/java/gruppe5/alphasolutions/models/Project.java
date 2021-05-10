@@ -23,8 +23,6 @@ public class Project {
         this.description = description;
         this.startDate = startDate;
         this.startDate = deadline;
-
-
     }
 
 
