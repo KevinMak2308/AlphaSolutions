@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <link rel="stylesheet" th:href="main.css">
     <meta charset="UTF-8">
@@ -8,6 +8,12 @@
 </head>
 <body>
 <h1>Welcome to the frontpage</h1>
+<header>
+    <ul>
+        <li style="float:left"><a class="active" href="#frontpage">Front Page</a></li>
+        <li style="float:right"><a th:href="@{newProject}">Create Project</a></li>
+    </ul>
+</header>
 
 </body>
 </html>

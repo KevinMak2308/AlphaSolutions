@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<h1>Create a new Project</h1>
+<form action="makeProject" method="post">
+    <div class="projectStyle">
+        Title: <pre><input type="text" name="title"></pre><br>
+        Description: <pre><input type="text" name="description"></pre><br>
+        Start Date: <pre><input type="date" name="startdate"></pre><br>
+        Deadline: <pre><input type="date" name="deadline"></pre><br>
+        <input type="submit" value="Create new Project">
+    </div>
+</form>
 
 </body>
 </html>

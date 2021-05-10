@@ -1,6 +1,8 @@
 package gruppe5.alphasolutions.repositories;
 
+
 import org.springframework.core.io.ClassPathResource;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -32,5 +34,7 @@ public class DBManager {
         }
         return connection;
     }
+
+
 }
 
