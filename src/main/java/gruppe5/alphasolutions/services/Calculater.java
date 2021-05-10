@@ -1,6 +1,8 @@
 package gruppe5.alphasolutions.services;
 
+import gruppe5.alphasolutions.models.Assignment;
 import gruppe5.alphasolutions.models.Project;
+import gruppe5.alphasolutions.models.User;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -15,4 +17,9 @@ public class Calculater {
         System.out.println("Date2 : " + dateLocal);
     }
 
+
+    public void estimatedTime(Project project, Assignment assignment, User user){
+
+    }
 }
+
