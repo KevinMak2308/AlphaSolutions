@@ -1,10 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<link rel="stylesheet" th:href="main.css">
+<header>
+    <a href="/">
+        <link rel="icon" href="https://studerendeonline.dk/images/dynamic/company/logo/74944/?s=s" type="image"/>
+    </a>
+    <nav>
+        <ul>
+            <li style="float:right"><a th:href="@{/}">Front Page</a></li>
+            <li style="float:right"><a th:href="@{project}">Overview Project</a></li>
+            <li style="float:left"><a th:href="@{newProject}">Create Project</a></li>
+        </ul>
+    </nav>
+</header>
 </html>

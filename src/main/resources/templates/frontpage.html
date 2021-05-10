@@ -4,16 +4,13 @@
     <link rel="stylesheet" th:href="main.css">
     <meta charset="UTF-8">
     <title>frontpage</title>
-    <link rel="icon" href="https://studerendeonline.dk/images/dynamic/company/logo/74944/?s=s" type="image"/>
+
 </head>
 <body>
+<header th:replace="fragments/header.html"></header>
+
 <h1>Welcome to the frontpage</h1>
-<header>
-    <ul>
-        <li style="float:left"><a class="active" href="#frontpage">Front Page</a></li>
-        <li style="float:right"><a th:href="@{newProject}">Create Project</a></li>
-    </ul>
-</header>
+
 
 </body>
 </html>

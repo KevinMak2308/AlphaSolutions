@@ -21,7 +21,6 @@ public class ProjectController {
         return "project";
     }
 
-
     @GetMapping("/newProject")
     public String doProject() {
         return "doproject";
