@@ -1,16 +1,27 @@
 header {
 
 }
+
+html, body {
+    background: url('https://img1.goodfon.com/wallpaper/nbig/6/e0/civil-engineering-blueprints.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 100%;
+    margin: 0;
+}
+
 ul {
     list-style-type: none;
 }
 
 .nav {
-    background-color: lightslategray;
+    background-color: cadetblue;
     overflow: hidden;
 }
 
-/* Style the links inside the navigation bar */
+/* Style links i navbaren */
 .nav a {
     float: right;
     color: #f2f2f2;
@@ -36,7 +47,6 @@ h1{
     flex-direction: column;
     justify-content: center;
     text-align: center;
-
 }
 
 body{
