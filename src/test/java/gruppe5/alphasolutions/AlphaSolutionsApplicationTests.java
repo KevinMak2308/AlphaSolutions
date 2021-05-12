@@ -8,6 +8,7 @@ class AlphaSolutionsApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }

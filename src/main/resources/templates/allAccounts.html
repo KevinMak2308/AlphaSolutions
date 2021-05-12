@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Account</title>
+</head>
+<body>
+<header th:replace="fragments/header.html"></header>
+<h1>Overview of your account</h1>
+<tr th:each="user : ${user}">
+<div class="container">
+    <p class="text-success">UserID: <span th:text="${user.userID}"> </span></p>
+    <p class="text-success">Email: <span th:text="${user.userEmail}"> </span></p>
+    <p class="text-success">Password: <span th:text="${user.userPassword}"> </span></p>
+
+</div>
+
+</body>
+</html>

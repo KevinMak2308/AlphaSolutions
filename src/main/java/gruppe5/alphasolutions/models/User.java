@@ -1,49 +1,48 @@
 package gruppe5.alphasolutions.models;
 
 public class User {
-        private String username;
-        private String password;
-        private String role;
+        private int userID;
+        private String userEmail;
+        private String userPassword;
+        private int roleID;
+        private String roleName;
 
-        public User(String username, String password, String role) {
-                this.username = username;
-                this.password = password;
-                this.role = role;
+        public User(int userID, String userEmail, String userPassword) {
+                this.userID = userID;
+                this.userEmail = userEmail;
+                this.userPassword = userPassword;
         }
 
-        public User (){
+        public int getUserID() {
+                return userID;
         }
 
-        public String getUsername() {
-                return username;
+        public void setUserID(int userID) {
+                this.userID = userID;
         }
 
-        public void setUsername(String username) {
-                this.username = username;
+        public String getUserEmail() {
+                return userEmail;
         }
 
-        public String getPassword() {
-                return password;
+        public void setUserEmail(String userEmail) {
+                this.userEmail = userEmail;
         }
 
-        public void setPassword(String password) {
-                this.password = password;
+        public String getUserPassword() {
+                return userPassword;
         }
 
-        public String getRole() {
-                return role;
-        }
-
-        public void setRole(String role) {
-                this.role = role;
+        public void setUserPassword(String userPassword) {
+                this.userPassword = userPassword;
         }
 
         @Override
         public String toString() {
                 return "User{" +
-                        "username='" + username + '\'' +
-                        ", password='" + password + '\'' +
-                        ", role='" + role + '\'' +
+                        "userID=" + userID +
+                        ", userEmail='" + userEmail + '\'' +
+                        ", userPassword='" + userPassword + '\'' +
                         '}';
         }
 }
