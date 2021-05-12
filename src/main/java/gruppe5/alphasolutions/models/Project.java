@@ -3,26 +3,22 @@ package gruppe5.alphasolutions.models;
 
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
 
 
 public class Project {
     private String title;
     private String description;
-    //private DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    private String startDate;
-    private String deadline;
+    static LocalDate startDate;
+    private LocalDate deadline;
     //private Map assignment;
 
 
-    public Project(String title, String description, String startDate, String deadline) {
+    public Project(String title, String description, LocalDate startDate, LocalDate deadline) {
         this.title = title;
         this.description = description;
         this.startDate = startDate;
-        this.startDate = deadline;
+        this.deadline = deadline;
     }
 
 
@@ -42,19 +38,19 @@ public class Project {
         this.description = description;
     }
 
-    public String getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public String getDeadline() {
+    public LocalDate getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(String deadline) {
+    public void setDeadline(LocalDate deadline) {
         this.deadline = deadline;
     }
 

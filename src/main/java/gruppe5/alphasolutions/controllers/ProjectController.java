@@ -7,12 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDate;
+
 @Controller
 public class ProjectController {
     private Project project;
 
     public ProjectController() {
-        this.project = new Project("New Project", "First", "03-04-1996", "05-07-1996");
+        this.project = new Project("New Project", "First", null, null);
+        project.setStartDate(LocalDate.of(2021,05,12));
     }
 
     @GetMapping("/project")
