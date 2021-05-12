@@ -23,13 +23,15 @@ public class UserController {
     public String account(Model model){
         ArrayList<User> userList = userRepository.showAllData();
         model.addAttribute("user",userList);
-        return "allAccounts";
+        return "allaccounts";
     }
 
     @GetMapping("/registerAccount")
     public String registerAccount(){
         return "doregister";
     }
+
+
     @PostMapping("/makeAccount")
     public String makeAccount(@ModelAttribute User model){
         this.user = model;

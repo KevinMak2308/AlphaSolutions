@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class DBManager {
 
-    public static Connection getConnection() {
+    /*public static Connection getConnection() {
         String url = null;
         String user = null;
         String password = null;
@@ -33,7 +33,7 @@ public class DBManager {
             error.printStackTrace();
         }
         return connection;
-    }
+    }*/
 
 
 }

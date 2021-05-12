@@ -47,6 +47,36 @@ h1{
     flex-direction: column;
     justify-content: center;
     text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.nav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.rightnav{
+    float: left;
+}
+
+h1{
+    height: 400px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+body{
+    background-color: #f2f2f2;
+    margin: 0px;
+}
+
+.displaytext {
+    border: 1px solid black;
 }
 
 body{

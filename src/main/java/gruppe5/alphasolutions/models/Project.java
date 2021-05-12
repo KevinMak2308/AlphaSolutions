@@ -9,12 +9,12 @@ import java.time.LocalDate;
 public class Project {
     private String title;
     private String description;
-    static LocalDate startDate;
-    private LocalDate deadline;
+    private String startDate;
+    private String deadline;
     //private Map assignment;
 
 
-    public Project(String title, String description, LocalDate startDate, LocalDate deadline) {
+    public Project(String title, String description, String startDate, String deadline) {
         this.title = title;
         this.description = description;
         this.startDate = startDate;
@@ -38,19 +38,19 @@ public class Project {
         this.description = description;
     }
 
-    public LocalDate getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getDeadline() {
+    public String getDeadline() {
         return deadline;
     }
 
-    public void setDeadline(LocalDate deadline) {
+    public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
 
