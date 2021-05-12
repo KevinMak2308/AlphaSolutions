@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head>
+    <link rel="stylesheet" th:href="frontPage.css">
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+</head>
+<body>
+
+<div class="login">
+    <h1>Welcome to ALHPA SOLUTIONS</h1>
+    <div class="loginform">
+        <P>Enter login information</P>
+        <form action="/login" method="post">
+            <input type="email" name="useremail" required placeholder="E-Mail">
+            <input type="password" name="password" required placeholder="Password">
+            <div class="field">
+
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</div>
+</body>
+</html>

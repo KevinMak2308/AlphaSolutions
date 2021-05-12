@@ -5,19 +5,23 @@ import gruppe5.alphasolutions.models.User;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class UserRepository implements InterfaceRepository{
+public class UserRepository implements InterfaceRepository {
+
     @Override
-    public void sendDatatoDatabase() {
-/*
+    public void sendDatatoDatabase(String useremail, String userpassword) {
+
+        Connection connToEMP = null;
         try {
-            Connection makeUserConnection = DBManager.getConnection();
-            PreparedStatement makeUserStatement = makeUserConnection.prepareStatement("INSERT INTO betaUsers(USERACCOUNTNAME, USERNAME, USERMAIL)" + "VALUES ('" + accountName + "', '" + name + "', '" + email + "')");
+            connToEMP = DriverManager.getConnection
+                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");
+            //Connection makeUserConnection = DBManager.getConnection();
+            PreparedStatement makeUserStatement = connToEMP.prepareStatement("INSERT INTO users(useremail, userpassword)" + "VALUES ('" + useremail + "', '" + userpassword + "')");
             makeUserStatement.executeUpdate();
 
         } catch (SQLException error) {
             System.out.printf(error.getMessage());
         }
-*/
+
     }
 
     @Override
@@ -49,7 +53,7 @@ public class UserRepository implements InterfaceRepository{
         try {
             connToEMP = DriverManager.getConnection
                     ("jdbc:mysql//localhost:3306/testschema", "root", "1234");
-        //Connection accountConnection = DBManager.getConnection();
+            //Connection accountConnection = DBManager.getConnection();
             PreparedStatement userStatement = connToEMP.prepareStatement("SELECT * FROM users Where useremail = ?");
             userStatement.setString(1, useremail);
 
@@ -66,12 +70,65 @@ public class UserRepository implements InterfaceRepository{
     }
 
     @Override
-    public boolean validateData() {
+    public boolean validateData(String useremail, String password) {
+        //Connection accountConnection = DBManager.getConnection();
+        Connection connToEMP = null;
+        try {
+            connToEMP = DriverManager.getConnection
+                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");
+            PreparedStatement accountStatement = connToEMP.prepareStatement
+                    ("SELECT USERACCOUNTNAME FROM users WHERE useremail = ? and password = ?");
+            accountStatement.setString(1, useremail);
+            accountStatement.setString(2, password);
+
+            ResultSet accountRS = accountStatement.executeQuery();
+            while (accountRS.next()) {
+
+                if (accountRS.equals(useremail)) {
+                }
+                return true;
+            }
+
+        } catch (SQLException error) {
+            System.out.println(error.getMessage());
+        }
+
         return false;
     }
 
     @Override
-    public void deleteData() {
+    public void deleteData(String useremail) {
+        Connection connToEMP = null;
+        try {
+            connToEMP = DriverManager.getConnection
+                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");
+            //Connection connection = DBManager.getConnection();
+            PreparedStatement preparedStatement1 = connToEMP.prepareStatement("DELETE FROM users WHERE useremail = ?");
+            preparedStatement1.setString(1, useremail);
+            preparedStatement1.executeUpdate();
 
+        } catch (SQLException error) {
+            System.out.printf(error.getMessage());
+        }
+    }
+
+    public boolean managerAcess() {
+
+        Connection connToEMP = null;
+        try {
+            connToEMP = DriverManager.getConnection
+                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");
+            PreparedStatement accountStatement = connToEMP.prepareStatement
+                    ("SELECT roleID FROM roles WHERE roleID = ?");
+            accountStatement.setString(1, useremail);
+
+            ResultSet accountRS = accountStatement.executeQuery();
+            while (accountRS.next()) {
+
+                if (accountRS.equals(useremail)) {
+                }
+                return true;
+            }
+        }
     }
 }
