@@ -10,10 +10,6 @@ public class UserRepository implements InterfaceRepository {
     @Override
     public void sendDatatoDatabase(String useremail, String userpassword) {
 
-        /*Connection connToEMP = null;
-        try {
-            connToEMP = DriverManager.getConnection
-                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");*/
         try {
             Connection makeUserConnection = DBManager.getConnection();
             PreparedStatement makeUserStatement = makeUserConnection.prepareStatement("INSERT INTO users(useremail, userpassword)" + "VALUES ('" + useremail + "', '" + userpassword + "')");
@@ -27,10 +23,7 @@ public class UserRepository implements InterfaceRepository {
     @Override
     public ArrayList<User> showAllData() {
         ArrayList<User> allUsers = new ArrayList<>();
-       /* Connection connToEMP = null;
-        try {
-            connToEMP = DriverManager.getConnection
-                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");*/
+
         try {
             Connection userConnection = DBManager.getConnection();
             PreparedStatement userStatement = userConnection.prepareStatement("SELECT * FROM users");
@@ -50,12 +43,9 @@ public class UserRepository implements InterfaceRepository {
     @Override
     public User getData(String useremail) {
         User tmp = null;
-        Connection connToEMP = null;
         try {
-            connToEMP = DriverManager.getConnection
-                    ("jdbc:mysql//localhost:3306/testschema", "root", "1234");
-            //Connection accountConnection = DBManager.getConnection();
-            PreparedStatement userStatement = connToEMP.prepareStatement("SELECT * FROM users Where useremail = ?");
+            Connection accountConnection = DBManager.getConnection();
+            PreparedStatement userStatement = accountConnection.prepareStatement("SELECT * FROM users Where useremail = ?");
             userStatement.setString(1, useremail);
 
             ResultSet accountRS = userStatement.executeQuery();
@@ -72,12 +62,10 @@ public class UserRepository implements InterfaceRepository {
 
     @Override
     public boolean validateData(String useremail, String password) {
-        //Connection accountConnection = DBManager.getConnection();
-        Connection connToEMP = null;
+
         try {
-            connToEMP = DriverManager.getConnection
-                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");
-            PreparedStatement accountStatement = connToEMP.prepareStatement
+            Connection accountConnection = DBManager.getConnection();
+            PreparedStatement accountStatement = accountConnection.prepareStatement
                     ("SELECT USERACCOUNTNAME FROM users WHERE useremail = ? and password = ?");
             accountStatement.setString(1, useremail);
             accountStatement.setString(2, password);
@@ -99,12 +87,9 @@ public class UserRepository implements InterfaceRepository {
 
     @Override
     public void deleteData(String useremail) {
-        Connection connToEMP = null;
         try {
-            connToEMP = DriverManager.getConnection
-                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");
-            //Connection connection = DBManager.getConnection();
-            PreparedStatement preparedStatement1 = connToEMP.prepareStatement("DELETE FROM users WHERE useremail = ?");
+            Connection connection = DBManager.getConnection();
+            PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM users WHERE useremail = ?");
             preparedStatement1.setString(1, useremail);
             preparedStatement1.executeUpdate();
 
