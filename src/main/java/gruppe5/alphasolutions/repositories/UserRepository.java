@@ -1,5 +1,6 @@
 package gruppe5.alphasolutions.repositories;
 
+import gruppe5.alphasolutions.models.Project;
 import gruppe5.alphasolutions.models.User;
 
 import java.sql.*;
@@ -8,17 +9,19 @@ import java.util.ArrayList;
 public class UserRepository implements InterfaceRepository {
 
     @Override
-    public void sendDatatoDatabase(String useremail, String userpassword) {
+    public void sendDatatoDatabase(String userEmail, String userPassword) {
 
         try {
-            Connection makeUserConnection = DBManager.getConnection();
-            PreparedStatement makeUserStatement = makeUserConnection.prepareStatement("INSERT INTO users(useremail, userpassword)" + "VALUES ('" + useremail + "', '" + userpassword + "')");
-            makeUserStatement.executeUpdate();
+            Connection userConnection = DBManager.getConnection();
+            PreparedStatement userStatement = userConnection.prepareStatement("Insert into users(useremail, userpassword)" + "Values ('" + userEmail + "'), '" + userPassword + "')");
+            userStatement.executeUpdate();
 
         } catch (SQLException error) {
             System.out.printf(error.getMessage());
         }
+
     }
+
 
     @Override
     public ArrayList<User> showAllData() {
@@ -26,32 +29,35 @@ public class UserRepository implements InterfaceRepository {
 
         try {
             Connection userConnection = DBManager.getConnection();
-            PreparedStatement userStatement = userConnection.prepareStatement("SELECT * FROM users");
-            ResultSet userRS = userStatement.executeQuery();
+            PreparedStatement userStatement = userConnection.prepareStatement("Select * From users");
+            ResultSet userResult = userStatement.executeQuery();
 
-            while (userRS.next()) {
-                User tmp = new User(userRS.getInt(1), userRS.getString(2), userRS.getString(3));
+            while(userResult.next()) {
+                User tmp = new User(userResult.getString(1), userResult.getString(2));
                 allUsers.add(tmp);
+                System.out.println("Does it work? With a new user");
+
             }
 
+
         } catch (SQLException error) {
-            System.out.printf(error.getMessage());
-        }
-        return allUsers;
+            System.out.println(error.getMessage());
+        } return allUsers;
     }
 
     @Override
-    public User getData(String useremail) {
+    public User getData(String userEmail) {
         User tmp = null;
+
         try {
-            Connection accountConnection = DBManager.getConnection();
-            PreparedStatement userStatement = accountConnection.prepareStatement("SELECT * FROM users Where useremail = ?");
-            userStatement.setString(1, useremail);
+            Connection userConn = DBManager.getConnection();
+            PreparedStatement userStatement = userConn.prepareStatement("SELECT * FROM users Where useremail = ?");
+            userStatement.setString(1, userEmail);
 
-            ResultSet accountRS = userStatement.executeQuery();
-            if (accountRS.next()) {
+            ResultSet userResult = userStatement.executeQuery();
+            if (userResult.next()) {
 
-                tmp = new User(accountRS.getInt(1), accountRS.getString(2), accountRS.getString(3));
+                tmp = new User(userResult.getString(1), userResult.getString(2));
             }
 
         } catch (SQLException throwables) {
@@ -62,11 +68,12 @@ public class UserRepository implements InterfaceRepository {
 
     @Override
     public boolean validateData(String useremail, String password) {
+        //Connection accountConnection = DBManager.getConnection();
 
         try {
-            Connection accountConnection = DBManager.getConnection();
-            PreparedStatement accountStatement = accountConnection.prepareStatement
-                    ("SELECT USERACCOUNTNAME FROM users WHERE useremail = ? and password = ?");
+            Connection userConn = DBManager.getConnection();
+            PreparedStatement accountStatement = userConn.prepareStatement
+                    ("SELECT useremail FROM users WHERE useremail = ? and password = ?");
             accountStatement.setString(1, useremail);
             accountStatement.setString(2, password);
 
@@ -87,9 +94,12 @@ public class UserRepository implements InterfaceRepository {
 
     @Override
     public void deleteData(String useremail) {
+        Connection connToEMP = null;
         try {
-            Connection connection = DBManager.getConnection();
-            PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM users WHERE useremail = ?");
+            connToEMP = DriverManager.getConnection
+                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");
+            //Connection connection = DBManager.getConnection();
+            PreparedStatement preparedStatement1 = connToEMP.prepareStatement("DELETE FROM users WHERE useremail = ?");
             preparedStatement1.setString(1, useremail);
             preparedStatement1.executeUpdate();
 
@@ -116,5 +126,5 @@ public class UserRepository implements InterfaceRepository {
                 return true;
             }
         }
-    }*/
-}
+     }*/
+    }

@@ -20,12 +20,12 @@ public class ProjectRepository implements InterfaceRepository {
         ArrayList<Project> allProjects = new ArrayList<>();
 
         try {
-            Connection proConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/alphasolutioons", "root", "124578");
+            Connection proConnection = DBManager.getConnection();
             PreparedStatement proStatement = proConnection.prepareStatement("Select * From projects");
             ResultSet proResult = proStatement.executeQuery();
 
             while(proResult.next()) {
-                Project tmp = new Project(proResult.getString(1), proResult.getString(2), proResult.getDate(3).toLocalDate(), proResult.getDate(4).toLocalDate());
+                Project tmp = new Project(proResult.getInt(1), proResult.getString(2), proResult.getString(3), proResult.getDate(4).toLocalDate(), proResult.getDate(5).toLocalDate());
                 allProjects.add(tmp);
                 System.out.println("Does it work?");
 
@@ -42,8 +42,6 @@ public class ProjectRepository implements InterfaceRepository {
         return null;
     }
 
-
-
     @Override
     public boolean validateData(String name, String name2) {
         return false;
@@ -53,4 +51,5 @@ public class ProjectRepository implements InterfaceRepository {
     public void deleteData(String name) {
 
     }
+
 }

@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 @Controller
@@ -19,14 +21,37 @@ public class UserController {
     User user;
 
     public UserController(){
-        this.user = new User(1,"simon@mail.dk","");
+        this.user = new User("simon@mail.dk","1234");
     }
-    @GetMapping("/ListOfAllUsers")
-    public String account(Model model){
+
+    @GetMapping("/user")
+    public String user(Model model, HttpServletRequest request) {
+       DBManager.getConnection();
+       HttpSession session = request.getSession();
+       String userEmail = (String) session.getAttribute("useremail");
+
+       User currentUser = userRepository.getData(userEmail);
+       if(currentUser == null)
+           return "redirect:/login";
+
+       model.addAttribute("user", currentUser);
+       return "user";
+    }
+
+    @GetMapping("/register")
+    public String registerAccount(){
         DBManager.getConnection();
-        ArrayList<User> allUsers = userRepository.showAllData();
-        model.addAttribute("allusers",allUsers);
-        return "allusers";
+        return "doregister";
+    }
+
+
+    @PostMapping("/makeUser")
+    public String makeAccount(@RequestParam("useremail") String userEmail, @RequestParam("userpassword") String userPassword, HttpServletRequest request){
+        DBManager.getConnection();
+        userRepository.sendDatatoDatabase(userEmail, userPassword);
+        HttpSession session = request.getSession();
+        session.setAttribute("useremail", userEmail);
+        return "redirect:/user?useremail=" + userEmail;
     }
 
     @GetMapping("/allUsers")
@@ -37,21 +62,4 @@ public class UserController {
         return "allusers";
     }
 
-    @GetMapping("/registerAccount")
-    public String registerAccount(){
-        return "doregister";
-    }
-
-
-    @PostMapping("/makeAccount")
-    public String makeAccount(@ModelAttribute User model){
-        this.user = model;
-        return "redirect:/account";
-    }
-
-    @PostMapping("/deleteAccount")
-    public String deleteWish(@RequestParam("useremail")String useremail){
-        userRepository.deleteData(useremail);
-        return "redirect:/account";
-    }
 }

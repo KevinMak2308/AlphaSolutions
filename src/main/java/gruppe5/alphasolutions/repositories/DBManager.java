@@ -13,11 +13,20 @@ import java.util.Properties;
 public class DBManager {
 
     public static Connection getConnection() {
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException error) {
+            System.out.println(error.getMessage());
+            error.printStackTrace();
+        }
+
         String url = null;
         String user = null;
         String password = null;
         Connection connection = null;
         if (connection != null) return connection;
+        System.out.println("Connection Established");
         try (InputStream input = new ClassPathResource("application.properties").getInputStream()) {
             Properties properties = new Properties();
             properties.load(input);

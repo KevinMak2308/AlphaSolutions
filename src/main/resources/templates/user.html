@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+</head>
+<body>
+<header th:replace="fragments/header.html"></header>
+<h1>Profile</h1>
+<div class="displaytext">
+  <p class="text-success">Title: <span th:text="${user.userEmail}"> </span></p>
+  <p class="text-success">Description: <span th:text="${user.userPassword}"> </span></p>
+</div>
+</body>
+</html>

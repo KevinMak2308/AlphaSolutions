@@ -9,6 +9,7 @@ import java.time.LocalDate;
 
 
 public class Project {
+    private int projectID;
     private String title;
     private String description;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -18,13 +19,21 @@ public class Project {
     //private Map assignment;
 
 
-    public Project(String title, String description, LocalDate startDate, LocalDate deadline) {
+    public Project(int projectID, String title, String description, LocalDate startDate, LocalDate deadline) {
+        this.projectID = projectID;
         this.title = title;
         this.description = description;
         this.startDate = startDate;
         this.deadline = deadline;
     }
 
+    public int getProjectID() {
+        return projectID;
+    }
+
+    public void setProjectID(int projectID) {
+        this.projectID = projectID;
+    }
 
     public String getTitle() {
         return title;

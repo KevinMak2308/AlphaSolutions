@@ -1,6 +1,7 @@
 package gruppe5.alphasolutions.controllers;
 
 import gruppe5.alphasolutions.models.Project;
+import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.ProjectRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,7 @@ public class ProjectController {
     ProjectRepository projectRepository;
 
     public ProjectController() {
-        this.project = new Project("New Project", "First", null, null);
+        this.project = new Project(1, "New Project", "First", null, null);
         this.projectRepository = new ProjectRepository();
     }
 
@@ -39,6 +40,7 @@ public class ProjectController {
     // Purely used to check all projects in the database
     @GetMapping("/allProjects")
         public String allProjects(Model model) {
+        DBManager.getConnection();
         ArrayList<Project> allProjects = projectRepository.showAllData();
         model.addAttribute("allprojects", allProjects);
         return "allprojects";

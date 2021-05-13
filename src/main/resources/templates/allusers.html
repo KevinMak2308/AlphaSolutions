@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Account</title>
+  <meta charset="UTF-8">
+  <title>Account</title>
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<h1>Overview of all account</h1>
+<h1>Overview of all registered users</h1>
 <tr th:each="user : ${allusers}">
-<div class="displaytext">
-    <p class="text-success">UserID: <span th:text="${user.userID}"> </span></p>
+
+  <div class="displaytext">
     <p class="text-success">Email: <span th:text="${user.userEmail}"> </span></p>
     <p class="text-success">Password: <span th:text="${user.userPassword}"> </span></p>
-
-</div>
+  </div>
 
 </body>
 </html>
