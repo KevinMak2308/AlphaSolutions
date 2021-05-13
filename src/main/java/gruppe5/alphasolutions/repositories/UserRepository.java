@@ -10,29 +10,30 @@ public class UserRepository implements InterfaceRepository {
     @Override
     public void sendDatatoDatabase(String useremail, String userpassword) {
 
-        Connection connToEMP = null;
+        /*Connection connToEMP = null;
         try {
             connToEMP = DriverManager.getConnection
-                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");
-            //Connection makeUserConnection = DBManager.getConnection();
-            PreparedStatement makeUserStatement = connToEMP.prepareStatement("INSERT INTO users(useremail, userpassword)" + "VALUES ('" + useremail + "', '" + userpassword + "')");
+                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");*/
+        try {
+            Connection makeUserConnection = DBManager.getConnection();
+            PreparedStatement makeUserStatement = makeUserConnection.prepareStatement("INSERT INTO users(useremail, userpassword)" + "VALUES ('" + useremail + "', '" + userpassword + "')");
             makeUserStatement.executeUpdate();
 
         } catch (SQLException error) {
             System.out.printf(error.getMessage());
         }
-
     }
 
     @Override
     public ArrayList<User> showAllData() {
         ArrayList<User> allUsers = new ArrayList<>();
-        Connection connToEMP = null;
+       /* Connection connToEMP = null;
         try {
             connToEMP = DriverManager.getConnection
-                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");
-            //Connection userConnection = DBManager.getConnection();
-            PreparedStatement userStatement = connToEMP.prepareStatement("SELECT * FROM users");
+                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");*/
+        try {
+            Connection userConnection = DBManager.getConnection();
+            PreparedStatement userStatement = userConnection.prepareStatement("SELECT * FROM users");
             ResultSet userRS = userStatement.executeQuery();
 
             while (userRS.next()) {
@@ -112,7 +113,7 @@ public class UserRepository implements InterfaceRepository {
         }
     }
 
-    public boolean managerAcess() {
+    /*public boolean managerAcess() {
 
         Connection connToEMP = null;
         try {
@@ -130,5 +131,5 @@ public class UserRepository implements InterfaceRepository {
                 return true;
             }
         }
-    }
+    }*/
 }
