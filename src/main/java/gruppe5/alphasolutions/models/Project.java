@@ -16,7 +16,6 @@ public class Project {
     private LocalDate startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate deadline;
-    //private Map assignment;
 
 
     public Project(int projectID, String title, String description, LocalDate startDate, LocalDate deadline) {

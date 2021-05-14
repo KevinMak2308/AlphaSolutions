@@ -26,7 +26,6 @@ public class DBManager {
         String password = null;
         Connection connection = null;
         if (connection != null) return connection;
-        System.out.println("Connection Established");
         try (InputStream input = new ClassPathResource("application.properties").getInputStream()) {
             Properties properties = new Properties();
             properties.load(input);

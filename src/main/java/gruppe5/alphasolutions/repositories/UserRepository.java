@@ -13,7 +13,7 @@ public class UserRepository implements InterfaceRepository {
 
         try {
             Connection userConnection = DBManager.getConnection();
-            PreparedStatement userStatement = userConnection.prepareStatement("Insert into users(useremail, userpassword)" + "Values ('" + userEmail + "'), '" + userPassword + "')");
+            PreparedStatement userStatement = userConnection.prepareStatement("Insert into users(useremail, userpassword)" + "Values ('" + userEmail + "', '" + userPassword + "'");
             userStatement.executeUpdate();
 
         } catch (SQLException error) {
