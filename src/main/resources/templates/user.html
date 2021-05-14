@@ -11,5 +11,11 @@
   <p class="text-success">Title: <span th:text="${user.userEmail}"> </span></p>
   <p class="text-success">Description: <span th:text="${user.userPassword}"> </span></p>
 </div>
+
+<form action="/deleteAccount" method="post">
+  <div class="deletebutton">
+    <p class="text"> Delete Account: <pre> <input type="text" required placeholder="User Email" th:name="userEmail"> </pre> <br>
+    <input type="submit" value="Delete">
+  </div>
 </body>
 </html>
