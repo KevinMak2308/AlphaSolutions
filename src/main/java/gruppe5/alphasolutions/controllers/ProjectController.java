@@ -17,7 +17,7 @@ public class ProjectController {
     ProjectRepository projectRepository;
 
     public ProjectController() {
-        this.project = new Project(1, "New Project", "First", null, null);
+        //this.project = new Project(1, "New Project", "First", null, null);
         this.projectRepository = new ProjectRepository();
     }
 

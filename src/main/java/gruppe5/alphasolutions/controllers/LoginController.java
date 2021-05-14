@@ -20,7 +20,6 @@ public class LoginController {
         if (userRepository.validateData(userEmail, userPassword) == true) {
             HttpSession session = request.getSession();
             session.setAttribute("useremail", userEmail);
-            //session.setAttribute("userpassword", userPassword);
 
             return "redirect:/user?useremail=" + userEmail;
         } else {
