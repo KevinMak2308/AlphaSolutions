@@ -10,7 +10,7 @@ public interface InterfaceRepository {
 
     abstract Object getData(String name);
 
-    abstract boolean validateData(String name, String name2);
+    boolean validateData(String name, String password);
 
     abstract void deleteData(String name);
 

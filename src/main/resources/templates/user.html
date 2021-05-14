@@ -8,8 +8,8 @@
 <header th:replace="fragments/header.html"></header>
 <h1>Profile</h1>
 <div class="displaytext">
-  <p class="text-success">Title: <span th:text="${user.userEmail}"> </span></p>
-  <p class="text-success">Description: <span th:text="${user.userPassword}"> </span></p>
+  <p class="text-success">E-mail: <span th:text="${user.userEmail}"> </span></p>
+  <p class="text-success">Password: <span th:text="${user.userPassword}"> </span></p>
 </div>
 
 <form action="/deleteAccount" method="post">

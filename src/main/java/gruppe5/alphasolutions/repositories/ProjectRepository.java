@@ -43,7 +43,7 @@ public class ProjectRepository implements InterfaceRepository {
     }
 
     @Override
-    public boolean validateData(String name, String name2) {
+    public boolean validateData(String projectID, String title) {
         return false;
     }
 

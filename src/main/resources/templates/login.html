@@ -14,14 +14,9 @@
         <P>Enter login information</P>
         <form action="/login" method="post">
             <input type="email" name="useremail" required placeholder="E-Mail">
-            <input type="password" name="password" required placeholder="Password">
-            <div class="field">
-
-            </div>
+            <input type="password" name="userpassword" required placeholder="Password">
             <input type="submit" value="Login">
         </form>
-
-       <a th:href="@{registerAccount}">Create User</a>
     </div>
 </div>
 </body>

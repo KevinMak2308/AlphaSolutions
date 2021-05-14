@@ -67,20 +67,19 @@ public class UserRepository implements InterfaceRepository {
     }
 
     @Override
-    public boolean validateData(String useremail, String password) {
-        //Connection accountConnection = DBManager.getConnection();
+    public boolean validateData(String userEmail, String userPassword) {
 
         try {
             Connection userConn = DBManager.getConnection();
-            PreparedStatement accountStatement = userConn.prepareStatement
-                    ("SELECT useremail FROM users WHERE useremail = ? and password = ?");
-            accountStatement.setString(1, useremail);
-            accountStatement.setString(2, password);
+            PreparedStatement userStatement = userConn.prepareStatement
+                    ("SELECT useremail, userpassword  FROM users WHERE useremail = ? and userpassword = ?");
+            userStatement.setString(1, userEmail);
+            userStatement.setString(2, userPassword);
 
-            ResultSet accountRS = accountStatement.executeQuery();
-            while (accountRS.next()) {
+            ResultSet userResult = userStatement.executeQuery();
+            while (userResult.next()) {
 
-                if (accountRS.equals(useremail)) {
+                if (userResult.equals(userEmail) && userResult.equals(userPassword) ) {
                 }
                 return true;
             }
@@ -93,14 +92,13 @@ public class UserRepository implements InterfaceRepository {
     }
 
     @Override
-    public void deleteData(String useremail) {
-        Connection connToEMP = null;
+    public void deleteData(String userEmail) {
+
         try {
-            connToEMP = DriverManager.getConnection
-                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");
-            //Connection connection = DBManager.getConnection();
-            PreparedStatement preparedStatement1 = connToEMP.prepareStatement("DELETE FROM users WHERE useremail = ?");
-            preparedStatement1.setString(1, useremail);
+
+            Connection connection = DBManager.getConnection();
+            PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM users WHERE useremail = ?");
+            preparedStatement1.setString(1, userEmail);
             preparedStatement1.executeUpdate();
 
         } catch (SQLException error) {

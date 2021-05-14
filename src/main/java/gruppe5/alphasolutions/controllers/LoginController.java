@@ -15,12 +15,12 @@ public class LoginController {
     UserRepository userRepository = new UserRepository();
 
     @PostMapping("/login")
-    public String submitLogin(@RequestParam(name = "useremail") String userEmail, @RequestParam(name = "userPassword") String userPassword, HttpServletRequest request) {
+    public String submitLogin(@RequestParam(name = "useremail") String userEmail, @RequestParam(name = "userpassword") String userPassword, HttpServletRequest request) {
         DBManager.getConnection();
         if (userRepository.validateData(userEmail, userPassword) == true) {
             HttpSession session = request.getSession();
-            session.setAttribute("email", userEmail);
-            session.setAttribute("password", userPassword);
+            session.setAttribute("useremail", userEmail);
+            //session.setAttribute("userpassword", userPassword);
 
             return "redirect:/user?useremail=" + userEmail;
         } else {
