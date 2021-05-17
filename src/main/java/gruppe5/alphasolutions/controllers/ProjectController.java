@@ -17,7 +17,7 @@ public class ProjectController {
     ProjectRepository projectRepository;
 
     public ProjectController() {
-        //this.project = new Project(1, "New Project", "First", null, null);
+        this.project = new Project(1, "New Project", "First", null, null);
         this.projectRepository = new ProjectRepository();
     }
 
@@ -37,7 +37,7 @@ public class ProjectController {
         this.project = model;
         return "redirect:/project";
     }
-    // Purely used to check all projects in the database
+
     @GetMapping("/allProjects")
         public String allProjects(Model model) {
         DBManager.getConnection();

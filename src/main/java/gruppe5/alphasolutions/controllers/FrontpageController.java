@@ -10,7 +10,7 @@ public class FrontpageController {
 
     @GetMapping("/")
     public String frontpage() {
-        //DBManager.getConnection();
+        DBManager.getConnection();
         return "frontpage";
     }
 }

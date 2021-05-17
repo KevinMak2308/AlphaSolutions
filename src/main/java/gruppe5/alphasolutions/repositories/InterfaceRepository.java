@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 public interface InterfaceRepository {
 
-    abstract void sendDatatoDatabase(String name, String name2);
+    void sendData(String s, String d);
 
-    abstract ArrayList showAllData();
+    ArrayList showAllData();
 
-    abstract Object getData(String name);
+    Object getData(String s);
 
-    boolean validateData(String name, String password);
+    boolean validateData(String s, String d);
 
-    abstract void deleteData(String name);
+    void deleteData(String s);
 
 }

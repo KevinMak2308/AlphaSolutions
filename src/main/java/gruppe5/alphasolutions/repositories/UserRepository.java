@@ -1,6 +1,5 @@
 package gruppe5.alphasolutions.repositories;
 
-import gruppe5.alphasolutions.models.Project;
 import gruppe5.alphasolutions.models.User;
 
 import java.sql.*;
@@ -9,7 +8,7 @@ import java.util.ArrayList;
 public class UserRepository implements InterfaceRepository {
 
     @Override
-    public void sendDatatoDatabase(String userEmail, String userPassword) {
+    public void sendData(String userEmail, String userPassword) {
 
         try {
             Connection userConnection = DBManager.getConnection();

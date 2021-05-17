@@ -2,7 +2,6 @@ package gruppe5.alphasolutions.repositories;
 
 
 import gruppe5.alphasolutions.models.Project;
-import gruppe5.alphasolutions.models.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,7 +10,7 @@ public class ProjectRepository implements InterfaceRepository {
 
 
     @Override
-    public void sendDatatoDatabase(String name, String name2) {
+    public void sendData(String name, String name2) {
 
     }
 
@@ -38,8 +37,24 @@ public class ProjectRepository implements InterfaceRepository {
     }
 
     @Override
-    public Object getData(String Name) {
-        return null;
+    public Project getData(String title) {
+        Project tmp = null;
+
+        try {
+            Connection proConn = DBManager.getConnection();
+            PreparedStatement projectStatement = proConn.prepareStatement("SELECT * FROM projects Where title = ?");
+            projectStatement.setString(1, title);
+
+            ResultSet projectResult = projectStatement.executeQuery();
+            if (projectResult.next()) {
+
+                tmp = new Project(projectResult.getInt(1), projectResult.getString(2), projectResult.getString(3), projectResult.getDate(4).toLocalDate(), projectResult.getDate(5).toLocalDate());
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return tmp;
     }
 
     @Override

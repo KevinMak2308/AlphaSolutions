@@ -6,7 +6,6 @@ import gruppe5.alphasolutions.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -48,7 +47,7 @@ public class UserController {
     @PostMapping("/makeUser")
     public String makeAccount(@RequestParam("useremail") String userEmail, @RequestParam("userpassword") String userPassword, HttpServletRequest request){
         DBManager.getConnection();
-        userRepository.sendDatatoDatabase(userEmail, userPassword);
+        userRepository.sendData(userEmail, userPassword);
         HttpSession session = request.getSession();
         session.setAttribute("useremail", userEmail);
         return "redirect:/user?useremail=" + userEmail;
