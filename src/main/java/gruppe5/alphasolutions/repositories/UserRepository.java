@@ -12,7 +12,7 @@ public class UserRepository {
 
         try {
             Connection userConnection = DBManager.getConnection();
-            PreparedStatement userStatement = userConnection.prepareStatement("Insert into users(useremail, userpassword)" + "Values ('" + userEmail + "', '" + userPassword + "'");
+            PreparedStatement userStatement = userConnection.prepareStatement("Insert into users(useremail, userpassword)" + "Values ('" + userEmail + "', '" + userPassword + "')");
             userStatement.executeUpdate();
             userStatement.close();
 
@@ -35,7 +35,6 @@ public class UserRepository {
             while(userResult.next()) {
                 User tmp = new User(userResult.getString(1), userResult.getString(2));
                 allUsers.add(tmp);
-                System.out.println("Does it work? With a new user");
 
             }
             userStatement.close();
