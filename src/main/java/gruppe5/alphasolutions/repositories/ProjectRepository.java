@@ -4,14 +4,25 @@ package gruppe5.alphasolutions.repositories;
 import gruppe5.alphasolutions.models.Project;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ProjectRepository {
 
 
 
-    public void sendData(String name, String name2) {
+    public void sendData(int projectID, String title, String descriptions, LocalDate startDate, LocalDate deadline) {
+        try {
+            Connection proConn = DBManager.getConnection();
+            PreparedStatement proStatement = proConn.prepareStatement("Insert into projects(projectID, title, descriptions, startdate, deadline)" +
+                    "Values ('" + projectID + "', '" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "')");
 
+            proStatement.executeUpdate();
+            proStatement.close();
+
+        } catch (SQLException error) {
+            System.out.println(error.getMessage());
+        }
     }
 
 
@@ -58,13 +69,20 @@ public class ProjectRepository {
     }
 
 
-    public boolean validateData(String projectID, String title) {
-        return false;
+
+    public void deleteData(int projectID) {
+        try {
+
+            Connection connection = DBManager.getConnection();
+            PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM projects WHERE projectID = ?");
+            preparedStatement1.setInt(1, projectID);
+            preparedStatement1.executeUpdate();
+            preparedStatement1.close();
+
+        } catch (SQLException error) {
+            System.out.printf(error.getMessage());
+        }
     }
 
-
-    public void deleteData(String name) {
-
     }
 
-}
