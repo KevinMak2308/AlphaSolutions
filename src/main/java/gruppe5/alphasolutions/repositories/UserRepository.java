@@ -5,15 +5,16 @@ import gruppe5.alphasolutions.models.User;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class UserRepository implements InterfaceRepository {
+public class UserRepository {
 
-    @Override
+
     public void sendData(String userEmail, String userPassword) {
 
         try {
             Connection userConnection = DBManager.getConnection();
             PreparedStatement userStatement = userConnection.prepareStatement("Insert into users(useremail, userpassword)" + "Values ('" + userEmail + "', '" + userPassword + "'");
             userStatement.executeUpdate();
+            userStatement.close();
 
         } catch (SQLException error) {
             System.out.printf(error.getMessage());
@@ -22,7 +23,7 @@ public class UserRepository implements InterfaceRepository {
     }
 
 
-    @Override
+
     public ArrayList<User> showAllData() {
         ArrayList<User> allUsers = new ArrayList<>();
 
@@ -37,6 +38,7 @@ public class UserRepository implements InterfaceRepository {
                 System.out.println("Does it work? With a new user");
 
             }
+            userStatement.close();
 
 
         } catch (SQLException error) {
@@ -44,7 +46,6 @@ public class UserRepository implements InterfaceRepository {
         } return allUsers;
     }
 
-    @Override
     public User getData(String userEmail) {
         User tmp = null;
 
@@ -58,14 +59,13 @@ public class UserRepository implements InterfaceRepository {
 
                 tmp = new User(userResult.getString(1), userResult.getString(2));
             }
-
+            userStatement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return tmp;
     }
 
-    @Override
     public boolean validateData(String userEmail, String userPassword) {
 
         try {
@@ -80,6 +80,7 @@ public class UserRepository implements InterfaceRepository {
 
                 if (userResult.equals(userEmail) && userResult.equals(userPassword) ) {
                 }
+                userStatement.close();
                 return true;
             }
 
@@ -90,7 +91,6 @@ public class UserRepository implements InterfaceRepository {
         return false;
     }
 
-    @Override
     public void deleteData(String userEmail) {
 
         try {
@@ -99,6 +99,7 @@ public class UserRepository implements InterfaceRepository {
             PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM users WHERE useremail = ?");
             preparedStatement1.setString(1, userEmail);
             preparedStatement1.executeUpdate();
+            preparedStatement1.close();
 
         } catch (SQLException error) {
             System.out.printf(error.getMessage());

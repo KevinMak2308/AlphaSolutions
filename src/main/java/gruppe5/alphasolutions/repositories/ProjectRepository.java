@@ -6,15 +6,15 @@ import gruppe5.alphasolutions.models.Project;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ProjectRepository implements InterfaceRepository {
+public class ProjectRepository {
 
 
-    @Override
+
     public void sendData(String name, String name2) {
 
     }
 
-    @Override
+
     public ArrayList<Project> showAllData() {
         ArrayList<Project> allProjects = new ArrayList<>();
 
@@ -30,13 +30,13 @@ public class ProjectRepository implements InterfaceRepository {
 
             }
 
-
+            proStatement.close();
         } catch (SQLException error) {
             System.out.println(error.getMessage());
         } return allProjects;
     }
 
-    @Override
+
     public Project getData(String title) {
         Project tmp = null;
 
@@ -57,12 +57,12 @@ public class ProjectRepository implements InterfaceRepository {
         return tmp;
     }
 
-    @Override
+
     public boolean validateData(String projectID, String title) {
         return false;
     }
 
-    @Override
+
     public void deleteData(String name) {
 
     }
