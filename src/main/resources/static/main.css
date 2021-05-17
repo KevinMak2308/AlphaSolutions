@@ -1,6 +1,3 @@
-header {
-
-}
 
 html, body {
     background: url('https://img1.goodfon.com/wallpaper/nbig/6/e0/civil-engineering-blueprints.jpg') no-repeat center center fixed;
@@ -12,34 +9,6 @@ html, body {
     margin: 0;
 }
 
-ul {
-    list-style-type: none;
-}
-
-.nav {
-    background-color: #4F86A0;
-    overflow: hidden;
-}
-
-/* Style links i navbaren */
-.nav a {
-    float: right;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-}
-
-.nav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.leftnav{
-    float: left;
-}
-
 h1{
     height: 400px;
     width: 800px;
@@ -50,24 +19,6 @@ h1{
     padding: 14px 16px;
     text-decoration: none;
     font-size: 17px;
-}
-
-.nav a:hover {
-    background-color: #ddd;
-    color: black;
-}
-
-.rightnav{
-    float: left;
-}
-
-h1{
-    height: 400px;
-    width: 800px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
 }
 
 body{
@@ -115,8 +66,8 @@ body{
 
 }
 .p-footer{
-margin-left: 50px ;
-color: white;
+    margin-left: 50px ;
+    color: white;
 }
 
 ul {
@@ -170,11 +121,3 @@ div {
         transform: rotate(-15deg);
     }
 }
-
-
-
-
-
-
-
-
