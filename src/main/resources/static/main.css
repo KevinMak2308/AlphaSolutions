@@ -8,6 +8,7 @@ html, body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    height: 100%;
     margin: 0;
 }
 
@@ -90,6 +91,7 @@ body{
     left: 0px;
     right: 0px;
     bottom: 0px;
+    margin-top: 500px;
     height:auto;
     width:auto;
 }
