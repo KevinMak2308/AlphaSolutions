@@ -92,16 +92,26 @@ body{
 
 .foot {
     background-color: #4F86A0;
-    position:fixed;
-    left:0px;
-    bottom:0px;
-    height:125px;
-    width:100%;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height:auto;
+    width:auto;
+}
+
+.alphafooter {
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    margin-left: 48px;
+    height: 125px;
+    width: 240px;
 }
 
 .ul-footer-alpha {
-align-items: center;
-
+    align-items: center;
     margin-left: 24px;
 }
 .ul-footer-gruppe5{
