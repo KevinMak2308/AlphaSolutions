@@ -45,7 +45,7 @@ public class UserController {
 
 
     @PostMapping("/makeUser")
-    public String makeAccount(@RequestParam("useremail") String userEmail, @RequestParam("userpassword") String userPassword, HttpServletRequest request){
+    public String makeAccount(@RequestParam("userEmail") String userEmail, @RequestParam("userPassword") String userPassword, HttpServletRequest request){
         DBManager.getConnection();
         userRepository.sendData(userEmail, userPassword);
         HttpSession session = request.getSession();
