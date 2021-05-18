@@ -8,19 +8,25 @@
 <header th:replace="fragments/header.html"></header>
 <h1>Assign Role to the User</h1>
 <form action="assignRoles" method="post">
-    <div class="roleCheck">
-        <input type="checkbox" id="manager" name="roleID">
-        <label class="roleCheck" for="manager">
-            Manager
-        </label>
+    <div>
+        <select name="roleID">
+            <option value="1">Manager</option>
+            <option value="2">Software Developer</option>
+        </select>
     </div>
-    <div class="roleCheck">
-        <input type="checkbox" id="developer" name="roleID">
-        <label class="roleCheck" for="developer">
-            Software Developer
-        </label>
 
-        <input type="submit" value="Confirm Roles">
+    <div>
+        <select name="userEmail">
+            <option value="gg@gmail.com">Oliver</option>
+            <option value="bg@gmail">Kevin</option>
+        </select>
+    </div>
+
+    # TODO Array som gå igennem user database så vi ikke skal hardcode alle sammen<select th:field="*{useremail}"><option th:value="'M'" th:text="Male"></option><option th:value="'F'" th:text="Female"></option></select>
+
+
+
+    <input type="submit" value="Confirm Roles">
     </div>
 
 </form>

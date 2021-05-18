@@ -10,7 +10,6 @@ html, body {
 }
 
 h1{
-    height: 400px;
     width: 800px;
     display: flex;
     flex-direction: column;

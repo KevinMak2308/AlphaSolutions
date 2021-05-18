@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 
 @Controller
@@ -22,7 +23,8 @@ public class ProjectController {
     }
 
     @GetMapping("/project")
-    public String project(Model model) {
+    public String project(Model model, HttpServletRequest request) {
+
         model.addAttribute("project", project);
         return "project";
     }

@@ -37,10 +37,9 @@ public class RoleController {
     }
 
     @PostMapping("/assignRoles")
-    public String assignRoles(@RequestParam("roleID") int roleID, HttpServletRequest request) {
-      HttpSession session = request.getSession();
-      String currentUser = (String) session.getAttribute("userEmail");
-      roleRepo.assignRole(roleID, currentUser);
+    public String assignRoles(@RequestParam("roleID") int roleID, @RequestParam("userEmail") String userEmail, HttpServletRequest request) {
+        DBManager.getConnection();
+      roleRepo.assignRole(roleID, userEmail);
       return"redirect:/roles";
     }
 }

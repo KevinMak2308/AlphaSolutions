@@ -16,7 +16,7 @@ public class RoleRepository {
         ArrayList<Roles> getRoles = new ArrayList<>();
         try {
             Connection roleConn = DBManager.getConnection();
-            PreparedStatement  roleStatement = roleConn.prepareStatement("Select roleID From users Inner Join user_roles ON users.useremail = user_roles.useremail Where users.useremail = ?");
+            PreparedStatement  roleStatement = roleConn.prepareStatement("Select users.useremail, roles.roleID From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID   Where users.useremail = ?");
             roleStatement.setString(1, userEmail);
             ResultSet roleResult = roleStatement.executeQuery();
 
@@ -37,7 +37,8 @@ public class RoleRepository {
 
         try {
             Connection roleConn = DBManager.getConnection();
-            PreparedStatement roleStatement = roleConn.prepareStatement("INSERT INTO user_roles(roleID, useremail)" + "VALUES (" + roleID + "', '" + userEmail + "')");
+            String query = "INSERT INTO user_roles(roleID, useremail) VALUES (" + roleID + ", '" + userEmail + "')";
+            PreparedStatement roleStatement = roleConn.prepareStatement(query);
             roleStatement.executeUpdate();
 
         } catch (SQLException error) {
