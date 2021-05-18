@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<header th:replace="fragments/header.html"></header>
+<h1>Profile</h1>
+<tr th:each="userRoles : ${userRoles}">
+    <div class="container">
+        <p class="text">Role: <span th:text="${userRoles.roleID}"> </span></p>
+        <p class="text">Email: <span th:text="${userRoles.userEmail}"> </span></p>
+    </div>
+</tr>
+
+
+<footer th:replace="fragments/footer.html"> </footer>
+</body>
+</html>

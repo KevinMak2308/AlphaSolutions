@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Account</title>
+</head>
+<body>
+<header th:replace="fragments/header.html"></header>
+<h1>Assign Role to the User</h1>
+<form action="assignRoles" method="post">
+    <div class="roleCheck">
+        <input type="checkbox" id="manager" name="roleID">
+        <label class="roleCheck" for="manager">
+            Manager
+        </label>
+    </div>
+    <div class="roleCheck">
+        <input type="checkbox" id="developer" name="roleID">
+        <label class="roleCheck" for="developer">
+            Software Developer
+        </label>
+
+        <input type="submit" value="Confirm Roles">
+    </div>
+
+</form>
+<footer th:replace="fragments/footer.html"> </footer>
+</body>
+</html>
