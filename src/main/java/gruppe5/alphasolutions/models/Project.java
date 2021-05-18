@@ -26,6 +26,10 @@ public class Project {
         this.deadline = deadline;
     }
 
+    public Project(){
+
+    }
+
     public int getProjectID() {
         return projectID;
     }

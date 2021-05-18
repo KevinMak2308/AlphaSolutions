@@ -1,8 +1,6 @@
 package gruppe5.alphasolutions.repositories;
-
 import gruppe5.alphasolutions.models.Project;
 import gruppe5.alphasolutions.models.Task;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,7 +9,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskRepository {
-
 
     public void sendData(int taskID, String title, String descriptions, LocalDate startDate, LocalDate deadline){
         try {

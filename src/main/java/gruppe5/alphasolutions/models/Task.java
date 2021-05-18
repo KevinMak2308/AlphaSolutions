@@ -20,6 +20,7 @@ public class Task {
         this.startDate = startDate;
         this.deadline = deadline;
     }
+
     public Task() {
     }
 
