@@ -12,9 +12,9 @@ public class Project {
     private int projectID;
     private String title;
     private String description;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate deadline;
 
 

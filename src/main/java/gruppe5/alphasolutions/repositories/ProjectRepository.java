@@ -15,7 +15,7 @@ public class ProjectRepository {
         try {
             Connection proConn = DBManager.getConnection();
             PreparedStatement proStatement = proConn.prepareStatement("Insert into projects(projectID, title, descriptions, startdate, deadline)" +
-                    "Values ('" + projectID + "', '" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "')");
+                    "Values ('\" + projectID +  \"', '\" + title + \"', '\" + descriptions + \"', '\" + startDate + \"', '\" + deadline + \"')");
 
             proStatement.executeUpdate();
             proStatement.close();
@@ -24,7 +24,6 @@ public class ProjectRepository {
             System.out.println(error.getMessage());
         }
     }
-
 
     public ArrayList<Project> showAllData() {
         ArrayList<Project> allProjects = new ArrayList<>();

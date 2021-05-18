@@ -1,20 +1,26 @@
 package gruppe5.alphasolutions.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
-public class Assignment {
+public class Task {
+    private int taskID;
     private String title;
     private String description;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate deadline;
 
-    public Assignment(String title, String description, LocalDate startDate, LocalDate deadline) {
+    public Task(int taskID,String title, String description, LocalDate startDate, LocalDate deadline) {
+        this.taskID = taskID;
         this.title = title;
         this.description = description;
         this.startDate = startDate;
         this.deadline = deadline;
     }
-    public Assignment() {
+    public Task() {
     }
 
     public String getTitle() {
@@ -47,5 +53,13 @@ public class Assignment {
 
     public void setDeadline(LocalDate deadline) {
         this.deadline = deadline;
+    }
+
+    public int getTaskID() {
+        return taskID;
+    }
+
+    public void setTaskID(int taskID) {
+        this.taskID = taskID;
     }
 }

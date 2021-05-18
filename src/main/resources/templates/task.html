@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+<header th:replace="fragments/header.html"></header>
+<h1>Here you can see the Tasks</h1>
+<div class="displaytext">
+    <p class="text-success">Title: <span th:text="${task.title}"> </span></p>
+    <p class="text-success">Description: <span th:text="${task.description}"> </span></p>
+    <p class="text-success">Start Date: <span th:text="${task.startDate}"> </span></p>
+    <p class="text-success">Deadline: <span th:text="${task.deadline}"> </span></p>
+</div>
+<footer th:replace="fragments/footer.html"> </footer>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DoTask</title>
+</head>
+<body>
+<header th:replace="fragments/header.html"></header>
+<h1> Create new task</h1>
+<form action="makeTask" method="post">
+    <div class="displaytext">
+        Title: <pre><input type="text" name="title"></pre><br>
+        Description: <pre><input type="text" name="description"></pre><br>
+        Start Date: <pre><input type="date" name="startDate"></pre><br>
+        Deadline: <pre><input type="date" name="deadline"></pre><br>
+        <input type="submit" value="Create new Task">
+    </div>
+</form>
+<footer th:replace="fragments/footer.html"> </footer>
+</body>
+</html>

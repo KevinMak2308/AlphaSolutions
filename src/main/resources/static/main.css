@@ -1,6 +1,6 @@
 
 html, body {
-    background: url('https://img1.goodfon.com/wallpaper/nbig/6/e0/civil-engineering-blueprints.jpg') no-repeat center center fixed;
+    background: url("https://images.pexels.com/photos/33545/sunrise-phu-quoc-island-ocean.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -34,4 +34,7 @@ body{
     font-family: Roboto;
 }
 
-
+.submit{
+    width: 20em;
+    height: 2em;
+}
