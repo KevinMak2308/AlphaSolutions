@@ -19,7 +19,11 @@ import java.util.ArrayList;
 public class RoleController {
     RoleRepository roleRepo = new RoleRepository();
     UserRepository userRepo = new UserRepository();
+    Roles role;
 
+    public RoleController(){
+        this.role = new Roles(1,"", "");
+    }
 
     @GetMapping("/roles")
     public String roles(Model model, HttpServletRequest request) {
@@ -41,7 +45,7 @@ public class RoleController {
     }
 
     @PostMapping("/assignRoles")
-    public String assignRoles(@RequestParam("roleID") int roleID, @RequestParam("userEmail") String userEmail, Model model) {
+    public String assignRoles(@RequestParam("roleID") int roleID, @RequestParam("useremail") String userEmail, Model model) {
         DBManager.getConnection();
         //HttpSession session = request.getSession();
         //session.getAttribute("useremail");

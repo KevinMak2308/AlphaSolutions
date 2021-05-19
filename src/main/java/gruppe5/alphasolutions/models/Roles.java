@@ -6,11 +6,14 @@ public class Roles {
     private String userEmail;
 
 
-    public Roles(int roleID, String rolename) {
+    public Roles(int roleID, String rolename, String userEmail) {
         this.roleID = roleID;
         this.rolename = rolename;
+        this.userEmail = userEmail;
     }
 
+    public Roles(){
+    }
 
     public int getRoleID() {
         return roleID;

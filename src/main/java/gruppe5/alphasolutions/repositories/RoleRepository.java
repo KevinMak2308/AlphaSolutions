@@ -16,12 +16,12 @@ public class RoleRepository {
         ArrayList<Roles> getRoles = new ArrayList<>();
         try {
             Connection roleConn = DBManager.getConnection();
-            PreparedStatement  roleStatement = roleConn.prepareStatement("Select users.useremail, users.userpassword, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID");
+            PreparedStatement  roleStatement = roleConn.prepareStatement("Select users.useremail, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID");
             //roleStatement.setString(1, userEmail);
             ResultSet roleResult = roleStatement.executeQuery();
 
             while (roleResult.next()) {
-                Roles tmp = new Roles(roleResult.getInt(1), roleResult.getString(2));
+                Roles tmp = new Roles(roleResult.getInt(2), roleResult.getString(3),roleResult.getString(1));
                 getRoles.add(tmp);
             }
 
