@@ -110,13 +110,17 @@ h1{
     color: #f2f2f2;
     margin-bottom: 30px;
     font-family: Roboto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 
 }
-.alertpic{
-    height: 64px;
-    width: 64px;
+.alertemoji{
+    font-size: 70px;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
