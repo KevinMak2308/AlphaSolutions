@@ -7,12 +7,15 @@
 <body>
 <header th:replace="fragments/header.html"></header>
 <h1>Profile</h1>
-<tr th:each="userRoles : ${userRoles}">
+<tr th:each="roles : ${userroles}">
     <div class="container">
-        <p class="text">Role: <span th:text="${userRoles.roleID}"> </span></p>
-        <p class="text">Email: <span th:text="${userRoles.userEmail}"> </span></p>
+        <p class="text">Work Position: <span th:text="${roles.rolename}"> </span></p>
+        <p class="text">Email: <span th:text="${roles.userEmail}"> </span></p>
     </div>
 </tr>
+
+<div th:text="${allusers}">
+</div>
 
 
 <footer th:replace="fragments/footer.html"> </footer>

@@ -16,8 +16,8 @@ public class RoleRepository {
         ArrayList<Roles> getRoles = new ArrayList<>();
         try {
             Connection roleConn = DBManager.getConnection();
-            PreparedStatement  roleStatement = roleConn.prepareStatement("Select users.useremail, roles.roleID From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID   Where users.useremail = ?");
-            roleStatement.setString(1, userEmail);
+            PreparedStatement  roleStatement = roleConn.prepareStatement("Select users.useremail, users.userpassword, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID");
+            //roleStatement.setString(1, userEmail);
             ResultSet roleResult = roleStatement.executeQuery();
 
             while (roleResult.next()) {

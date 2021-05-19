@@ -15,21 +15,21 @@
         </select>
     </div>
 
+
+
     <div>
-        <select name="userEmail">
-            <option value="gg@gmail.com">Oliver</option>
-            <option value="bg@gmail">Kevin</option>
+        <select name="useremail">
+            <option th:each="user : ${allusers}" th:value="${user.userEmail}" th:text="${user.userEmail}"> test
+            </option>
         </select>
     </div>
 
-    # TODO Array som gå igennem user database så vi ikke skal hardcode alle sammen<select th:field="*{useremail}"><option th:value="'M'" th:text="Male"></option><option th:value="'F'" th:text="Female"></option></select>
 
-
-
-    <input type="submit" value="Confirm Roles">
+    <div>
+        <input type="submit" value="Confirm Roles">
     </div>
 
 </form>
-<footer th:replace="fragments/footer.html"> </footer>
+<footer th:replace="fragments/footer.html"></footer>
 </body>
 </html>
