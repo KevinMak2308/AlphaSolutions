@@ -33,11 +33,6 @@ body{
     font-family: Roboto;
 }
 
-input[type=submit]{
-    width: 20em;
-    height: 2em;
-}
-
 form{
     position: absolute;
     top: 50%;
@@ -85,7 +80,17 @@ input[type=password]{
     color: #FFF;
 }
 
-button{
+input[type=email]{
+    display: inline-block;
+    text-align: left;
+    padding: 10px;
+    width: 350px;
+    margin: 10px 0;
+    background: transparent;
+    color: #FFF;
+}
+
+input[type=submit]{
     background: transparent;
     color: #FFFFFF;
     font-family: sans-serif;

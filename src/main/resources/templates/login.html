@@ -8,18 +8,16 @@
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<div class="login">
-    <h1>Welcome to Alpha Solutions</h1>
-    <div class="loginform">
-        <P>Enter login information</P>
-        <form action="/login" method="post">
-            <input type="email" name="useremail" required placeholder="E-Mail">
-            <input type="password" name="userpassword" required placeholder="Password">
+    <div>
+        <form class="createuser" action="/login" method="post">
+            <h1> Login</h1>
+            <label>Email:</label><br>
+            <input type="email" name="useremail"><br>
+            <label>Password:</label><br>
+            <input type="password" name="userpassword"><br>
             <input type="submit" value="Login">
         </form>
     </div>
-</div>
-
 <footer th:replace="fragments/footer.html"> </footer>
 </body>
 </html>

@@ -7,13 +7,13 @@
 <body>
 <header th:replace="fragments/header.html"></header>
 <div>
-<form class="createuser">
+<form class="createuser" action="/makeUser" method="post">
   <h1>Create User</h1>
   <label> E-mail: </label> <br>
-  <input type="text"/><br>
+  <input type="text" name="userEmail"/><br>
   <label> Password: </label> </br>
-  <input type="Password"/><br>
-  <button> Create User </button>
+  <input type="Password" name="userPassword"/><br>
+  <input type="submit" value="Create user">
 </form>
 </div>
 </body>
