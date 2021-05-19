@@ -106,3 +106,17 @@ h1{
     color: #FFFFFF;
 }
 
+.loginfail {
+    color: #f2f2f2;
+    margin-bottom: 30px;
+    font-family: Roboto;
+
+}
+.alertpic{
+    height: 64px;
+    width: 64px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}

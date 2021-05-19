@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Login fail</title>
+</head>
+<body>
+<header th:replace="fragments/header.html"></header>
+<div>
+    <form class="createuser" action="/login" method="post">
+        <img class="alertpic" src="https://lh3.googleusercontent.com/proxy/-IoP_ILAiKIXAN0fCs1j87ds5h9Jv2f3pJm29CtZ-O3MG3Ej0wU8nJjQiDn5Vlg4JjdBK18xCFLO5whSyMWC7tTV-Hcra97GtFTSQ4xkgPyJyDGM-BcZs2iJv8hR5q9EzK9E8_2yiCmr1A">
+        <div  class="loginfail">
+            E-mail eller adgangskode passer ikke. Prøv igen
+        </div>
+        <label>Email:</label><br>
+        <input type="email" name="useremail"><br>
+        <label>Password:</label><br>
+        <input type="password" name="userpassword"><br>
+        <input type="submit" value="Login">
+    </form>
+</div>
+<footer th:replace="fragments/footer.html"> </footer>
+
+</body>
+</html>

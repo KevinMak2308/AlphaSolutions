@@ -23,13 +23,18 @@ public class LoginController {
 
             return "redirect:/user?useremail=" + userEmail;
         } else {
-            return "redirect:/login";
+            return "redirect:/loginfail";
         }
     }
 
     @GetMapping("/login")
     public String login() {
         return "login";
+    }
+
+    @GetMapping("/loginfail")
+    public String loginfail(){
+        return "loginfail";
     }
 
     @GetMapping("/logout")

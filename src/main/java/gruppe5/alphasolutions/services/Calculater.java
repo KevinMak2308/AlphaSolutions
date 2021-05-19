@@ -1,5 +1,6 @@
 package gruppe5.alphasolutions.services;
 
+import gruppe5.alphasolutions.models.Task;
 import gruppe5.alphasolutions.models.Project;
 import gruppe5.alphasolutions.models.User;
 
@@ -17,6 +18,9 @@ public class Calculater {
     }
 
 
-    }
+    public void estimatedTime(Project project, Task assignment, User user){
 
+
+    }
+}
 
