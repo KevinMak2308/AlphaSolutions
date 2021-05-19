@@ -1,13 +1,15 @@
 .foot {
 
     position: sticky;
+    clear: both;
     left: 0px;
     right: 0px;
     bottom: 0px;
-    margin-top: 500px;
+    margin-top: -150px;
     height:auto;
     width:auto;
     font-weight: bold;
+
 }
 
 .alphafooter {

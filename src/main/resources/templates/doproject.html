@@ -6,16 +6,21 @@
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<h1>Create a new Project</h1>
-<form action="makeProject" method="post">
-    <div class="displaytext">
-        Title: <pre><input type="text" name="title"></pre><br>
-        Description: <pre><input type="text" name="description"></pre><br>
-        Start Date: <pre><input type="date" name="startDate"></pre><br>
-        Deadline: <pre><input type="date" name="deadline"></pre><br>
-        <input type="submit" value="Create new Project">
-    </div>
+<div>
+ <form class="createuser" action="makeProject" method="post">
+    <h1>Create a new Project</h1>
+    <label>Title:</label> <br>
+    <input type="text" name="title"><br>
+    <label>Description:</label><br>
+    <input type="text" name="description"><br>
+    <label>Start Date:</label><br>
+    <input type="date" name="startDate"><br>
+    <label>Deadline:</label><br>
+    <input type="date" name="deadline"><br>
+     <button> Create Project</button>
+
 </form>
+</div>
 <footer th:replace="fragments/footer.html"> </footer>
 </body>
 </html>

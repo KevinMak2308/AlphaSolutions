@@ -6,14 +6,16 @@
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<h1>Create a new Account</h1>
-<form action="makeUser" method="post">
-  <div class="accountStyle">
-    Email: <pre><input type="text" name="userEmail" placeholder="Email"> </pre><br>
-    Password: <pre><input type="password" name="userPassword"></pre><br>
-    <input  type="submit" value="Create User" class="submit">
-  </div>
+<div>
+<form class="createuser">
+  <h1>Create User</h1>
+  <label> E-mail: </label> <br>
+  <input type="text"/><br>
+  <label> Password: </label> </br>
+  <input type="Password"/><br>
+  <button> Create User </button>
 </form>
-<footer th:replace="fragments/footer.html"> </footer>
+</div>
 </body>
+<footer th:replace="fragments/footer.html"> </footer>
 </html>

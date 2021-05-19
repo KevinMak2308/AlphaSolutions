@@ -10,14 +10,14 @@ html, body {
 }
 
 h1{
-    width: 800px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 1.5em;
 }
 
 body{
@@ -33,7 +33,71 @@ body{
     font-family: Roboto;
 }
 
-.submit{
+input[type=submit]{
     width: 20em;
     height: 2em;
 }
+
+form{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0,0,0,.5);
+    padding: 100px;
+}
+
+label{
+    font-family: sans-serif;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-size: .8em;
+    color: #FFF;
+}
+
+input[type=text]{
+    display: inline-block;
+    text-align: left;
+    padding: 10px;
+    width: 350px;
+    margin: 10px 0;
+    background: transparent;
+    color: #FFF;
+}
+
+input[type=date]{
+    display: inline-block;
+    text-align: left;
+    padding: 10px;
+    width: 350px;
+    margin: 10px 0;
+    background: transparent;
+    color: #FFF;
+}
+
+input[type=password]{
+    display: inline-block;
+    text-align: left;
+    padding: 10px;
+    width: 350px;
+    margin: 10px 0;
+    background: transparent;
+    color: #FFF;
+}
+
+button{
+    background: transparent;
+    color: #FFFFFF;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 20px 0;
+    padding: 10px 30px;
+    border: 2px solid #FFFFFF;
+}
+
+h1{
+    font-family: Roboto;
+    color: #FFFFFF;
+}
+

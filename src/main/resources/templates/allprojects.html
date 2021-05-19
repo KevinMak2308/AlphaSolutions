@@ -8,7 +8,6 @@
 <header th:replace="fragments/header.html"></header>
 <h1>Overview of all active projects</h1>
 <tr th:each="project : ${allprojects}">
-
   <div class="displaytext">
     <p class="text-success">Title: <span th:text="${project.title}"> </span></p>
     <p class="text-success">Description: <span th:text="${project.description}"> </span></p>
@@ -16,5 +15,5 @@
     <p class="text-success">Deadline: <span th:text="${project.deadline}"> </span></p>
   </div>
 </body>
-<footer th:replace="fragments/footer.html"> </footer>
+<footer th:replace="fragments/footer.html"></footer>
 </html>
