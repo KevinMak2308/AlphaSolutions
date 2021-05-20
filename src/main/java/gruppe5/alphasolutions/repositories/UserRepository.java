@@ -104,24 +104,4 @@ public class UserRepository {
             System.out.printf(error.getMessage());
         }
     }
-
-    /*public boolean managerAcess() {
-
-        Connection connToEMP = null;
-        try {
-            connToEMP = DriverManager.getConnection
-                    ("jdbc:mysql://localhost:3306/testschema", "root", "1711771435");
-            PreparedStatement accountStatement = connToEMP.prepareStatement
-                    ("SELECT roleID FROM roles WHERE roleID = ?");
-            accountStatement.setString(1, useremail);
-
-            ResultSet accountRS = accountStatement.executeQuery();
-            while (accountRS.next()) {
-
-                if (accountRS.equals(useremail)) {
-                }
-                return true;
-            }
-        }
-     }*/
-    }
+}

@@ -12,12 +12,11 @@ import java.util.ArrayList;
 
 public class RoleRepository {
 
-    public ArrayList<Roles> getAllRoles(String userEmail) {
+    public ArrayList<Roles> getAllRoles() {
         ArrayList<Roles> getRoles = new ArrayList<>();
         try {
             Connection roleConn = DBManager.getConnection();
             PreparedStatement  roleStatement = roleConn.prepareStatement("Select users.useremail, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID");
-            //roleStatement.setString(1, userEmail);
             ResultSet roleResult = roleStatement.executeQuery();
 
             while (roleResult.next()) {
@@ -57,5 +56,28 @@ public class RoleRepository {
         return userRoles;
     }
 
+    public boolean isManager(int roleID) {
+
+        try {
+            Connection userConn = DBManager.getConnection();
+            PreparedStatement userStatement = userConn.prepareStatement
+                    ("SELECT roleID  FROM roles WHERE roleID = ?");
+            userStatement.setInt(1, roleID);
+
+            ResultSet userResult = userStatement.executeQuery();
+            while (userResult.next()) {
+
+                if (userResult.equals(1)) {
+                }
+                userStatement.close();
+                return true;
+            }
+
+        } catch (SQLException error) {
+            System.out.println(error.getMessage());
+        }
+
+        return false;
+    }
 
 }
