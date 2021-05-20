@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.management.relation.Role;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
@@ -26,12 +27,10 @@ public class RoleController {
     }
 
     @GetMapping("/roles")
-    public String roles(Model model, HttpServletRequest request) {
+    public String roles(Model model) {
         DBManager.getConnection();
-        HttpSession session = request.getSession();
-        String currentUser = (String) session.getAttribute("useremail");
-        ArrayList<Roles> userRoles = roleRepo.getUserRole(currentUser);
-        model.addAttribute("userroles", userRoles);
+        ArrayList<Roles> tmproles = roleRepo.getAllRoles();
+        model.addAttribute("userroles", tmproles);
         return "roles";
     }
 
@@ -45,10 +44,8 @@ public class RoleController {
     }
 
     @PostMapping("/assignRoles")
-    public String assignRoles(@RequestParam("roleID") int roleID, @RequestParam("useremail") String userEmail, Model model) {
+    public String assignRoles(@RequestParam("roleID") int roleID, @RequestParam("useremail") String userEmail) {
         DBManager.getConnection();
-        //HttpSession session = request.getSession();
-        //session.getAttribute("useremail");
         roleRepo.assignRole(roleID, userEmail);
         return "redirect:/roles";
     }

@@ -1,6 +1,7 @@
 package gruppe5.alphasolutions.repositories;
 
 import gruppe5.alphasolutions.models.Roles;
+import gruppe5.alphasolutions.models.User;
 
 
 import java.sql.Connection;
@@ -46,18 +47,18 @@ public class RoleRepository {
     }
 
 
-    public ArrayList<Roles> getUserRole(String userEmail) {
+    /*public ArrayList<Roles> getUserRole() {
         ArrayList<Roles> allRoles;
         ArrayList<Roles> userRoles = new ArrayList<>();
-        allRoles = getAllRoles(userEmail);
+        allRoles = getAllRoles();
         for (int i = 0; i < allRoles.size(); i++) {
             userRoles.add(allRoles.get(i));
         }
         return userRoles;
-    }
+    }*/
 
-    public boolean isManager(int roleID) {
-
+    /*public Roles isManager(int roleID) {
+        boolean access = false;
         try {
             Connection userConn = DBManager.getConnection();
             PreparedStatement userStatement = userConn.prepareStatement
@@ -66,18 +67,44 @@ public class RoleRepository {
 
             ResultSet userResult = userStatement.executeQuery();
             while (userResult.next()) {
-
-                if (userResult.equals(1)) {
-                }
+                 if (userResult.getInt(roleID) == (1)){
+                 }
                 userStatement.close();
-                return true;
             }
-
         } catch (SQLException error) {
             System.out.println(error.getMessage());
         }
+    } */
 
-        return false;
+    public Roles checkRole(String rolename) {
+        Roles tmp = null;
+
+        try {
+            Connection userConn = DBManager.getConnection();
+            PreparedStatement userStatement = userConn.prepareStatement("SELECT rolename FROM roles Where rolename  = ?");
+            userStatement.setString(1, rolename);
+
+            ResultSet rolesResult = userStatement.executeQuery();
+            while(rolesResult.next())
+
+            if (rolesResult.getString(rolename).equals("Admin")) {
+
+                tmp = new Roles(rolesResult.getInt(1),rolesResult.getString(2), rolesResult.getString(3));
+            }
+            else if(rolesResult.getString(rolename).equals("Manager")) {
+
+                tmp = new Roles(rolesResult.getInt(1),rolesResult.getString(2), rolesResult.getString(3));
+
+            }
+
+            else tmp = new Roles(rolesResult.getInt(1),rolesResult.getString(2), rolesResult.getString(3)); {
+
+            }
+
+            userStatement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return tmp;
     }
-
 }
