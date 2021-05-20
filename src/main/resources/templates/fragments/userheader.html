@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<link rel="stylesheet" th:href="main.css">
+<link rel="stylesheet" th:href="header.css">
+<link rel="stylesheet" th:href="footer.css">
+<header>
+    <a href="/">
+        <link rel="icon" href="https://studerendeonline.dk/images/dynamic/company/logo/74944/?s=s" type="image"/>
+    </a>
+    <nav class="nav">
+        <ul>
+            <li class="leftnav"><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{user}">Profile</a></li>
+            <li><a th:href="@{project}">View Projects</a></li>
+            <li><a th:href="@{task}">View Task</a></li>
+            <li><a th:href="@{logout}">Logout</a></li>
+        </ul>
+    </nav>
+</header>
 </html>
