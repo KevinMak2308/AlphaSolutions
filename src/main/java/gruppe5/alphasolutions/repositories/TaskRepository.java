@@ -13,9 +13,8 @@ public class TaskRepository {
     public void sendData(int taskID, String title, String descriptions, LocalDate startDate, LocalDate deadline){
         try {
             Connection taskConn = DBManager.getConnection();
-            PreparedStatement taskStatement = taskConn.prepareStatement("Insert into tasks(taskID,title, descreption, startdate, deadline)" +
-                    "Values('\" + taskID + \"', '\" + title + \"', '\" + descriptions + \"', '\" + startDate + \"', '\" + deadline + \"')");
-
+            String taskQuery = "Select * From task";
+            PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
             taskStatement.executeUpdate();
             taskStatement.close();
 
