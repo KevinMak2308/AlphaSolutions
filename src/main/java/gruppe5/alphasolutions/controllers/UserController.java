@@ -1,7 +1,9 @@
 package gruppe5.alphasolutions.controllers;
 
+import gruppe5.alphasolutions.models.Roles;
 import gruppe5.alphasolutions.models.User;
 import gruppe5.alphasolutions.repositories.DBManager;
+import gruppe5.alphasolutions.repositories.RoleRepository;
 import gruppe5.alphasolutions.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +18,8 @@ import java.util.ArrayList;
 @Controller
 public class UserController {
 
-    UserRepository userRepository = new UserRepository();
+    UserRepository userRepo = new UserRepository();
+    RoleRepository roleRepo = new RoleRepository();
     User user;
 
     public UserController(){
@@ -28,9 +31,13 @@ public class UserController {
        DBManager.getConnection();
        HttpSession session = request.getSession();
        String userEmail = (String) session.getAttribute("useremail");
+       User currentUser = userRepo.getData(userEmail);
 
-       User currentUser = userRepository.getData(userEmail);
-       if(currentUser == null)
+        int accessRoles = (roleRepo.checkRole(userEmail));
+        System.out.println(accessRoles + "Does it work?");
+        model.addAttribute("roleID", accessRoles);
+
+        if(currentUser == null)
            return "redirect:/login";
 
        model.addAttribute("user", currentUser);
@@ -47,7 +54,7 @@ public class UserController {
     @PostMapping("/makeUser")
     public String makeAccount(@RequestParam("userEmail") String userEmail, @RequestParam("userPassword") String userPassword, HttpServletRequest request){
         DBManager.getConnection();
-        userRepository.sendData(userEmail, userPassword);
+        userRepo.sendData(userEmail, userPassword);
         HttpSession session = request.getSession();
         session.setAttribute("useremail", userEmail);
         return "redirect:/user?useremail=" + userEmail;
@@ -56,7 +63,7 @@ public class UserController {
     @GetMapping("/allUsers")
     public String allUsers(Model model) {
         DBManager.getConnection();
-        ArrayList<User> allUsers = userRepository.showAllData();
+        ArrayList<User> allUsers = userRepo.showAllData();
         model.addAttribute("allusers", allUsers);
         return "allusers";
     }

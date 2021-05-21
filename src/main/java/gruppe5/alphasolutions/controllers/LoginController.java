@@ -1,8 +1,12 @@
 package gruppe5.alphasolutions.controllers;
 
+import gruppe5.alphasolutions.models.Roles;
+import gruppe5.alphasolutions.models.User;
 import gruppe5.alphasolutions.repositories.DBManager;
+import gruppe5.alphasolutions.repositories.RoleRepository;
 import gruppe5.alphasolutions.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,9 +17,10 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class LoginController {
     UserRepository userRepository = new UserRepository();
+    RoleRepository roleRepo = new RoleRepository();
 
     @PostMapping("/login")
-    public String submitLogin(@RequestParam(name = "useremail") String userEmail, @RequestParam(name = "userpassword") String userPassword, HttpServletRequest request) {
+    public String submitLogin(@RequestParam(name = "useremail") String userEmail, @RequestParam(name = "userpassword") String userPassword, HttpServletRequest request, Model model) {
         DBManager.getConnection();
         if (userRepository.validateData(userEmail, userPassword) == true) {
             HttpSession session = request.getSession();

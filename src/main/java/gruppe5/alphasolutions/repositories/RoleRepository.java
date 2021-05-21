@@ -17,11 +17,11 @@ public class RoleRepository {
         ArrayList<Roles> getRoles = new ArrayList<>();
         try {
             Connection roleConn = DBManager.getConnection();
-            PreparedStatement roleStatement = roleConn.prepareStatement("Select users.useremail, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID");
+            PreparedStatement  roleStatement = roleConn.prepareStatement("Select users.useremail, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID");
             ResultSet roleResult = roleStatement.executeQuery();
 
             while (roleResult.next()) {
-                Roles tmp = new Roles(roleResult.getInt(2), roleResult.getString(3), roleResult.getString(1));
+                Roles tmp = new Roles(roleResult.getInt(2), roleResult.getString(3),roleResult.getString(1));
                 getRoles.add(tmp);
             }
 
@@ -47,43 +47,13 @@ public class RoleRepository {
     }
 
 
-    /*public ArrayList<Roles> getUserRole() {
-        ArrayList<Roles> allRoles;
-        ArrayList<Roles> userRoles = new ArrayList<>();
-        allRoles = getAllRoles();
-        for (int i = 0; i < allRoles.size(); i++) {
-            userRoles.add(allRoles.get(i));
-        }
-        return userRoles;
-    }*/
-
-    /*public Roles isManager(int roleID) {
-        boolean access = false;
-        try {
-            Connection userConn = DBManager.getConnection();
-            PreparedStatement userStatement = userConn.prepareStatement
-                    ("SELECT roleID  FROM roles WHERE roleID = ?");
-            userStatement.setInt(1, roleID);
-
-            ResultSet userResult = userStatement.executeQuery();
-            while (userResult.next()) {
-                 if (userResult.getInt(roleID) == (1)){
-                 }
-                userStatement.close();
-            }
-        } catch (SQLException error) {
-            System.out.println(error.getMessage());
-        }
-    } */
 
     public int checkRole(String useremail) {
         int tmp = 0;
 
         try {
             Connection userConn = DBManager.getConnection();
-            String checkroleQuery = "Select users.useremail, roles.roleID, roles.rolename" +
-                    " From users" + " JOIN user_roles on users.useremail = user_roles.useremail" +
-                    " JOIN roles on roles.roleID = user_roles.roleID where users.useremail = ? ;";
+            String checkroleQuery = "Select users.useremail, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID Where users.useremail = ? ";
             PreparedStatement userStatement = userConn.prepareStatement(checkroleQuery);
             userStatement.setString(1, useremail);
 
