@@ -17,11 +17,11 @@ public class RoleRepository {
         ArrayList<Roles> getRoles = new ArrayList<>();
         try {
             Connection roleConn = DBManager.getConnection();
-            PreparedStatement  roleStatement = roleConn.prepareStatement("Select users.useremail, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID");
+            PreparedStatement roleStatement = roleConn.prepareStatement("Select users.useremail, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID");
             ResultSet roleResult = roleStatement.executeQuery();
 
             while (roleResult.next()) {
-                Roles tmp = new Roles(roleResult.getInt(2), roleResult.getString(3),roleResult.getString(1));
+                Roles tmp = new Roles(roleResult.getInt(2), roleResult.getString(3), roleResult.getString(1));
                 getRoles.add(tmp);
             }
 
@@ -76,35 +76,28 @@ public class RoleRepository {
         }
     } */
 
-    public Roles checkRole(String rolename) {
-        Roles tmp = null;
+    public int checkRole(String useremail) {
+        int tmp = 0;
 
         try {
             Connection userConn = DBManager.getConnection();
-            PreparedStatement userStatement = userConn.prepareStatement("SELECT rolename FROM roles Where rolename  = ?");
-            userStatement.setString(1, rolename);
+            String checkroleQuery = "Select users.useremail, roles.roleID, roles.rolename" +
+                    " From users" + " JOIN user_roles on users.useremail = user_roles.useremail" +
+                    " JOIN roles on roles.roleID = user_roles.roleID where users.useremail = ? ;";
+            PreparedStatement userStatement = userConn.prepareStatement(checkroleQuery);
+            userStatement.setString(1, useremail);
 
             ResultSet rolesResult = userStatement.executeQuery();
-            while(rolesResult.next())
+            while (rolesResult.next())
 
-            if (rolesResult.getString(rolename).equals("Admin")) {
-
-                tmp = new Roles(rolesResult.getInt(1),rolesResult.getString(2), rolesResult.getString(3));
-            }
-            else if(rolesResult.getString(rolename).equals("Manager")) {
-
-                tmp = new Roles(rolesResult.getInt(1),rolesResult.getString(2), rolesResult.getString(3));
-
-            }
-
-            else tmp = new Roles(rolesResult.getInt(1),rolesResult.getString(2), rolesResult.getString(3)); {
-
-            }
+                tmp = rolesResult.getInt(2);
 
             userStatement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+
         return tmp;
     }
+
 }
