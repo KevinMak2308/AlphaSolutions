@@ -53,14 +53,14 @@ public class RoleRepository {
 
         try {
             Connection userConn = DBManager.getConnection();
-            String checkroleQuery = "Select users.useremail, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID Where users.useremail = ? ";
+            String checkroleQuery = "Select roles.roleID From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID Where users.useremail = ? ";
             PreparedStatement userStatement = userConn.prepareStatement(checkroleQuery);
             userStatement.setString(1, useremail);
 
             ResultSet rolesResult = userStatement.executeQuery();
             while (rolesResult.next())
 
-                tmp = rolesResult.getInt(2);
+                tmp = rolesResult.getInt(1);
 
             userStatement.close();
         } catch (SQLException throwables) {

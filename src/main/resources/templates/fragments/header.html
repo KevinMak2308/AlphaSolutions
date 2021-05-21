@@ -8,7 +8,7 @@
     <link rel="icon" href="https://studerendeonline.dk/images/dynamic/company/logo/74944/?s=s" type="image"/>
   </a>
 
-  <! -- Admin -->
+
   <td th:switch="${roleID}">
     <span th:case="'3'"><nav class="nav">
     <ul>
@@ -23,7 +23,7 @@
     </ul>
   </nav></span>
 
-    <! -- Manager -->
+
     <span th:case="'2'"><nav class="nav" >
     <ul>
       <li class="leftnav"><a th:href="@{user}">Profile</a></li>
@@ -35,7 +35,7 @@
     </ul>
   </nav></span>
 
-    <! -- Software developer -->
+
     <span th:case="'1'" ><nav class="nav">
     <ul>
       <li class="leftnav"><a th:href="@{user}">Profile</a></li>
