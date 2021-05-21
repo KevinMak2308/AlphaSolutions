@@ -8,8 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Controller
@@ -24,6 +27,7 @@ public class ProjectController {
 
     @GetMapping("/project")
     public String project(Model model, HttpServletRequest request) {
+        DBManager.getConnection();
 
         model.addAttribute("project", project);
         return "project";
@@ -35,7 +39,9 @@ public class ProjectController {
     }
 
     @PostMapping("/makeProject")
-    public String makeProject(@ModelAttribute Project model) {
+    public String makeProject(@RequestParam("title") String title, @RequestParam("descriptions") String descriptions, @RequestParam("startDate") LocalDate startDate, @RequestParam("deadline") LocalDate deadline, @ModelAttribute Project model) {
+        DBManager.getConnection();
+        projectRepository.sendData(title, descriptions, startDate, deadline);
         this.project = model;
         return "redirect:/project";
     }

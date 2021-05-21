@@ -32,8 +32,8 @@ public class UserController {
        HttpSession session = request.getSession();
        String userEmail = (String) session.getAttribute("useremail");
        User currentUser = userRepo.getData(userEmail);
-        int accessRoles = (roleRepo.checkRole(userEmail));
-        model.addAttribute("roleID", accessRoles);
+       int accessRoles = roleRepo.checkRole(userEmail);
+       model.addAttribute("roleID", accessRoles);
 
         if(currentUser == null)
            return "redirect:/login";

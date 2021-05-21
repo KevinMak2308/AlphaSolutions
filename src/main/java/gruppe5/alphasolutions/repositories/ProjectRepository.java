@@ -11,11 +11,11 @@ public class ProjectRepository {
 
 
 
-    public void sendData(int projectID, String title, String descriptions, LocalDate startDate, LocalDate deadline) {
+    public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline) {
         try {
             Connection proConn = DBManager.getConnection();
-            PreparedStatement proStatement = proConn.prepareStatement("Insert into projects(projectID, title, descriptions, startdate, deadline)" +
-                    "Values ('\" + projectID +  \"', '\" + title + \"', '\" + descriptions + \"', '\" + startDate + \"', '\" + deadline + \"')");
+            String projectQuery = "Insert into projects (title, descriptions, startDate, deadline) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "')";
+            PreparedStatement proStatement = proConn.prepareStatement(projectQuery);
 
             proStatement.executeUpdate();
             proStatement.close();
@@ -47,13 +47,14 @@ public class ProjectRepository {
     }
 
 
-    public Project getData(String title) {
+    public Project getData(int projectID) {
         Project tmp = null;
 
         try {
             Connection proConn = DBManager.getConnection();
-            PreparedStatement projectStatement = proConn.prepareStatement("SELECT * FROM projects Where title = ?");
-            projectStatement.setString(1, title);
+            String projectQuery = "Select * From projects Where projectID = ?";
+            PreparedStatement projectStatement = proConn.prepareStatement(projectQuery);
+            projectStatement.setInt(1, projectID);
 
             ResultSet projectResult = projectStatement.executeQuery();
             if (projectResult.next()) {

@@ -1,5 +1,4 @@
 package gruppe5.alphasolutions.repositories;
-import gruppe5.alphasolutions.models.Project;
 import gruppe5.alphasolutions.models.Task;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,10 +9,10 @@ import java.util.ArrayList;
 
 public class TaskRepository {
 
-    public void sendData(int taskID, String title, String descriptions, LocalDate startDate, LocalDate deadline){
+    public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline){
         try {
             Connection taskConn = DBManager.getConnection();
-            String taskQuery = "Select * From task";
+            String taskQuery = "Insert into projects (taskID, title, descriptions, startDate, deadline) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "')";
             PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
             taskStatement.executeUpdate();
             taskStatement.close();
@@ -43,13 +42,14 @@ public class TaskRepository {
         } return allTask;
     }
 
-    public Task getData(String title) {
+    public Task getData(String useremail) {
         Task tmp = null;
 
         try {
             Connection taskConn = DBManager.getConnection();
-            PreparedStatement taskStatement = taskConn.prepareStatement("SELECT * FROM tasks Where title = ?");
-            taskStatement.setString(1, title);
+            String taskQuery = "Select * From users Join user_tasks On users.useremail = user_tasks.useremail Join tasks On tasks.taskID = user_tasks.taskID Where users.useremail = ?";
+            PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
+            taskStatement.setString(1, useremail);
 
             ResultSet taskResult = taskStatement.executeQuery();
             if (taskResult.next()) {
