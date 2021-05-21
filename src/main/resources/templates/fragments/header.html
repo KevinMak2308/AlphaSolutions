@@ -8,46 +8,42 @@
     <link rel="icon" href="https://studerendeonline.dk/images/dynamic/company/logo/74944/?s=s" type="image"/>
   </a>
 
-
+  <! -- Admin -->
   <td th:switch="${roleID}">
-    <span th:case="'3'"><nav class="adminNav">
+    <span th:case="'3'"><nav class="nav">
     <ul>
-      <li class="leftnav"><a th:href="@{/}">Home</a></li>
+      <li class="leftnav"><a th:href="@{user}">Profile</a></li>
       <li><a th:href="@{project}">View Projects</a></li>
       <li><a th:href="@{newProject}">Create Project</a></li>
       <li><a th:href="@{allProjects}">View all Projects</a></li>
-      <li><a th:href="@{register}">Create User</a></li>
-      <li><a th:href="@{login}">Login</a></li>
+      <li><a th:href="@{task}">View Task</a></li>
+      <li><a th:href="@{newTask}">Create Task</a></li>
       <li><a th:href="@{newRoles}">Assign Roles</a></li>
+       <li><a th:href="@{logout}">Logout</a></li>
     </ul>
   </nav></span>
 
-
-    <span th:case="'2'" ><nav class="managerNav">
+    <! -- Manager -->
+    <span th:case="'2'"><nav class="nav" >
     <ul>
-      <li class="leftnav"><a th:href="@{/}">Home</a></li>
+      <li class="leftnav"><a th:href="@{user}">Profile</a></li>
       <li><a th:href="@{project}">View Projects</a></li>
       <li><a th:href="@{newProject}">Create Project</a></li>
-      <li><a th:href="@{allProjects}">View all Projects</a></li>
-      <li><a th:href="@{register}">Create User</a></li>
-      <li><a th:href="@{login}">Login</a></li>
+      <li><a th:href="@{task}">View Task</a></li>
+      <li><a th:href="@{newTask}">Create Task</a></li>
+      <li><a th:href="@{logout}">Logout</a></li>
     </ul>
   </nav></span>
 
-
-    <span th:case="'1'" ><nav class="developerNav">
+    <! -- Software developer -->
+    <span th:case="'1'" ><nav class="nav">
     <ul>
-      <li class="leftnav"><a th:href="@{/}">Home</a></li>
-      <li><a th:href="@{project}">View Projects</a></li>
-      <li><a th:href="@{register}">Create User</a></li>
-      <li><a th:href="@{login}">Login</a></li>
+      <li class="leftnav"><a th:href="@{user}">Profile</a></li>
+      <li><a th:href="@{project}">View Project</a></li>
+      <li><a th:href="@{project}">View Task</a></li>
+       <li><a th:href="@{logout}">Logout</a></li>
     </ul>
   </nav></span>
   </td>
-
-
-
-
-
 </header>
 </html>
