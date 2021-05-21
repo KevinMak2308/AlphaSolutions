@@ -1,8 +1,10 @@
 package gruppe5.alphasolutions.controllers;
 
 import gruppe5.alphasolutions.models.Task;
+import gruppe5.alphasolutions.models.User;
 import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.ProjectRepository;
+import gruppe5.alphasolutions.repositories.RoleRepository;
 import gruppe5.alphasolutions.repositories.TaskRepository;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,7 +23,7 @@ import java.util.ArrayList;
 
 @Controller
 public class TaskController {
-    private Task task;
+    Task task;
     TaskRepository taskRepository;
 
     public TaskController(){
@@ -32,10 +34,9 @@ public class TaskController {
     @GetMapping("/task")
     public String task(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
-        String tasks = (String) session.getAttribute("useremail");
-        Task userTask = taskRepository.getData(tasks);
+        String useremail = (String) session.getAttribute("useremail");
+        Task userTask = taskRepository.getData(useremail);
         model.addAttribute("task",userTask);
-
 
         return "task";
     }
@@ -46,12 +47,9 @@ public class TaskController {
     }
 
     @PostMapping("/makeTask")
-    public String makeProjekt(@RequestParam("title") String title, @RequestParam("descriptions") String descriptions, @RequestParam("startDate") LocalDate startDate, @RequestParam("deadline") LocalDate deadline){
-        taskRepository.sendData(title, descriptions, startDate, deadline);
+    public String makeProjekt(@RequestParam("title") String title, @RequestParam("descriptions") String descriptions, @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate, @RequestParam("deadline") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate deadline){
         DBManager.getConnection();
         taskRepository.sendData(title, descriptions, startDate, deadline);
-        //HttpSession session = request.getSession();
-        //session.setAttribute("taskID", title);
          return "redirect:/task";
     }
 

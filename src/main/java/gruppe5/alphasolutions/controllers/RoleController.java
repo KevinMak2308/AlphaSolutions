@@ -23,7 +23,7 @@ public class RoleController {
     Roles role;
 
     public RoleController(){
-        this.role = new Roles(1,"", "");
+        this.role = new Roles(1,"","");
     }
 
     @GetMapping("/roles")

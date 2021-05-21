@@ -34,7 +34,6 @@ public class UserController {
        User currentUser = userRepo.getData(userEmail);
        int accessRoles = roleRepo.checkRole(userEmail);
        model.addAttribute("roleID", accessRoles);
-
         if(currentUser == null)
            return "redirect:/login";
 
@@ -43,7 +42,7 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String registerAccount(){
+    public String registerAccount(HttpServletRequest request, Model model){
         DBManager.getConnection();
         return "doregister";
     }
@@ -55,14 +54,19 @@ public class UserController {
         userRepo.sendData(userEmail, userPassword);
         HttpSession session = request.getSession();
         session.setAttribute("useremail", userEmail);
+
         return "redirect:/user?useremail=" + userEmail;
     }
 
     @GetMapping("/allUsers")
-    public String allUsers(Model model) {
+    public String allUsers(Model model, HttpServletRequest request) {
         DBManager.getConnection();
         ArrayList<User> allUsers = userRepo.showAllData();
         model.addAttribute("allusers", allUsers);
+        HttpSession session = request.getSession();
+        String userEmail = (String) session.getAttribute("useremail");
+        int accessRoles = (roleRepo.checkRole(userEmail));
+        model.addAttribute("roleID", accessRoles);
         return "allusers";
     }
 

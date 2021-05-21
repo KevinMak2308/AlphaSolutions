@@ -12,7 +12,7 @@ public class TaskRepository {
     public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline){
         try {
             Connection taskConn = DBManager.getConnection();
-            String taskQuery = "Insert into projects (taskID, title, descriptions, startDate, deadline) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "')";
+            String taskQuery = "Insert into tasks (title, descriptions, startDate, deadline) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "')";
             PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
             taskStatement.executeUpdate();
             taskStatement.close();
@@ -27,7 +27,7 @@ public class TaskRepository {
 
         try {
             Connection taskConnection = DBManager.getConnection();
-            PreparedStatement taskStatement = taskConnection.prepareStatement("Select * From projects");
+            PreparedStatement taskStatement = taskConnection.prepareStatement("Select * From tasks");
             ResultSet taskResult = taskStatement.executeQuery();
 
             while(taskResult.next()) {
@@ -47,16 +47,19 @@ public class TaskRepository {
 
         try {
             Connection taskConn = DBManager.getConnection();
-            String taskQuery = "Select * From users Join user_tasks On users.useremail = user_tasks.useremail Join tasks On tasks.taskID = user_tasks.taskID Where users.useremail = ?";
+            String taskQuery = "Select tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline " +
+                    "From users Join user_tasks On users.useremail = user_tasks.useremail Join tasks On tasks.taskID = user_tasks.taskID Where users.useremail = ?";
             PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
             taskStatement.setString(1, useremail);
 
             ResultSet taskResult = taskStatement.executeQuery();
             if (taskResult.next()) {
 
-                tmp = new Task(taskResult.getInt(1), taskResult.getString(2), taskResult.getString(3), taskResult.getDate(4).toLocalDate(), taskResult.getDate(5).toLocalDate());
+                tmp = new Task(taskResult.getInt(1), taskResult.getString(2),
+                        taskResult.getString(3), taskResult.getDate(4).toLocalDate(), taskResult.getDate(5).toLocalDate());
             }
 
+            taskStatement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
