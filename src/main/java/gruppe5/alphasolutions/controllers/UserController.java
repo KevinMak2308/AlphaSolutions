@@ -32,9 +32,7 @@ public class UserController {
        HttpSession session = request.getSession();
        String userEmail = (String) session.getAttribute("useremail");
        User currentUser = userRepo.getData(userEmail);
-
         int accessRoles = (roleRepo.checkRole(userEmail));
-        System.out.println(accessRoles + "Does it work?");
         model.addAttribute("roleID", accessRoles);
 
         if(currentUser == null)
