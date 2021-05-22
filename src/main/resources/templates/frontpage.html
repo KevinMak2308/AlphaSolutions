@@ -8,3 +8,29 @@
     <meta charset="UTF-8">
     <title>frontpage</title>
 </head>
+<body>
+<header>
+<div>
+    <form class="createuser" action="/makeUser" method="post">
+        <h1>Create User</h1>
+        <label> E-mail: </label> <br>
+        <input type="text" name="userEmail"/><br>
+        <label> Password: </label> </br>
+        <input type="Password" name="userPassword"/><br>
+        <input type="submit" value="Create user">
+    </form>
+</div>
+
+    <div>
+        <form class="createuser" action="login" method="post">
+            <h1> Login</h1>
+            <label>Email:</label><br>
+            <input type="email" name="useremail"><br>
+            <label>Password:</label><br>
+            <input type="password" name="userpassword"><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+    <footer th:replace="fragments/footer.html"> </footer>
+</header>
+</body>

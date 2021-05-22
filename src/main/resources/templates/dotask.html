@@ -7,13 +7,13 @@
 <body>
 <header th:replace="fragments/header.html"></header>
 <h1> Create new task</h1>
-<form action="makeTask" method="post">
+<form action="applyTask" method="post">
     <div class="displaytext">
         Title: <pre><input type="text" name="title"></pre><br>
         Description: <pre><input type="text" name="descriptions"></pre><br>
         Start Date: <pre><input type="date" name="startDate"></pre><br>
         Deadline: <pre><input type="date" name="deadline"></pre><br>
-        <input type="submit" value="Create new Task">
+        <input type="submit" value="Apply Task to your Profile">
     </div>
 </form>
 <footer th:replace="fragments/footer.html"> </footer>

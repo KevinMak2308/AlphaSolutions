@@ -12,17 +12,20 @@ public class Task {
     private LocalDate startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate deadline;
+    private String userEmail;
 
-    public Task(int taskID,String title, String description, LocalDate startDate, LocalDate deadline) {
+
+    public Task(int taskID, String title, String description, LocalDate startDate, LocalDate deadline, String userEmail) {
         this.taskID = taskID;
         this.title = title;
         this.description = description;
         this.startDate = startDate;
         this.deadline = deadline;
+        this.userEmail = userEmail;
+
     }
 
-    public Task() {
-    }
+
 
     public String getTitle() {
         return title;
@@ -62,5 +65,25 @@ public class Task {
 
     public void setTaskID(int taskID) {
         this.taskID = taskID;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "taskID=" + taskID +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", startDate=" + startDate +
+                ", deadline=" + deadline +
+                ", userEmail='" + userEmail + '\'' +
+                '}';
     }
 }

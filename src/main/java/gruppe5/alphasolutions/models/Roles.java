@@ -12,8 +12,6 @@ public class Roles {
         this.userEmail = userEmail;
     }
 
-    public Roles(){
-    }
 
     public int getRoleID() {
         return roleID;

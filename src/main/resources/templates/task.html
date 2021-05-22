@@ -7,7 +7,7 @@
 <body>
 <header th:replace="fragments/header.html"></header>
 <h1>Here you can see the Tasks</h1>
-<tr th:each="task : ${task}">
+<tr th:each="task : ${usertasks}">
 <div class="displaytext">
     <p class="text-success">Title: <span th:text="${task.title}"> </span></p>
     <p class="text-success">Description: <span th:text="${task.description}"> </span></p>

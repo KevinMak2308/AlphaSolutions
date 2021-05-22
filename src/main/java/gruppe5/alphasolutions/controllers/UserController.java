@@ -1,9 +1,11 @@
 package gruppe5.alphasolutions.controllers;
 
 import gruppe5.alphasolutions.models.Roles;
+import gruppe5.alphasolutions.models.Task;
 import gruppe5.alphasolutions.models.User;
 import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.RoleRepository;
+import gruppe5.alphasolutions.repositories.TaskRepository;
 import gruppe5.alphasolutions.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,7 @@ public class UserController {
 
     UserRepository userRepo = new UserRepository();
     RoleRepository roleRepo = new RoleRepository();
+    TaskRepository taskRepo = new TaskRepository();
     User user;
 
     public UserController(){
@@ -29,12 +32,19 @@ public class UserController {
     @GetMapping("/user")
     public String user(Model model, HttpServletRequest request) {
        DBManager.getConnection();
+
        HttpSession session = request.getSession();
        String userEmail = (String) session.getAttribute("useremail");
        User currentUser = userRepo.getData(userEmail);
+
+
        int accessRoles = roleRepo.checkRole(userEmail);
        model.addAttribute("roleID", accessRoles);
-        if(currentUser == null)
+
+       int userTasks = taskRepo.getData(userEmail);
+       model.addAttribute("task", userTasks);
+
+       if(currentUser == null)
            return "redirect:/login";
 
        model.addAttribute("user", currentUser);
