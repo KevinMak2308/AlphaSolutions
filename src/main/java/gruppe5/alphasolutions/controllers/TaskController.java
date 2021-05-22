@@ -26,10 +26,15 @@ public class TaskController {
     }
 
     @GetMapping("/task")
-    public String task(Model model) {
+    public String task(Model model, HttpServletRequest request) {
         DBManager.getConnection();
-        ArrayList<Task> userTasks = taskRepo.getAllUserTasks();
-        model.addAttribute("usertasks", userTasks);
+
+        HttpSession session = request.getSession();
+        String task = (String) session.getAttribute("useremail");
+
+
+        ArrayList<Task> allUserTasks = taskRepo.getAllUserTasks(task);
+        model.addAttribute("usertasks", allUserTasks);
 
         return "task";
     }
@@ -39,26 +44,21 @@ public class TaskController {
         return "dotask";
     }
 
-    /*@PostMapping("/makeTask")
-    public String makeProjekt(@RequestParam("title") String title, @RequestParam("descriptions") String descriptions, @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate, @RequestParam("deadline") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate deadline){
+    @PostMapping("/makeTask")
+    public String makeProjekt(@RequestParam("taskID") int taskID, @RequestParam("useremail") String useremail, @RequestParam("title") String title, @RequestParam("descriptions") String descriptions, @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate, @RequestParam("deadline") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate deadline){
         DBManager.getConnection();
         taskRepo.sendData(title, descriptions, startDate, deadline);
+        taskRepo.assignTask(taskID, useremail);
          return "redirect:/task";
-    }*/
-
-    @PostMapping("/applyTask")
-    public String applyTask(@RequestParam("taskID") int taskID, @RequestParam("useremail") String useremail) {
-       DBManager.getConnection();
-       taskRepo.applyTask(taskID, useremail);
-       return "redirect:/task";
     }
 
-    @GetMapping("/allTasks")
+
+    /*@GetMapping("/allTasks")
     public String allProjects(Model model) {
         DBManager.getConnection();
         ArrayList<Task> allTasks = taskRepo.getAllUserTasks();
         model.addAttribute("allTasks", allTasks);
         return "alltasks";
-    }
+    }*/
 
 }

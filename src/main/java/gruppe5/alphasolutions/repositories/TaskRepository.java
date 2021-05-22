@@ -22,17 +22,18 @@ public class TaskRepository {
         }
     }
 
-    public ArrayList<Task> getAllUserTasks() {
+    public ArrayList<Task> getAllUserTasks(String useremail) {
         ArrayList<Task> allTask = new ArrayList<>();
 
         try {
             Connection taskConnection = DBManager.getConnection();
-            String taskQuery = "Select tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline From users Join user_tasks On users.useremail = user_tasks.useremail Join tasks On tasks.taskID = user_tasks.taskID";
+            String taskQuery = "Select users.useremail, tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline From users Join user_tasks On users.useremail = user_tasks.useremail Join tasks On tasks.taskID = user_tasks.taskID Where users.useremail = ?";
             PreparedStatement taskStatement = taskConnection.prepareStatement(taskQuery);
+            taskStatement.setString(1, useremail);
             ResultSet taskResult = taskStatement.executeQuery();
 
             while(taskResult.next()) {
-                Task tmp = new Task(taskResult.getInt(1), taskResult.getString(2), taskResult.getString(3), taskResult.getDate(4).toLocalDate(), taskResult.getDate(5).toLocalDate(), taskResult.getString(5));
+                Task tmp = new Task(taskResult.getInt(2), taskResult.getString(3), taskResult.getString(4), taskResult.getDate(5).toLocalDate(), taskResult.getDate(6).toLocalDate(), taskResult.getString(1));
                 allTask.add(tmp);
 
             }
@@ -43,48 +44,23 @@ public class TaskRepository {
         } return allTask;
     }
 
-    public int getData(String useremail) {
-        int tmp = 0;
 
-        try {
-            Connection taskConn = DBManager.getConnection();
-            String taskQuery = "Select tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline From users Join user_tasks On users.useremail = user_tasks.useremail Join tasks On tasks.taskID = user_tasks.taskID Where users.useremail = ?";
-            PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
-            taskStatement.setString(1, useremail);
-
-            ResultSet taskResult = taskStatement.executeQuery();
-            while (taskResult.next()) {
-
-                tmp = taskResult.getInt(1);
-            }
-
-            taskStatement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return tmp;
-    }
-
-    public int applyTask(int taskID, String useremail) {
-        int tmp = 0;
+    public void assignTask(int taskID, String useremail) {
 
         try {
             Connection taskConn = DBManager.getConnection();
             String taskQuery = "Insert Into user_tasks(useremail, taskID) Values(" + taskID + ", '" + useremail + "')";
             PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
-            taskStatement.setString(1, useremail);
 
             ResultSet taskResult = taskStatement.executeQuery();
-            while (taskResult.next())
+            taskResult.close();
 
-                tmp = taskResult.getInt(1);
 
             taskStatement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
-        return tmp;
     }
 
     public void deleteData(int taskID) {

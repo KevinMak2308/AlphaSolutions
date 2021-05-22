@@ -37,12 +37,9 @@ public class UserController {
        String userEmail = (String) session.getAttribute("useremail");
        User currentUser = userRepo.getData(userEmail);
 
-
        int accessRoles = roleRepo.checkRole(userEmail);
        model.addAttribute("roleID", accessRoles);
 
-       int userTasks = taskRepo.getData(userEmail);
-       model.addAttribute("task", userTasks);
 
        if(currentUser == null)
            return "redirect:/login";
