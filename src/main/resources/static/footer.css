@@ -19,6 +19,7 @@
     margin-left: 48px;
     height: 125px;
     width: 240px;
+    filter: invert(1);
 }
 
 .ul-footer-alpha {

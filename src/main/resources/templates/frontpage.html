@@ -7,6 +7,7 @@
     <title>frontpage</title>
 </head>
 <body>
+<h1 class="h1frontpage">Calculation Tool K-OSS</h1>
     <div>
         <form class="forms" action="login" method="post">
             <h1>Login</h1>
@@ -16,11 +17,13 @@
             <input type="password" name="userpassword"><br>
             <div class="submit"><input type="submit" value="Login"></div>
             <div class="line"></div>
-            <p> not registered?
-            <a href="/register">
-                <span>Sign up</span>
+            <div>
+            <p class="signupparagraph"> not registered?
+            <a class="signuplink" href="/register">
+                <span class="signupspan">Sign up</span>
             </a>
             </p>
+        </div>
         </form>
     </div>
     <footer th:replace="fragments/footer.html"> </footer>
