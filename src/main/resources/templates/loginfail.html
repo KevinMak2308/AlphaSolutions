@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org/">
+<link rel="stylesheet" th:href="main.css">
+<link rel="stylesheet" th:href="footer.css">
 <head>
     <meta charset="UTF-8">
     <title>Login fail</title>
 </head>
 <body>
 <div>
-    <form class="createuser" action="/login" method="post">
+    <form class="forms" action="login" method="post">
         <div class="alertemoji">❌</div>
         <div  class="loginfail">
             E-mail eller adgangskode passer ikke. Prøv igen
         </div>
+        <h1>Login</h1>
         <label>Email:</label><br>
         <input type="email" name="useremail"><br>
         <label>Password:</label><br>
         <input type="password" name="userpassword"><br>
-        <input type="submit" value="Login">
+        <div class="submit"><input type="submit" value="Login"></div>
+        <div class="line"></div>
+        <div class="submit"><input type="submit" value="Sign Up"></div>
     </form>
 </div>
 <footer th:replace="fragments/footer.html"> </footer>
-
 </body>
 </html>
