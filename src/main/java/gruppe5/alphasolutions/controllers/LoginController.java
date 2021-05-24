@@ -17,7 +17,7 @@ public class LoginController {
     UserRepository userRepository = new UserRepository();
 
     @PostMapping("/login")
-    public String submitLogin(@RequestParam(name = "useremail") String userEmail, @RequestParam(name = "userpassword") String userPassword, HttpServletRequest request, Model model) {
+    public String submitLogin(@RequestParam(name = "useremail") String userEmail, @RequestParam(name = "userpassword") String userPassword, HttpServletRequest request) {
         DBManager.getConnection();
         if (userRepository.validateData(userEmail, userPassword) == true) {
             HttpSession session = request.getSession();
@@ -26,11 +26,6 @@ public class LoginController {
         } else {
             return "redirect:/loginfail";
         }
-    }
-
-    @GetMapping("/login")
-    public String login() {
-        return "login";
     }
 
     @GetMapping("/loginfail")

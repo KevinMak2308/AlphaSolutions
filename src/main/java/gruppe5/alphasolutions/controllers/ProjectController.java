@@ -3,6 +3,8 @@ package gruppe5.alphasolutions.controllers;
 import gruppe5.alphasolutions.models.Project;
 import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.ProjectRepository;
+import gruppe5.alphasolutions.services.Calculater;
+import gruppe5.alphasolutions.services.RoleChecker;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,8 +18,9 @@ import java.util.ArrayList;
 
 @Controller
 public class ProjectController {
-    private Project project;
+    Project project;
     ProjectRepository projectRepository;
+    RoleChecker roleChecker = new RoleChecker();
 
     public ProjectController() {
         this.project = new Project(1, "New Project", "First", null, null);
@@ -27,13 +30,14 @@ public class ProjectController {
     @GetMapping("/project")
     public String project(Model model, HttpServletRequest request) {
         DBManager.getConnection();
-
         model.addAttribute("project", project);
+        roleChecker.roleChecker(model, request);
         return "project";
     }
 
     @GetMapping("/newProject")
-    public String doProject() {
+    public String doProject(Model model, HttpServletRequest request) {
+        roleChecker.roleChecker(model, request);
         return "doproject";
     }
 
@@ -46,10 +50,12 @@ public class ProjectController {
     }
 
     @GetMapping("/allProjects")
-        public String allProjects(Model model) {
+    public String allProjects(Model model, HttpServletRequest request) {
         DBManager.getConnection();
         ArrayList<Project> allProjects = projectRepository.showAllData();
         model.addAttribute("allprojects", allProjects);
+        roleChecker.roleChecker(model, request);
+
         return "allprojects";
-        }
+    }
 }

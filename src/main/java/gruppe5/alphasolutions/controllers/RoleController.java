@@ -5,6 +5,7 @@ import gruppe5.alphasolutions.models.User;
 import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.RoleRepository;
 import gruppe5.alphasolutions.repositories.UserRepository;
+import gruppe5.alphasolutions.services.RoleChecker;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ public class RoleController {
     RoleRepository roleRepo = new RoleRepository();
     UserRepository userRepo = new UserRepository();
     Roles role;
+    RoleChecker roleChecker = new RoleChecker();
 
     public RoleController(){
         this.role = new Roles(1,"","");
@@ -36,10 +38,11 @@ public class RoleController {
 
 
     @GetMapping("/newRoles")
-    public String doRole(Model model) {
+    public String doRole(Model model, HttpServletRequest request) {
         DBManager.getConnection();
         ArrayList<User> allUsers = userRepo.showAllData();
         model.addAttribute("allusers", allUsers);
+        roleChecker.roleChecker(model, request);
         return "dorole";
     }
 

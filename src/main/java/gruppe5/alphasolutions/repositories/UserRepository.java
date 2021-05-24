@@ -105,38 +105,4 @@ public class UserRepository {
             System.out.printf(error.getMessage());
         }
     }
-
-   /* public User checkRole(String useremail) {
-        User tmp = null;
-
-        try {
-            Connection userConn = DBManager.getConnection();
-            String accessQuery = "Select users.useremail, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID Where users.useremail = ?";
-            PreparedStatement userStatement = userConn.prepareStatement(accessQuery);
-            userStatement.setString(1, useremail);
-
-
-            ResultSet userResult = userStatement.executeQuery();
-            while(userResult.next())
-
-                if (userResult.getString(useremail).equals("Admin")) {
-
-                    tmp = new User(userResult.getString(1), userResult.getString(2));
-                }
-                else if(userResult.getString(useremail).equals("Manager")) {
-
-                    tmp = new User(userResult.getString(1), userResult.getString(2));
-
-                }
-
-                else tmp = new User(userResult.getString(1), userResult.getString(2)); {
-
-            }
-
-            userStatement.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        return tmp;
-    }*/
 }
