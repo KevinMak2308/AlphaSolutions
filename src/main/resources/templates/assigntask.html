@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Select Task and User</title>
+</head>
+<body>
+<header th:replace="fragments/header.html"></header>
+<h1>Assign Tasks to a User</h1>
+<form action="assignTask" method="post">
+  <div>
+    <select name="taskID">
+      <option th:each="task : ${alltasks}" th:value="${task.taskID}" th:text="${task.title}">
+      </option>
+
+    </select>
+  </div>
+
+
+
+  <div>
+    <select name="useremail">
+      <option th:each="user : ${allusers}" th:value="${user.userEmail}" th:text="${user.userEmail}">
+      </option>
+    </select>
+  </div>
+
+
+  <div>
+    <input type="submit" value="Confirm Task">
+  </div>
+
+</form>
+<footer th:replace="fragments/footer.html"></footer>
+</body>
+</html>

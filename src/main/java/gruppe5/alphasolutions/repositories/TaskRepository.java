@@ -1,5 +1,7 @@
 package gruppe5.alphasolutions.repositories;
 import gruppe5.alphasolutions.models.Task;
+import gruppe5.alphasolutions.models.User;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +14,7 @@ public class TaskRepository {
     public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline){
         try {
             Connection taskConn = DBManager.getConnection();
-            String taskQuery = "Insert into tasks (title, descriptions, startDate, deadline) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "')";
+            String taskQuery = "Insert into tasks (title, descriptions, startdate, deadline) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "')";
             PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
             taskStatement.executeUpdate();
             taskStatement.close();
@@ -33,7 +35,7 @@ public class TaskRepository {
             ResultSet taskResult = taskStatement.executeQuery();
 
             while(taskResult.next()) {
-                Task tmp = new Task(taskResult.getInt(2), taskResult.getString(3), taskResult.getString(4), taskResult.getDate(5).toLocalDate(), taskResult.getDate(6).toLocalDate(), taskResult.getString(1));
+                Task tmp = new Task(taskResult.getInt(2), taskResult.getString(3), taskResult.getString(4), taskResult.getDate(5).toLocalDate(), taskResult.getDate(6).toLocalDate());
                 allTask.add(tmp);
 
             }
@@ -44,16 +46,38 @@ public class TaskRepository {
         } return allTask;
     }
 
+    public ArrayList<Task> showAllData() {
+        ArrayList<Task> allTasks = new ArrayList<>();
+
+        try {
+            Connection userConnection = DBManager.getConnection();
+            PreparedStatement taskStatement = userConnection.prepareStatement("Select * From tasks");
+            ResultSet taskResult = taskStatement.executeQuery();
+
+            while(taskResult.next()) {
+                Task tmp = new Task(taskResult.getInt(1), taskResult.getString(2), taskResult.getString(3), taskResult.getDate(4).toLocalDate(), taskResult.getDate(5).toLocalDate());
+                allTasks.add(tmp);
+
+            }
+            taskStatement.close();
+
+
+        } catch (SQLException error) {
+            System.out.println(error.getMessage());
+        } return allTasks;
+    }
+
+
 
     public void assignTask(int taskID, String useremail) {
 
         try {
             Connection taskConn = DBManager.getConnection();
-            String taskQuery = "Insert Into user_tasks(useremail, taskID) Values(" + taskID + ", '" + useremail + "')";
+            String taskQuery = "Insert Into user_tasks(taskID, useremail) Values(" + taskID + ", '" + useremail + "')";
             PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
+            taskStatement.executeUpdate();
+            taskStatement.close();
 
-            ResultSet taskResult = taskStatement.executeQuery();
-            taskResult.close();
 
 
             taskStatement.close();

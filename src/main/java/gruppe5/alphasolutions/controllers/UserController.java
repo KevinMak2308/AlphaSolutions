@@ -1,7 +1,5 @@
 package gruppe5.alphasolutions.controllers;
 
-import gruppe5.alphasolutions.models.Roles;
-import gruppe5.alphasolutions.models.Task;
 import gruppe5.alphasolutions.models.User;
 import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.RoleRepository;
