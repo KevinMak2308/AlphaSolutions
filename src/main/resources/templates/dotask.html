@@ -6,17 +6,21 @@
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<h1> Create new task</h1>
-
-<form action="makeTask" method="post">
-    <div class="displaytext">
-        Title: <pre><input type="text" name="title"></pre><br>
-        Description: <pre><input type="text" name="descriptions"></pre><br>
-        Start Date: <pre><input type="date" name="startDate"></pre><br>
-        Deadline: <pre><input type="date" name="deadline"></pre><br>
-        <input type="submit" value="Create a new Task">
-    </div>
+<div>
+<form class="forms" action="makeTask" method="post">
+        <h1>Create a new Task</h1>
+        <label class="label">Title:</label> <br>
+        <input type="text" name="title"><br>
+        <label class="label">Description:</label><br>
+        <input type="text" name="descriptions"><br>
+        <label class="label">Start Date:</label><br>
+        <input type="date" name="startDate"><br>
+        <label class="label">Deadline:</label><br>
+        <input type="date" name="deadline"><br>
+        <input type="submit" value="Create Task">
+    </form>
 </form>
+</div>
 <footer th:replace="fragments/footer.html"> </footer>
 </body>
 </html>
