@@ -49,7 +49,7 @@ body{
     text-align: center;
 }
 
-label {
+.label {
     font-family: sans-serif;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -151,26 +151,68 @@ input[type=submit]{
 
 /* view project */
 .displayproject {
+    position: relative;
     color: #ffffff;
     border-style: double;
     width: 40%;
+    height: 200px;
     margin-right: 150px;
     margin-bottom: 50px;
+    overflow: hidden;
 }
 
 .wrapper{
-
    display: flex;
     flex-flow: row;
     flex-wrap: wrap;
     margin-left: 150px;
-
 }
-
-
 
 .title{
     font-size: 2.5em;
     margin-top: 24px;
     margin-left: 24px;
+}
+
+.email{
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    color: #dadde1;
+    font-size: 1.0em;
+    margin-top: 24px;
+    margin-left: 24px;
+    left:0;
+    right:0;
+}
+
+.startdate {
+    font-size: 1.0em;
+    margin-top: 24px;
+
+}
+.deadline{
+    font-size: 1.0em;
+    margin-top: 24px;
+
+}
+.topviewproject{
+    margin-right: 40px;
+}
+
+.date {
+    margin-top: 24px;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 80%;
+}
+
+.description{
+    font-size: 1.0em;
+    margin-top: 24px;
+    margin-left: 24px;
+    border-color: #ffffff;
+    width: 500px ;
+    height: 8px;
 }
