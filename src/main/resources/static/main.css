@@ -27,9 +27,6 @@ body{
     margin: 0px;
 }
 
-.displaytext {
-    border: 1px solid black;
-}
 
 * {
     font-family: Roboto;
@@ -149,4 +146,31 @@ input[type=submit]{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+
+/* view project */
+.displayproject {
+    color: #ffffff;
+    border-style: double;
+    width: 40%;
+    margin-right: 150px;
+    margin-bottom: 50px;
+}
+
+.wrapper{
+
+   display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    margin-left: 150px;
+
+}
+
+
+
+.title{
+    font-size: 2.5em;
+    margin-top: 24px;
+    margin-left: 24px;
 }
