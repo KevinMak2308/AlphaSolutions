@@ -2,10 +2,7 @@ package gruppe5.alphasolutions.controllers;
 
 import gruppe5.alphasolutions.models.User;
 import gruppe5.alphasolutions.repositories.DBManager;
-import gruppe5.alphasolutions.repositories.RoleRepository;
-import gruppe5.alphasolutions.repositories.TaskRepository;
 import gruppe5.alphasolutions.repositories.UserRepository;
-import gruppe5.alphasolutions.services.Calculater;
 import gruppe5.alphasolutions.services.RoleChecker;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,14 +18,7 @@ import java.util.ArrayList;
 public class UserController {
 
     UserRepository userRepo = new UserRepository();
-    RoleRepository roleRepo = new RoleRepository();
-    TaskRepository taskRepo = new TaskRepository();
     RoleChecker roleChecker = new RoleChecker();
-    User user;
-
-    public UserController() {
-        this.user = new User("simon@mail.dk", "1234");
-    }
 
     @GetMapping("/user")
     public String user(Model model, HttpServletRequest request) {

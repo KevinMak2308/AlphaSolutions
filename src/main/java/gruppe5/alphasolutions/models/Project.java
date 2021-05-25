@@ -16,18 +16,16 @@ public class Project {
     private LocalDate startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate deadline;
+    private String userEmail;
 
 
-    public Project(int projectID, String title, String description, LocalDate startDate, LocalDate deadline) {
+    public Project(int projectID, String title, String description, LocalDate startDate, LocalDate deadline, String userEmail) {
         this.projectID = projectID;
         this.title = title;
         this.description = description;
         this.startDate = startDate;
         this.deadline = deadline;
-    }
-
-    public Project(){
-
+        this.userEmail = userEmail;
     }
 
     public int getProjectID() {
@@ -70,6 +68,15 @@ public class Project {
         this.deadline = deadline;
     }
 
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+
     /*public HashMap getAssignments() {
         return assignments;
     }
@@ -82,11 +89,12 @@ public class Project {
     @Override
     public String toString() {
         return "Project{" +
-                "title='" + title + '\'' +
+                "projectID=" + projectID +
+                ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", startDate=" + startDate +
                 ", deadline=" + deadline +
-                //", assignments=" + assignments +
+                ", userEmail='" + userEmail + '\'' +
                 '}';
     }
 }

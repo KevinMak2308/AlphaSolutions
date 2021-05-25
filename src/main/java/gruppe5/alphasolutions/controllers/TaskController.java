@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,16 +20,12 @@ import java.util.ArrayList;
 
 @Controller
 public class TaskController {
-    Task task;
-    TaskRepository taskRepo;
-    UserRepository userRepo;
+    TaskRepository taskRepo = new TaskRepository();
+    UserRepository userRepo = new UserRepository();
     RoleChecker roleChecker = new RoleChecker();
 
-    public TaskController() {
-        this.task = new Task(1, "1st task", "description of 1st task", null, null);
-        this.taskRepo = new TaskRepository();
-        this.userRepo = new UserRepository();
-    }
+
+
 
     @GetMapping("/task")
     public String task(Model model, HttpServletRequest request) {
@@ -76,13 +71,5 @@ public class TaskController {
         return "redirect:/task";
     }
 
-
-    /*@GetMapping("/allTasks")
-    public String allProjects(Model model) {
-        DBManager.getConnection();
-        ArrayList<Task> allTasks = taskRepo.getAllUserTasks();
-        model.addAttribute("allTasks", allTasks);
-        return "alltasks";
-    }*/
 
 }

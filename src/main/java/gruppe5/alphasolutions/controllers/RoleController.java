@@ -21,12 +21,9 @@ import java.util.ArrayList;
 public class RoleController {
     RoleRepository roleRepo = new RoleRepository();
     UserRepository userRepo = new UserRepository();
-    Roles role;
     RoleChecker roleChecker = new RoleChecker();
 
-    public RoleController(){
-        this.role = new Roles(1,"","");
-    }
+
 
     @GetMapping("/roles")
     public String roles(Model model) {

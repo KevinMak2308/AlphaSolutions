@@ -11,10 +11,10 @@ public class ProjectRepository {
 
 
 
-    public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline) {
+    public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline, String useremail) {
         try {
             Connection proConn = DBManager.getConnection();
-            String projectQuery = "Insert into projects (title, descriptions, startDate, deadline) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "')";
+            String projectQuery = "Insert into projects (title, descriptions, startdate, deadline, useremail) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "', '" + useremail + "')";
             PreparedStatement proStatement = proConn.prepareStatement(projectQuery);
 
             proStatement.executeUpdate();
@@ -34,9 +34,8 @@ public class ProjectRepository {
             ResultSet proResult = proStatement.executeQuery();
 
             while(proResult.next()) {
-                Project tmp = new Project(proResult.getInt(1), proResult.getString(2), proResult.getString(3), proResult.getDate(4).toLocalDate(), proResult.getDate(5).toLocalDate());
+                Project tmp = new Project(proResult.getInt(2), proResult.getString(3), proResult.getString(4), proResult.getDate(5).toLocalDate(), proResult.getDate(6).toLocalDate(), proResult.getString(1));
                 allProjects.add(tmp);
-                System.out.println("Does it work?");
 
             }
 
@@ -47,26 +46,30 @@ public class ProjectRepository {
     }
 
 
-    public Project getData(int projectID) {
-        Project tmp = null;
+    public ArrayList<Project> getUserProjects(String useremail) {
+        ArrayList<Project> userProjects = new ArrayList<>();
 
         try {
             Connection proConn = DBManager.getConnection();
-            String projectQuery = "Select * From projects Where projectID = ?";
+            String projectQuery = "Select * From projects Where useremail = ?";
             PreparedStatement projectStatement = proConn.prepareStatement(projectQuery);
-            projectStatement.setInt(1, projectID);
+            projectStatement.setString(1, useremail);
 
             ResultSet projectResult = projectStatement.executeQuery();
-            if (projectResult.next()) {
+            while (projectResult.next()) {
 
-                tmp = new Project(projectResult.getInt(1), projectResult.getString(2), projectResult.getString(3), projectResult.getDate(4).toLocalDate(), projectResult.getDate(5).toLocalDate());
+                Project tmp = new Project(projectResult.getInt(2), projectResult.getString(3), projectResult.getString(4), projectResult.getDate(5).toLocalDate(), projectResult.getDate(6).toLocalDate(), projectResult.getString(1));
+                userProjects.add(tmp);
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return tmp;
+        return userProjects;
     }
+
+
+
 
 
 
