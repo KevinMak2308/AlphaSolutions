@@ -77,15 +77,6 @@ public class Project {
     }
 
 
-    /*public HashMap getAssignments() {
-        return assignments;
-    }
-
-    public void setAssignments(HashMap assignments) {
-        this.assignments = assignments;
-    }*/
-
-
     @Override
     public String toString() {
         return "Project{" +

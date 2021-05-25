@@ -61,6 +61,10 @@ class UserRepositoryTest {
     @Test
     @DisplayName("Check if deleteData method works")
     void deleteData() {
-
+        String userEmail = "gg@gmail.com";
+        String userPassword = "246";
+        userRepository.deleteData(userEmail);
+        boolean isItInTheDatabase = userRepository.validateData(userEmail, userPassword);
+        assertEquals("Does the user exist in the database after deletion", false, isItInTheDatabase);
     }
 }

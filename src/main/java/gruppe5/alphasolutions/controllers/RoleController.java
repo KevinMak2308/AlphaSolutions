@@ -26,10 +26,11 @@ public class RoleController {
 
 
     @GetMapping("/roles")
-    public String roles(Model model) {
+    public String roles(Model model, HttpServletRequest request) {
         DBManager.getConnection();
         ArrayList<Roles> tmproles = roleRepo.getAllRoles();
         model.addAttribute("userroles", tmproles);
+        roleChecker.roleChecker(model, request);
         return "roles";
     }
 
