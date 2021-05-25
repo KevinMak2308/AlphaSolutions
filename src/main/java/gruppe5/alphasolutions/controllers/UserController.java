@@ -60,4 +60,15 @@ public class UserController {
         return "allusers";
     }
 
+    @PostMapping("/deleteUser")
+    public String deleteUser(@RequestParam("userEmail") String userEmail){
+        userRepo.deleteData(userEmail);
+        return "redirect:delete";
+    }
+    @GetMapping("/delete")
+    public String deletePage(Model model, HttpServletRequest request){
+        DBManager.getConnection();
+        roleChecker.roleChecker(model, request);
+        return "delete";
+    }
 }

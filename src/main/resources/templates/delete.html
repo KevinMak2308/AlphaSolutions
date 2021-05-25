@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete User</title>
+</head>
+<body>
+
+<header th:replace="fragments/header.html"></header>
+<h1>Delete User</h1>
+<form action="deleteUser" method="post">
+    <div class="deletebutton">
+        <p class="text"> Delete User: <pre> <input type="text" required placeholder="E-mail" th:name="userEmail"> </pre> <br>
+        <input type="submit" value="Delete">
+    </div>
+</form>
+<footer th:replace="fragments/footer.html"></footer>
+</body>
+</html>

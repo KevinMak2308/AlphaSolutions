@@ -9,9 +9,9 @@ import java.time.format.DateTimeFormatter;
 
 public class Calculater {
 
-    public void calc(){
+    public void calc() {
         LocalDate date = LocalDate.parse("2020-03-11");
-        System.out.print("Date : "+ date);
+        System.out.print("Date : " + date);
         // Formatting Date
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
         String dateLocal = formatter.format(date);
@@ -19,12 +19,9 @@ public class Calculater {
     }
 
 
-    public void estimatedTime(Project project, Task assignment, User user){
-
+    public void estimatedTime(Project project, Task assignment, User user) {
 
     }
-
-
 
 }
 

@@ -12,13 +12,6 @@
   <p class="text-success">Password: <span th:text="${user.userPassword}"> </span></p>
 </div>
 
-<form action="/deleteAccount" method="post">
-  <div class="deletebutton">
-    <p class="text"> Delete Account: <pre> <input type="text" required placeholder="User Email" th:name="userEmail"> </pre> <br>
-    <input type="submit" value="Delete">
-  </div>
-</form>
-
   <footer th:replace="fragments/footer.html"> </footer>
  </body>
 </html>
