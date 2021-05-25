@@ -68,6 +68,24 @@ public class ProjectRepository {
         return userProjects;
     }
 
+    public void assignProject(int projectID, int taskID) {
+
+        try {
+            Connection taskConn = DBManager.getConnection();
+            String taskQuery = "Insert Into project_tasks(projectID, taskID) Values(" + projectID +", " + taskID + ")";
+            PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
+            taskStatement.executeUpdate();
+            taskStatement.close();
+
+
+
+            taskStatement.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+    }
+
 
 
 
