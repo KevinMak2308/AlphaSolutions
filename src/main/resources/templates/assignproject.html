@@ -7,19 +7,19 @@
 <body>
 <header th:replace="fragments/header.html"></header>
 <h1>Assign Tasks to a User</h1>
-<form action="assignTask" method="post">
+<form action="assignProject" method="post">
+  <div>
+    <select name="projectID">
+      <option th:each="project : ${allprojects}" th:value="${project.projectID}" th:text="${project.title}">
+      </option>
+    </select>
+  </div>
+
   <div>
     <select name="taskID">
       <option th:each="task : ${alltasks}" th:value="${task.taskID}" th:text="${task.title}">
       </option>
 
-    </select>
-  </div>
-
-  <div>
-    <select name="useremail">
-      <option th:each="user : ${allusers}" th:value="${user.userEmail}" th:text="${user.userEmail}">
-      </option>
     </select>
   </div>
 

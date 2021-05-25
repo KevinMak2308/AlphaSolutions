@@ -1,8 +1,11 @@
 package gruppe5.alphasolutions.controllers;
 
 import gruppe5.alphasolutions.models.Project;
+import gruppe5.alphasolutions.models.Task;
+import gruppe5.alphasolutions.models.User;
 import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.ProjectRepository;
+import gruppe5.alphasolutions.repositories.TaskRepository;
 import gruppe5.alphasolutions.services.RoleChecker;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -18,7 +21,7 @@ import java.util.ArrayList;
 
 @Controller
 public class ProjectController {
-
+    TaskRepository taskRepo = new TaskRepository();
     ProjectRepository proRepo = new ProjectRepository();
     RoleChecker roleChecker = new RoleChecker();
 
@@ -59,5 +62,28 @@ public class ProjectController {
         roleChecker.roleChecker(model, request);
 
         return "allprojects";
+    }
+
+
+    @GetMapping("/selectProject")
+    public String selectTask(Model model,HttpServletRequest request) {
+        DBManager.getConnection();
+        HttpSession session = request.getSession();
+        String userProject = (String) session.getAttribute("useremail");
+
+        ArrayList<Project> allProjects = proRepo.getUserProjects(userProject);
+        model.addAttribute("allprojects", allProjects);
+
+        ArrayList<Task> allTasks = taskRepo.showAllData();
+        model.addAttribute("alltasks", allTasks);
+        roleChecker.roleChecker(model, request);
+        return "assignproject";
+    }
+
+    @PostMapping("/assignProject")
+    public String assignTask(@RequestParam("projectID") int projectID, @RequestParam("taskID") int taskID) {
+        DBManager.getConnection();
+        proRepo.assignProject(projectID, taskID);
+        return "redirect:/project";
     }
 }
