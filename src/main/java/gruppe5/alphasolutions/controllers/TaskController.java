@@ -46,9 +46,9 @@ public class TaskController {
     }
 
     @PostMapping("/makeTask")
-    public String makeTask(@RequestParam("title") String title, @RequestParam("descriptions") String descriptions, @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate, @RequestParam("deadline") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate deadline) {
+    public String makeTask(@RequestParam("title") String title, @RequestParam("descriptions") String descriptions, @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate, @RequestParam("deadline") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate deadline, @RequestParam("estimatedtime") int estimatedtime) {
         DBManager.getConnection();
-        taskRepo.sendData(title, descriptions, startDate, deadline);
+        taskRepo.sendData(title, descriptions, startDate, deadline, estimatedtime);
         return "redirect:/task";
     }
 

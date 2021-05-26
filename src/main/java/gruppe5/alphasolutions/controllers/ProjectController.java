@@ -2,10 +2,10 @@ package gruppe5.alphasolutions.controllers;
 
 import gruppe5.alphasolutions.models.Project;
 import gruppe5.alphasolutions.models.Task;
-import gruppe5.alphasolutions.models.User;
 import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.ProjectRepository;
 import gruppe5.alphasolutions.repositories.TaskRepository;
+import gruppe5.alphasolutions.services.Calculater;
 import gruppe5.alphasolutions.services.RoleChecker;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -24,6 +24,7 @@ public class ProjectController {
     TaskRepository taskRepo = new TaskRepository();
     ProjectRepository proRepo = new ProjectRepository();
     RoleChecker roleChecker = new RoleChecker();
+    Calculater calculater = new Calculater();
 
 
     @GetMapping("/project")
@@ -34,6 +35,8 @@ public class ProjectController {
 
         ArrayList<Project> userProjects = proRepo.getUserProjects(currentUser);
         model.addAttribute("userprojects", userProjects);
+
+        calculater.estimatedProjectTime(currentUser, userProjects);
 
         roleChecker.roleChecker(model, request);
         return "project";

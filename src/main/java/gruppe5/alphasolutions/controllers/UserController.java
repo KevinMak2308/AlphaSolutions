@@ -1,8 +1,11 @@
 package gruppe5.alphasolutions.controllers;
 
+import gruppe5.alphasolutions.models.Roles;
 import gruppe5.alphasolutions.models.User;
 import gruppe5.alphasolutions.repositories.DBManager;
+import gruppe5.alphasolutions.repositories.RoleRepository;
 import gruppe5.alphasolutions.repositories.UserRepository;
+import gruppe5.alphasolutions.services.Calculater;
 import gruppe5.alphasolutions.services.RoleChecker;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 public class UserController {
 
     UserRepository userRepo = new UserRepository();
+    RoleRepository roleRepo = new RoleRepository();
     RoleChecker roleChecker = new RoleChecker();
 
     @GetMapping("/user")
@@ -26,11 +30,14 @@ public class UserController {
         HttpSession session = request.getSession();
         String userEmail = (String) session.getAttribute("useremail");
         User currentUser = userRepo.getData(userEmail);
+        ArrayList<Roles> tmproles = roleRepo.getAllRoles();
+        model.addAttribute("userroles", tmproles);
         roleChecker.roleChecker(model, request);
         if (currentUser == null)
             return "redirect:/login";
 
         model.addAttribute("user", currentUser);
+
         return "user";
     }
 

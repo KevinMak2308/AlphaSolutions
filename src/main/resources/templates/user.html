@@ -6,10 +6,13 @@
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<h1>Profile</h1>
+<h1>Profile Page</h1>
+
 <div class="displaytext">
-  <p class="text-success">E-mail: <span th:text="${user.userEmail}"> </span></p> <br/>
-  <p class="text-success">Password: <span th:text="${user.userPassword}"> </span></p>
+  <div class="profileText">
+  <p class="useremail">E-mail: <span th:text="${user.userEmail}"> </span> <br/>
+  <p class="uaserpassword">Password: <span th:text="${user.userPassword}"> </span><br/>
+  </div>
 </div>
 
   <footer th:replace="fragments/footer.html"> </footer>
