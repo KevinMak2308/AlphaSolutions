@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class ProjectRepository {
 
 
-
     public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline, String useremail) {
         try {
             Connection proConn = DBManager.getConnection();
@@ -33,7 +32,7 @@ public class ProjectRepository {
             PreparedStatement proStatement = proConnection.prepareStatement("Select * From projects");
             ResultSet proResult = proStatement.executeQuery();
 
-            while(proResult.next()) {
+            while (proResult.next()) {
                 Project tmp = new Project(proResult.getInt(2), proResult.getString(3), proResult.getString(4), proResult.getDate(5).toLocalDate(), proResult.getDate(6).toLocalDate(), proResult.getString(1));
                 allProjects.add(tmp);
 
@@ -42,7 +41,8 @@ public class ProjectRepository {
             proStatement.close();
         } catch (SQLException error) {
             System.out.println(error.getMessage());
-        } return allProjects;
+        }
+        return allProjects;
     }
 
 
@@ -72,11 +72,10 @@ public class ProjectRepository {
 
         try {
             Connection taskConn = DBManager.getConnection();
-            String taskQuery = "Insert Into project_tasks(projectID, taskID) Values(" + projectID +", " + taskID + ")";
+            String taskQuery = "Insert Into project_tasks(projectID, taskID) Values(" + projectID + ", " + taskID + ")";
             PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
             taskStatement.executeUpdate();
             taskStatement.close();
-
 
 
             taskStatement.close();
@@ -85,25 +84,4 @@ public class ProjectRepository {
         }
 
     }
-
-
-
-
-
-
-    public void deleteData(int projectID) {
-        try {
-
-            Connection connection = DBManager.getConnection();
-            PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM projects WHERE projectID = ?");
-            preparedStatement1.setInt(1, projectID);
-            preparedStatement1.executeUpdate();
-            preparedStatement1.close();
-
-        } catch (SQLException error) {
-            System.out.printf(error.getMessage());
-        }
-    }
-
-    }
-
+}

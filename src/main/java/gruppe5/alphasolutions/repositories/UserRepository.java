@@ -23,8 +23,6 @@ public class UserRepository {
 
     }
 
-
-
     public ArrayList<User> showAllData() {
         ArrayList<User> allUsers = new ArrayList<>();
 

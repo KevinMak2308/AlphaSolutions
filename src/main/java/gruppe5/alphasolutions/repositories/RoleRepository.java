@@ -17,11 +17,11 @@ public class RoleRepository {
         ArrayList<Roles> getRoles = new ArrayList<>();
         try {
             Connection roleConn = DBManager.getConnection();
-            PreparedStatement  roleStatement = roleConn.prepareStatement("Select users.useremail, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID");
+            PreparedStatement roleStatement = roleConn.prepareStatement("Select users.useremail, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID");
             ResultSet roleResult = roleStatement.executeQuery();
 
             while (roleResult.next()) {
-                Roles tmp = new Roles(roleResult.getInt(2), roleResult.getString(3),roleResult.getString(1));
+                Roles tmp = new Roles(roleResult.getInt(2), roleResult.getString(3), roleResult.getString(1));
                 getRoles.add(tmp);
             }
 
@@ -45,8 +45,6 @@ public class RoleRepository {
             System.out.printf(error.getMessage());
         }
     }
-
-
 
     public int checkRole(String useremail) {
         int tmp = 0;

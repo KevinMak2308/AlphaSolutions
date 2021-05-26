@@ -68,6 +68,8 @@ public class UserController {
     @GetMapping("/delete")
     public String deletePage(Model model, HttpServletRequest request){
         DBManager.getConnection();
+        ArrayList<User> allUsers = userRepo.showAllData();
+        model.addAttribute("allusers", allUsers);
         roleChecker.roleChecker(model, request);
         return "delete";
     }

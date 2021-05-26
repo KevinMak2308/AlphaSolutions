@@ -1,4 +1,5 @@
 package gruppe5.alphasolutions.repositories;
+
 import gruppe5.alphasolutions.models.Task;
 import gruppe5.alphasolutions.models.User;
 
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 public class TaskRepository {
 
-    public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline){
+    public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline) {
         try {
             Connection taskConn = DBManager.getConnection();
             String taskQuery = "Insert into tasks (title, descriptions, startdate, deadline) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "')";
@@ -34,7 +35,7 @@ public class TaskRepository {
             taskStatement.setString(1, useremail);
             ResultSet taskResult = taskStatement.executeQuery();
 
-            while(taskResult.next()) {
+            while (taskResult.next()) {
                 Task tmp = new Task(taskResult.getInt(2), taskResult.getString(3), taskResult.getString(4), taskResult.getDate(5).toLocalDate(), taskResult.getDate(6).toLocalDate());
                 allTask.add(tmp);
 
@@ -43,7 +44,8 @@ public class TaskRepository {
             taskStatement.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } return allTask;
+        }
+        return allTask;
     }
 
     public ArrayList<Task> showAllData() {
@@ -54,7 +56,7 @@ public class TaskRepository {
             PreparedStatement taskStatement = userConnection.prepareStatement("Select * From tasks");
             ResultSet taskResult = taskStatement.executeQuery();
 
-            while(taskResult.next()) {
+            while (taskResult.next()) {
                 Task tmp = new Task(taskResult.getInt(1), taskResult.getString(2), taskResult.getString(3), taskResult.getDate(4).toLocalDate(), taskResult.getDate(5).toLocalDate());
                 allTasks.add(tmp);
 
@@ -64,9 +66,9 @@ public class TaskRepository {
 
         } catch (SQLException error) {
             System.out.println(error.getMessage());
-        } return allTasks;
+        }
+        return allTasks;
     }
-
 
 
     public void assignTask(int taskID, String useremail) {
@@ -79,27 +81,10 @@ public class TaskRepository {
             taskStatement.close();
 
 
-
             taskStatement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
     }
-
-    public void deleteData(int taskID) {
-        try {
-
-            Connection connection = DBManager.getConnection();
-            PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM projects WHERE taskID = ?");
-            preparedStatement1.setInt(1, taskID);
-            preparedStatement1.executeUpdate();
-            preparedStatement1.close();
-
-        } catch (SQLException e) {
-            System.out.printf(e.getMessage());
-        }
-    }
-
 
 }
