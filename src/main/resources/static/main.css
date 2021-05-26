@@ -26,9 +26,11 @@ body{
     margin: 0px;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&display=swap%27%27');
 
 * {
-    font-family: Roboto;
+font-family: 'EB Garamond', serif;
+color: #FFFFFF;
 }
 
 .forms{
@@ -214,4 +216,17 @@ input[type=submit]{
     border-color: #ffffff;
     width: 500px ;
     height: 8px;
+}
+
+.time {
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    color: #FFFFFF;
+    font-size: 1.0em;
+    margin-top: 24px;
+    margin-left: 24px;
+    top:8px;
+    left: 0;
+    right: 0;
 }
