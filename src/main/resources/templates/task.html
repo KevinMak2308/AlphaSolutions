@@ -7,13 +7,18 @@
 <body>
 <header th:replace="fragments/header.html"></header>
 <h1>Here you can see the Tasks</h1>
-<tr th:each="task : ${usertasks}">
-<div class="displaytext">
-    <p class="text-success">Title: <span th:text="${task.title}"> </span></p>
-    <p class="text-success">Description: <span th:text="${task.description}"> </span></p>
-    <p class="text-success">Start Date: <span th:text="${task.startDate}"> </span></p>
-    <p class="text-success">Deadline: <span th:text="${task.deadline}"> </span></p>
-    <p class="text-success">Estimated Time: <span th:text="${task.estimatedtime}"> </span></p>
+<div class="wrapper">
+    <tr th:each="task : ${usertasks}">
+        <div class="displayproject">
+            <p class="topviewproject"><span class="title" th:text="${task.title}"></span>
+            <div class="date">
+                <p>Start date:</p><span class="startdate" th:text="${task.startDate}"></span>
+                <p>Deadline:</p><span class="deadline" th:text="${task.deadline}"></span>
+            </div>
+            <p class="description"><span th:text="${task.description}"></span></p>
+            <p class="time"><span th:text="${task.estimatedtime}"></span></p>
+        </div>
+    </tr>
 </div>
 <footer th:replace="fragments/footer.html"> </footer>
 </body>
