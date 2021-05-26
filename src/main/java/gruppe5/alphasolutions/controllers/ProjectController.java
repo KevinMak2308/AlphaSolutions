@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -27,6 +28,23 @@ public class ProjectController {
     Calculater calculater = new Calculater();
 
 
+
+    @GetMapping("/project/{projectID}")
+    public String projectID(@PathVariable("projectID") int projectID, Model model) {
+        Project projectdetails = proRepo.projectDetails(projectID);
+        model.addAttribute("project", projectdetails);
+
+       ArrayList<Task> taskdetails = proRepo.taskDetails(projectID);
+        model.addAttribute("task", taskdetails);
+
+        int taskTime = calculater.estimatedProjectTime(projectID);
+        model.addAttribute("tasktime", taskTime);
+
+        return "projectdetails";
+}
+
+
+
     @GetMapping("/project")
     public String project(Model model, HttpServletRequest request) {
         DBManager.getConnection();
@@ -35,8 +53,6 @@ public class ProjectController {
 
         ArrayList<Project> userProjects = proRepo.getUserProjects(currentUser);
         model.addAttribute("userprojects", userProjects);
-
-        calculater.estimatedProjectTime(currentUser, userProjects);
 
         roleChecker.roleChecker(model, request);
         return "project";
