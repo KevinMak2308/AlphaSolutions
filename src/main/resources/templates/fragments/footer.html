@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<link rel="stylesheet" th:href="@{/footer.css}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-<footer>
+<footer class="footer">
     <div class="foot">
         <img class="alphafooter" src="https://media.alpha-solutions.com/da//~/media/alphawebsite2019/ogimages/alpha-solutions---ogimage.ashx" alt="Alpha Solutions logo">
         <ul class="ul-footer-alpha">
@@ -14,17 +15,19 @@
                 Gothersgade 14, 4. sal<br />
                 1123 København K<br />
                 Danmark<br /></p></li>
-
-            <li><a href="https://www.alpha-solutions.com/da">alpha-solutions.com</a></li>
-            <li><a href="mailto:cph@alpha-solutions.com">cph@alpha-solutions.com</a></li>
-            <li><a href="tel:+45 70 20 65 38">+4570206538</a></li>
-
         </ul>
+
+        <ul class="ul-alpha-contact">
+            <li class="item-flex"><a href="https://www.alpha-solutions.com/da">alpha-solutions.com</a></li>
+            <li class="item-flex"><a href="mailto:cph@alpha-solutions.com">cph@alpha-solutions.com</a></li>
+            <li class="item-flex"><a href="tel:+45 70 20 65 38">+4570206538</a></li>
+        </ul>
+
         <ul class="ul-footer-gruppe5">
-            <li> <a href="seba217i@stud.kea.dk">seba217i</a></li>
-            <li> <a href="kevi01u4@stud.kea.dk">kevi4196</a></li>
-            <li> <a href="simo12r3@stud.kea.dk">simo35g4</a></li>
-            <li> <a href="oliv025r@stud.kea.dk">oliv052r</a></li>
+            <li class="item-flex"> <a href="seba217i@stud.kea.dk">seba217i</a></li>
+            <li class="item-flex"> <a href="kevi01u4@stud.kea.dk">kevi4196</a></li>
+            <li class="item-flex"> <a href="simo12r3@stud.kea.dk">simo35g4</a></li>
+            <li class="item-flex"> <a href="oliv025r@stud.kea.dk">oliv052r</a></li>
         </ul>
     </div>
 </footer>

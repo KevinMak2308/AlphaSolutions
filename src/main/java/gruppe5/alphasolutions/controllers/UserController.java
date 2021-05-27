@@ -53,7 +53,7 @@ public class UserController {
         userRepo.sendData(userEmail, userPassword);
         HttpSession session = request.getSession();
         session.setAttribute("useremail", userEmail);
-
+        roleRepo.assignRole(1,userEmail);
         return "redirect:/user?useremail=" + userEmail;
     }
 
