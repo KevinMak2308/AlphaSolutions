@@ -30,12 +30,13 @@ public class ProjectController {
 
 
     @GetMapping("/project/{projectID}")
-    public String projectID(@PathVariable("projectID") int projectID, Model model, HttpServletRequest request) {
+    public String projectDetails(@PathVariable("projectID") int projectID, Model model, HttpServletRequest request) {
         roleChecker.roleChecker(model, request);
+
         Project projectdetails = proRepo.projectDetails(projectID);
         model.addAttribute("project", projectdetails);
 
-       ArrayList<Task> taskdetails = proRepo.taskDetails(projectID);
+        ArrayList<Task> taskdetails = taskRepo.getAllProjectTasks(projectID);
         model.addAttribute("task", taskdetails);
 
         int taskTime = calculater.estimatedProjectTime(projectID);

@@ -5,7 +5,6 @@ import gruppe5.alphasolutions.models.User;
 import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.RoleRepository;
 import gruppe5.alphasolutions.repositories.UserRepository;
-import gruppe5.alphasolutions.services.Calculater;
 import gruppe5.alphasolutions.services.RoleChecker;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

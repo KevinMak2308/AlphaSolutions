@@ -109,29 +109,6 @@ public class ProjectRepository {
         }
 
 
-    public ArrayList<Task> taskDetails (int projectID) {
-
-        ArrayList<Task> viewOverProjectTasks = new ArrayList<>();
-        try {
-            Connection projectConn = DBManager.getConnection();
-            String projectQuery = "Select projects.projectID, tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline, tasks.estimatedtime From projects Join project_tasks On projects.projectID = project_tasks.projectID Join tasks On tasks.taskID = project_tasks.taskID Where projects.projectID = ?";
-
-            PreparedStatement projectStatement = projectConn.prepareStatement(projectQuery);
-            projectStatement.setInt(1, projectID);
-            ResultSet proResult = projectStatement.executeQuery();
-
-            while (proResult.next()) {
-                Task tmp = new Task (proResult.getInt(2), proResult.getString(3), proResult.getString(4), proResult.getDate(5).toLocalDate(), proResult.getDate(6).toLocalDate(), proResult.getInt(7));
-                viewOverProjectTasks.add(tmp);
-            }
-
-        } catch (SQLException error) {
-            System.out.println(error.getMessage());
-        }
-        return viewOverProjectTasks;
-
-    }
-
     public Project projectDetails (int projectID) {
         Project tmp = null;
         try {

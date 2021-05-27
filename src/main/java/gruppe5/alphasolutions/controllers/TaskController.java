@@ -5,11 +5,13 @@ import gruppe5.alphasolutions.models.User;
 import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.TaskRepository;
 import gruppe5.alphasolutions.repositories.UserRepository;
+import gruppe5.alphasolutions.services.Calculater;
 import gruppe5.alphasolutions.services.RoleChecker;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -69,6 +71,17 @@ public class TaskController {
         DBManager.getConnection();
         taskRepo.assignTask(taskID, useremail);
         return "redirect:/task";
+    }
+
+
+    @GetMapping("project/task/{taskID}")
+    public String taskDetails(/*@PathVariable("projectID") int projectID,*/ @PathVariable("taskID") int taskID, Model model, HttpServletRequest request) {
+       roleChecker.roleChecker(model, request);
+
+       Task taskDetails = taskRepo.taskDetails(taskID);
+       model.addAttribute("task", taskDetails);
+
+        return "taskdetails";
     }
 
 

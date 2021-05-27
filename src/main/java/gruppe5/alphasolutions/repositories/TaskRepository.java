@@ -1,6 +1,5 @@
 package gruppe5.alphasolutions.repositories;
 import gruppe5.alphasolutions.models.Task;
-import gruppe5.alphasolutions.models.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -85,6 +84,49 @@ public class TaskRepository {
             throwables.printStackTrace();
         }
 
+    }
+
+
+    public ArrayList<Task> getAllProjectTasks(int projectID) {
+
+        ArrayList<Task> viewOverProjectTasks = new ArrayList<>();
+        try {
+            Connection projectConn = DBManager.getConnection();
+            String projectQuery = "Select projects.projectID, tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline, tasks.estimatedtime From projects Join project_tasks On projects.projectID = project_tasks.projectID Join tasks On tasks.taskID = project_tasks.taskID Where projects.projectID = ?";
+
+            PreparedStatement projectStatement = projectConn.prepareStatement(projectQuery);
+            projectStatement.setInt(1, projectID);
+            ResultSet proResult = projectStatement.executeQuery();
+
+            while (proResult.next()) {
+                Task tmp = new Task (proResult.getInt(2), proResult.getString(3), proResult.getString(4), proResult.getDate(5).toLocalDate(), proResult.getDate(6).toLocalDate(), proResult.getInt(7));
+                viewOverProjectTasks.add(tmp);
+            }
+
+        } catch (SQLException error) {
+            System.out.println(error.getMessage());
+        }
+        return viewOverProjectTasks;
+
+    }
+
+    public Task taskDetails(int taskID) {
+        Task tmp = null;
+        try {
+            Connection taskConn = DBManager.getConnection();
+            String taskQuery = "Select * From tasks Where taskID = ?";
+            PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
+            taskStatement.setInt(1, taskID);
+            ResultSet taskResult = taskStatement.executeQuery();
+
+            if(taskResult.next()) {
+                tmp = new Task(taskResult.getInt(1), taskResult.getString(2), taskResult.getString(3), taskResult.getDate(4).toLocalDate(), taskResult.getDate(5).toLocalDate(), taskResult.getInt(6));
+            }
+
+            } catch (SQLException error) {
+            System.out.println(error.getMessage());
+        }
+        return tmp;
     }
 
     public void deleteData(int taskID) {
