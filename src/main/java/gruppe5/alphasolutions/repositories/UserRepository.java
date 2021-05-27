@@ -1,6 +1,7 @@
 package gruppe5.alphasolutions.repositories;
 
 import gruppe5.alphasolutions.models.Roles;
+import gruppe5.alphasolutions.models.Task;
 import gruppe5.alphasolutions.models.User;
 
 import java.sql.*;
@@ -63,6 +64,30 @@ public class UserRepository {
         }
         return tmp;
     }
+
+    public ArrayList<User> getAllTaskUsers(int taskID) {
+
+        ArrayList<User> viewOverTaskUsers = new ArrayList<>();
+        try {
+            Connection taskConn = DBManager.getConnection();
+            String taskQuery = "Select users.useremail, tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline, tasks.estimatedtime From tasks Join user_tasks on tasks.taskID = user_tasks.taskID Join users on users.useremail = user_tasks.useremail Where tasks.taskID = ?";
+            PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
+            taskStatement.setInt(1, taskID);
+            ResultSet taskResult = taskStatement.executeQuery();
+
+            while (taskResult.next()) {
+                User tmp = new User (taskResult.getString(1), taskResult.getString(2));
+                viewOverTaskUsers.add(tmp);
+            }
+
+        } catch (SQLException error) {
+            System.out.println(error.getMessage());
+        }
+        return viewOverTaskUsers;
+
+    }
+
+
 
     public boolean validateData(String userEmail, String userPassword) {
 

@@ -75,11 +75,14 @@ public class TaskController {
 
 
     @GetMapping("project/task/{taskID}")
-    public String taskDetails(/*@PathVariable("projectID") int projectID,*/ @PathVariable("taskID") int taskID, Model model, HttpServletRequest request) {
+    public String taskDetails(@PathVariable("taskID") int taskID, Model model, HttpServletRequest request) {
        roleChecker.roleChecker(model, request);
 
        Task taskDetails = taskRepo.taskDetails(taskID);
        model.addAttribute("task", taskDetails);
+
+       ArrayList<User> taskUsers = userRepo.getAllTaskUsers(taskID);
+       model.addAttribute("user", taskUsers);
 
         return "taskdetails";
     }
