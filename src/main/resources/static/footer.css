@@ -4,10 +4,8 @@ html, body{
 }
 
 .footer{
-    position: absolute;
     bottom: 0px;
-    width:100%;
-
+    width: 100%;
 }
 
 .foot {
@@ -29,31 +27,37 @@ html, body{
 .ul-footer-alpha {
     list-style: none;
     align-items: center;
-    margin-left: 24px;
-
+    width: 200px;
+    margin-left: 0px;
 }
+
 .ul-alpha-contact{
+    top: 0;
+    bottom: 0;
+    left: 33%;
     list-style: none;
     display: flex;
-    justify-content:space-around;
+    width: 500px;
 }
+
 .item-flex{
-    margin-right: 10px;
-    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-top: auto;
-    margin-bottom:auto ;
-
+    margin-bottom: auto;
+    width: max-content;
 }
+
 .ul-footer-gruppe5{
+    top: 0;
+    bottom: 0;
     list-style: none;
     display: flex;
     justify-content:space-around;
-    margin-left: 350px;
-
+    right: 2%;
 }
 
 .p-footer{
-    margin-left: 50px ;
     color: white;
 }
 

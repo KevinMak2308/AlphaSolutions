@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 
-public class Calculater {
+public class Calculator {
     ProjectRepository proRepo = new ProjectRepository();
 
 

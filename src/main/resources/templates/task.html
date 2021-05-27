@@ -7,6 +7,7 @@
 <body>
 <header th:replace="fragments/header.html"></header>
 <h1>Here you can see the Tasks</h1>
+<div class="wrapper_contents">
 <div class="wrapper">
     <tr th:each="task : ${usertasks}">
         <div class="displayproject">
@@ -20,6 +21,10 @@
         </div>
     </tr>
 </div>
-<footer th:replace="fragments/footer.html"> </footer>
+<div class="push"></div>
+</div>
+<div class="footer">
+    <footer th:replace="fragments/footer.html"></footer>
+</div>
 </body>
 </html>

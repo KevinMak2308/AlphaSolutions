@@ -7,13 +7,12 @@ html, body {
     min-height: 100%;
     margin: 0;
     padding-bottom: 70px;
-    width: 100vw;
+    width: 98vw;
     height: 100vh;
 
 }
 
 h1{
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,17 +31,18 @@ body{
 
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&display=swap%27%27');
 * {
-font-family: 'EB Garamond', serif;
-color: #FFFFFF;
+    font-family: 'EB Garamond', serif;
+    color: #FFFFFF;
+    margin: 0;
 }
 
 .forms{
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
     background: rgba(0,0,0,.5);
-    padding: 100px;
+    padding: 25px;
 }
 
 .line{
@@ -81,6 +81,16 @@ input[type=date]{
     color: #FFF;
 }
 
+input[type=number]{
+    display: inline-block;
+    text-align: left;
+    padding: 10px;
+    width: 350px;
+    margin: 10px 0;
+    background: transparent;
+    color: #FFF;
+}
+
 input[type=password]{
     display: inline-block;
     text-align: left;
@@ -110,9 +120,14 @@ input[type=submit]{
     margin: 20px 0;
     padding: 10px 30px;
     border: 2px solid #FFFFFF;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    justify-items-content: center;
+    align-content: center;
 }
 
-.submit{
+.submit {
     text-align: center;
 }
 
@@ -140,7 +155,7 @@ input[type=submit]{
     align-items: center;
 }
 .h1frontpage{
-    font-family: Calibri;
+    font-family: 'EB Garamond';
     font-size: 3.0em;
 }
 
@@ -170,6 +185,17 @@ input[type=submit]{
     flex-flow: row;
     flex-wrap: wrap;
     margin-left: 150px;
+}
+
+.wrapper_contents {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -142px;
+}
+
+.footer, .push {
+    height: 142px;
 }
 
 .title{
@@ -232,4 +258,26 @@ input[type=submit]{
     top:8px;
     left: 0;
     right: 0;
+}
+
+.option {
+    display: inline-block;
+    text-align: left;
+    padding: 10px;
+    width: 350px;
+    margin: 10px 0;
+    background: transparent;
+    color: #FFF;
+}
+
+.select {
+    display: inline-block;
+    text-align: left;
+    padding: 10px;
+    height: 32px;
+    width: 350px;
+    margin: 10px 0;
+    font-size: 0.8em;
+    background: transparent;
+    color: #FFF;
 }

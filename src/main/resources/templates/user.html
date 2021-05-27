@@ -7,14 +7,17 @@
 <body>
 <header th:replace="fragments/header.html"></header>
 <h1>Profile Page</h1>
-
-<div class="displaytext">
-  <div class="profileText">
-  <p class="useremail">E-mail: <span th:text="${user.userEmail}"> </span> <br/>
-  <p class="uaserpassword">Password: <span th:text="${user.userPassword}"> </span><br/>
+<div class="wrapper_contents">
+  <div class="forms">
+    <div class="profileText">
+      <p class="useremail">E-mail: <span th:text="${user.userEmail}"> </span> <br/>
+      <p class="uaserpassword">Password: <span th:text="${user.userPassword}"> </span><br/>
+    </div>
   </div>
+  <div class="push"></div>
 </div>
-
-  <footer th:replace="fragments/footer.html"> </footer>
- </body>
+<div class="footer">
+  <footer th:replace="fragments/footer.html"></footer>
+</div>
+</body>
 </html>

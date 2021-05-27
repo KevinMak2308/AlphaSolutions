@@ -7,25 +7,32 @@
     <title>frontpage</title>
 </head>
 <body>
-<h1 class="h1frontpage">Calculation Tool K-OSS</h1>
-    <div>
-        <form class="forms" action="login" method="post">
-            <h1>Login</h1>
-            <label class="label">Email:</label><br>
-            <input type="email" name="useremail"><br>
-            <label class="label">Password:</label><br>
-            <input type="password" name="userpassword"><br>
-            <div class="submit"><input type="submit" value="Login"></div>
-            <div class="line"></div>
-            <div>
-            <p class="signupparagraph"> not registered?
-            <a class="signuplink" href="/register">
-                <span class="signupspan">Sign up</span>
-            </a>
-            </p>
+    <div class="wrapper_contents">
+        <div id="wrapper">
+            <h1 class="h1frontpage">Calculation Tool K-OSS</h1>
+            <form class="forms" action="login" method="post">
+                <h1>Login</h1>
+                <label class="label">E-mail:</label><br>
+                <input type="email" name="useremail"><br>
+                <label class="label">Password:</label><br>
+                <input type="password" name="userpassword"><br>
+                <div class="submit">
+                    <input type="submit" value="Login">
+                </div>
+                <div class="line"></div>
+                <div>
+                    <p class="signupparagraph"> not registered?
+                        <a class="signuplink" href="/register">
+                            <span class="signupspan">Sign up</span>
+                        </a>
+                    </p>
+                </div>
+            </form>
         </div>
-        </form>
-    </div>
-    <footer th:replace="fragments/footer.html"> </footer>
+        <div class="push"></div>
+        </div>
+        <div class="footer">
+            <footer th:replace="fragments/footer.html"></footer>
+        </div>
 </body>
 </html>

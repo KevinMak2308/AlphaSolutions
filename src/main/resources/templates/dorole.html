@@ -7,6 +7,7 @@
 <body>
 <header th:replace="fragments/header.html"></header>
 <h1>Assign Role to the User</h1>
+<div class="wrapper_contents">
 <form action="assignRoles" method="post">
     <div>
         <select name="roleID">
@@ -28,6 +29,10 @@
     </div>
 
 </form>
-<footer th:replace="fragments/footer.html"></footer>
+<div class="push"></div>
+</div>
+<div class="footer">
+    <footer th:replace="fragments/footer.html"></footer>
+</div>
 </body>
 </html>

@@ -6,15 +6,21 @@
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<div>
-<form class="forms" action="/makeUser" method="post">
-  <h1>Create User</h1>
-  <label class="label"> E-mail: </label> <br>
-  <input type="text" name="userEmail"/><br>
-  <label class="label"> Password: </label> </br>
-  <input type="Password" name="userPassword"/><br>
-  <input type="submit" value="Create user">
-</form>
+<div class="wrapper_contents">
+  <form class="forms" action="/makeUser" method="post">
+    <h1>Create User</h1>
+    <label class="label">E-mail:</label><br>
+    <input type="text" name="userEmail"/><br>
+    <label class="label">Password: </label> </br>
+    <input type="Password" name="userPassword"/><br>
+    <div class="submit">
+      <input type="submit" value="Create user">
+    </div>
+  </form>
+  <div class="push"></div>
+</div>
+<div class="footer">
+  <footer th:replace="fragments/footer.html"></footer>
 </div>
 </body>
 <footer th:replace="fragments/footer.html"> </footer>

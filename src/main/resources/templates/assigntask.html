@@ -7,27 +7,29 @@
 <body>
 <header th:replace="fragments/header.html"></header>
 <h1>Assign Tasks to a User</h1>
-<form action="assignTask" method="post">
-  <div>
-    <select name="taskID">
-      <option th:each="task : ${alltasks}" th:value="${task.taskID}" th:text="${task.title}">
-      </option>
+<div class="wrapper_contents">
+  <form action="assignTask" method="post">
+    <div>
+      <select name="taskID">
+        <option class="option" th:each="task : ${alltasks}" th:value="${task.taskID}" th:text="${task.title}">
+        </option>
+      </select>
+    </div>
 
-    </select>
-  </div>
-
-  <div>
-    <select name="useremail">
-      <option th:each="user : ${allusers}" th:value="${user.userEmail}" th:text="${user.userEmail}">
-      </option>
-    </select>
-  </div>
-
-  <div>
-    <input type="submit" value="Confirm Task">
-  </div>
-
-</form>
-<footer th:replace="fragments/footer.html"></footer>
+    <div>
+      <select name="useremail">
+        <option class="option" th:each="user : ${allusers}" th:value="${user.userEmail}" th:text="${user.userEmail}">
+        </option>
+      </select>
+    </div>
+    <div>
+      <input type="submit" value="Confirm Task">
+    </div>
+  </form>
+  <div class="push"></div>
+</div>
+<div class="footer">
+  <footer th:replace="fragments/footer.html"></footer>
+</div>
 </body>
 </html>

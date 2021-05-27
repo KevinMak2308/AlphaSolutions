@@ -7,12 +7,21 @@
 <body>
 <header th:replace="fragments/header.html"></header>
 <h1>Overview of all registered users</h1>
-<tr th:each="user : ${allusers}">
-
-  <div class="displaytext">
-    <p class="text-success">Email: <span th:text="${user.userEmail}"> </span></p>
-    <p class="text-success">Password: <span th:text="${user.userPassword}"> </span></p>
+<div class="wrapper_contents">
+  <div class="flex-wrapper">
+    <div class="container">The content>
+      <div class="flex-container">
+        <div class="displaytext">
+          <tr th:each="user : ${allusers}">
+            <p>Email: <span th:text="${user.userEmail}"> </span></p>
+            <p>Password: <span th:text="${user.userPassword}"> </span></p>
+        </div>
+      </div>
+    </div>
+    <div class="push"></div>
   </div>
-  <footer th:replace="fragments/footer.html"> </footer>
+  <div class="footer">
+    <footer th:replace="fragments/footer.html"></footer>
+  </div>  </div>
 </body>
 </html>

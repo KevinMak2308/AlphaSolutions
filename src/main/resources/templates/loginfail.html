@@ -2,19 +2,22 @@
 <html lang="en" xmlns:th="http://thymeleaf.org/">
 <link rel="stylesheet" th:href="main.css">
 <link rel="stylesheet" th:href="footer.css">
+<link rel="stylesheet" th:href="header.css">
 <head>
     <meta charset="UTF-8">
-    <title>Login fail</title>
+    <title>Login Failed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-<div>
+<div class="wrapper_contents">
     <form class="forms" action="login" method="post">
         <div class="alertemoji">❌</div>
         <div  class="loginfail">
             E-mail eller adgangskode passer ikke. Prøv igen
         </div>
         <h1>Login</h1>
-        <label class="label">Email:</label><br>
+        <label class="label">E-mail:</label><br>
         <input type="email" name="useremail"><br>
         <label class="label">Password:</label><br>
         <input type="password" name="userpassword"><br>
@@ -28,7 +31,10 @@
             </p>
         </div>
     </form>
+    <div class="push"></div>
 </div>
-<footer th:replace="fragments/footer.html"> </footer>
+<div class="footer">
+    <footer th:replace="fragments/footer.html"></footer>
+</div>
 </body>
 </html>

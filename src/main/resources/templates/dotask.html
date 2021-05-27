@@ -6,8 +6,8 @@
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<div>
-<form class="forms" action="makeTask" method="post">
+<div class="wrapper_contents">
+    <form class="forms" action="makeTask" method="post">
         <h1>Create a new Task</h1>
         <label class="label">Title:</label> <br>
         <input type="text" name="title"><br>
@@ -20,11 +20,16 @@
         <label class="label">Estimated Time:</label><br>
         <input type="number" name="estimatedtime"><br>
 
+        <div class="submit">
+            <input type="submit" value="Create Task">
+        </div>
 
-    <input type="submit" value="Create Task">
     </form>
-</form>
+    </form>
+    <div class="push"></div>
 </div>
-<footer th:replace="fragments/footer.html"> </footer>
+<div class="footer">
+    <footer th:replace="fragments/footer.html"></footer>
+</div>
 </body>
 </html>

@@ -2,32 +2,30 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Select Task and User</title>
+  <title>Select Task and Project</title>
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<h1>Assign Tasks to a User</h1>
-<form action="assignProject" method="post">
-  <div>
-    <select name="projectID">
-      <option th:each="project : ${allprojects}" th:value="${project.projectID}" th:text="${project.title}">
+<h1>Assign Tasks to a Project</h1>
+<div class="wrapper_contents">
+  <form class="forms" action="assignProject" method="post">
+    <label class="label">Project:</label><br>
+    <select class="select" name="projectID"><br>
+      <option class="option" th:each="project : ${allprojects}" th:value="${project.projectID}" th:text="${project.title}">
+      </option>
+    </select><br><br>
+    <label class="label">Task:</label><br>
+    <select class="select" name="taskID"><br>
+      <option class="option" th:each="task : ${alltasks}" th:value="${task.taskID}" th:text="${task.title}">
       </option>
     </select>
-  </div>
-
-  <div>
-    <select name="taskID">
-      <option th:each="task : ${alltasks}" th:value="${task.taskID}" th:text="${task.title}">
-      </option>
-
-    </select>
-  </div>
-
-  <div>
-    <input type="submit" value="Confirm Task">
-  </div>
-
-</form>
-<footer th:replace="fragments/footer.html"></footer>
-</body>
+    <div class="submit">
+      <input type="submit" value="Confirm Task">
+    </div>
+  </form>
+  <div class="push"></div>
+</div>
+<div class="footer">
+  <footer th:replace="fragments/footer.html"></footer>
+</div></body>
 </html>
