@@ -6,23 +6,20 @@
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<h1>Assign Tasks to a User</h1>
-<div class="wrapper_contents">
-  <form action="assignTask" method="post">
-    <div>
-      <select name="taskID">
-        <option class="option" th:each="task : ${alltasks}" th:value="${task.taskID}" th:text="${task.title}">
-        </option>
-      </select>
-    </div>
-
-    <div>
-      <select name="useremail">
-        <option class="option" th:each="user : ${allusers}" th:value="${user.userEmail}" th:text="${user.userEmail}">
-        </option>
-      </select>
-    </div>
-    <div>
+  <div class="wrapper_contents">
+  <form class="forms" action="assignTask" method="post">
+    <h1>Assign Tasks to a User</h1>
+      <label class="label">Task:</label><br>
+      <select class="select" name="taskID"><br>
+      <option class="option" th:each="task : ${alltasks}" th:value="${task.taskID}" th:text="${task.title}">
+      </option>
+    </select><br><br>
+    <label class="label">User:</label><br>
+    <select class="select" name="useremail"><br>
+      <option class="option" th:each="user : ${allusers}" th:value="${user.userEmail}" th:text="${user.userEmail}">
+      </option>
+    </select><br><br>
+    <div class="submit">
       <input type="submit" value="Confirm Task">
     </div>
   </form>

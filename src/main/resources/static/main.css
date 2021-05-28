@@ -36,9 +36,13 @@ body{
     margin: 0;
 }
 
+::placeholder {
+    color: #FFFFFF;
+    opacity: 80%;
+}
 .forms{
     position: absolute;
-    top: 40%;
+    top: 48%;
     left: 50%;
     transform: translate(-50%,-50%);
     background: rgba(0,0,0,.5);
@@ -167,6 +171,38 @@ input[type=submit]{
     align-items: center;
 }
 
+.option {
+    display: inline-block;
+    text-align: left;
+    padding: 10px;
+    width: 350px;
+    margin: 10px 0;
+    background: #16162f;
+    color: #FFF;
+}
+
+.select {
+    display: inline-block;
+    text-align: left;
+    padding: 10px;
+    height: 40px;
+    width: 350px;
+    margin: 10px 0;
+    font-size: 0.8em;
+    background: transparent;
+    color: #FFF;
+}
+
+.wrapper_contents {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -142px;
+}
+
+.footer, .push {
+    height: 142px;
+}
 
 /* view project */
 .displayproject {
@@ -217,25 +253,23 @@ input[type=submit]{
 
 .startdate {
     font-size: 1.0em;
-    margin-top: 24px;
+
 
 }
 .deadline{
     font-size: 1.0em;
-    margin-top: 24px;
 
 }
+
 .topviewproject{
     margin-right: 40px;
 
 }
 
 .date {
-    margin-top: 24px;
     position: absolute;
-    bottom: 0;
-    top: 0;
-    left: 80%;
+    bottom: 40%;
+    left: 75%;
 }
 
 .description{
@@ -243,7 +277,7 @@ input[type=submit]{
     margin-top: 24px;
     margin-left: 24px;
     border-color: #ffffff;
-    width: 500px ;
+    width: 480px;
     height: 8px;
 }
 
@@ -259,25 +293,18 @@ input[type=submit]{
     left: 0;
     right: 0;
 }
-
-.option {
-    display: inline-block;
-    text-align: left;
-    padding: 10px;
-    width: 350px;
-    margin: 10px 0;
+.detailbutton{
+    position: absolute;
+    left: 75%;
+    bottom: 5%;
     background: transparent;
-    color: #FFF;
+    color: #FFFFFF;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.0em;
+    border: 2px solid #FFFFFF;
+    text-align: center;
+
 }
 
-.select {
-    display: inline-block;
-    text-align: left;
-    padding: 10px;
-    height: 32px;
-    width: 350px;
-    margin: 10px 0;
-    font-size: 0.8em;
-    background: transparent;
-    color: #FFF;
-}

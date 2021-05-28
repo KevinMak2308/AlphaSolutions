@@ -9,21 +9,19 @@
 <div class="wrapper_contents">
     <form class="forms" action="makeTask" method="post">
         <h1>Create a new Task</h1>
-        <label class="label">Title:</label> <br>
-        <input type="text" name="title"><br>
+        <label class="label" >Title:</label> <br>
+        <input type="text" name="title" required minlength="1" maxlength="50" placeholder="Max 50 characters"><br>
         <label class="label">Description:</label><br>
-        <input type="text" name="descriptions"><br>
+        <input type="text" name="descriptions" required minlength="1" maxlength="1000" placeholder="Max 1000 characters"><br>
         <label class="label">Start Date:</label><br>
-        <input type="date" name="startDate"><br>
+        <input type="date" name="startDate" required placeholder="YYYY-MM-DD"><br>
         <label class="label">Deadline:</label><br>
-        <input type="date" name="deadline"><br>
-        <label class="label">Estimated Time:</label><br>
-        <input type="number" name="estimatedtime"><br>
-
+        <input type="date" name="deadline" required placeholder="YYYY-MM-DD"><br>
+        <label class="label">Estimated Time in hours:</label><br>
+        <input type="number" name="estimatedtime"  required min="1" placeholder="Min 1 hour"><br>
         <div class="submit">
             <input type="submit" value="Create Task">
         </div>
-
     </form>
     </form>
     <div class="push"></div>

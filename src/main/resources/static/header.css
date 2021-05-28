@@ -20,7 +20,6 @@ ul {
 
 li {
     color: #fff;
-    background: transparent;
     display: block;
     float: left;
     padding: 1rem;
@@ -41,6 +40,7 @@ li:hover {
     width: 150px;
     text-align: center;
     font-size: 1.5em;
+    background: transparent;
 }
 
 .menulogout {
@@ -75,5 +75,15 @@ ul li ul li {
 }
 .dropdown{
     font-size: 0.7em;
+    z-index: 3;
+    width: 150px;
+}
+
+.subnav{
+    background-color: #c85f7b;
+}
+
+.subnav:hover{
+    background-color: #AC526A;
 
 }

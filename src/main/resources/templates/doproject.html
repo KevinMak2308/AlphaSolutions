@@ -10,14 +10,14 @@
     <form class="forms" action="makeProject" method="post">
         <h1>Create a new Project</h1>
         <label class="label">Title:</label> <br>
-        <input type="text" name="title"><br>
+        <input type="text" name="title" required minlength="1" maxlength="50" placeholder="Max 50 characters"><br><br>
         <label class="label">Description:</label><br>
-        <input type="text" name="descriptions"><br>
+        <input type="text" name="descriptions" required minlength="1" maxlength="1000" placeholder="Max 1000 characters"><br><br>
         <label class="label">Start Date:</label><br>
-        <input type="date" name="startDate"><br>
+        <input type="date" name="startDate" required placeholder="YYYY-MM-DD"><br>
         <label class="label">Deadline:</label><br>
-        <input type="date" name="deadline"><br>
-        <input type="submit" value="Create project">
+        <input type="date" name="deadline" required placeholder="YYYY-MM-DD"><br>
+        <div class="submit"><input type="submit" value="Create project"></div>
     </form>
     <div class="push"></div>
 </div>

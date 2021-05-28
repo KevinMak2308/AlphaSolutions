@@ -6,9 +6,9 @@
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<h1>Assign Tasks to a Project</h1>
 <div class="wrapper_contents">
   <form class="forms" action="assignProject" method="post">
+    <h1>Assign Tasks to a Project</h1>
     <label class="label">Project:</label><br>
     <select class="select" name="projectID"><br>
       <option class="option" th:each="project : ${allprojects}" th:value="${project.projectID}" th:text="${project.title}">

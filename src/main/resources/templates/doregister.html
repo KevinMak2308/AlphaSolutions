@@ -10,9 +10,9 @@
   <form class="forms" action="/makeUser" method="post">
     <h1>Create User</h1>
     <label class="label">E-mail:</label><br>
-    <input type="text" name="userEmail"/><br>
+    <input type="email" name="userEmail"  required minlength="3" maxlength="50"/><br>
     <label class="label">Password: </label> </br>
-    <input type="Password" name="userPassword"/><br>
+    <input type="Password" name="userPassword" required minlength="1" maxlength="20"/><br>
     <div class="submit">
       <input type="submit" value="Create user">
     </div>

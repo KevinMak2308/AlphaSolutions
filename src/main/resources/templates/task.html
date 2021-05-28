@@ -12,12 +12,13 @@
     <tr th:each="task : ${usertasks}">
         <div class="displayproject">
             <p class="topviewproject"><span class="title" th:text="${task.title}"></span>
+            <p class="time">Expected time in hours:<span th:text="${task.estimatedtime}"></span></p>
             <div class="date">
-                <p>Start date:</p><span class="startdate" th:text="${task.startDate}"></span>
-                <p>Deadline:</p><span class="deadline" th:text="${task.deadline}"></span>
+                <span>Start date:</span><span class="startdate" th:text="${task.startDate}"></span><br><br>
+                <span>Deadline:</span><span class="deadline" th:text="${task.deadline}"></span>
             </div>
             <p class="description"><span th:text="${task.description}"></span></p>
-            <p class="time"><span th:text="${task.estimatedtime}"></span></p>
+
         </div>
     </tr>
 </div>

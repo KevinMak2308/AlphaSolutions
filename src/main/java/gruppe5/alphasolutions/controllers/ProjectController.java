@@ -5,7 +5,7 @@ import gruppe5.alphasolutions.models.Task;
 import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.ProjectRepository;
 import gruppe5.alphasolutions.repositories.TaskRepository;
-import gruppe5.alphasolutions.services.Calculater;
+import gruppe5.alphasolutions.services.Calculator;
 import gruppe5.alphasolutions.services.RoleChecker;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -25,7 +25,7 @@ public class ProjectController {
     TaskRepository taskRepo = new TaskRepository();
     ProjectRepository proRepo = new ProjectRepository();
     RoleChecker roleChecker = new RoleChecker();
-    Calculater calculater = new Calculater();
+    Calculator calculater = new Calculator();
 
 
 
@@ -81,7 +81,6 @@ public class ProjectController {
         ArrayList<Project> allProjects = proRepo.showAllData();
         model.addAttribute("allprojects", allProjects);
         roleChecker.roleChecker(model, request);
-
         return "allprojects";
     }
 

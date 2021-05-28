@@ -11,10 +11,12 @@
   <div class="flex-wrapper">
     <div class="container">The content>
       <div class="flex-container">
-        <div class="displaytext">
+        <div class="forms">
           <tr th:each="user : ${allusers}">
+            <div>
             <p>Email: <span th:text="${user.userEmail}"> </span></p>
             <p>Password: <span th:text="${user.userPassword}"> </span></p>
+            </div>
         </div>
       </div>
     </div>

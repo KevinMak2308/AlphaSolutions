@@ -12,20 +12,20 @@
       </li>
       <li class="headmenu"><a th:href="@{/allProjects}">Projects</a>
         <ul class="dropdown">
-      <li><a th:href="@{/newProject}">Create Project</a></li>
-      <li><a th:href="@{/selectProject}">Assign Tasks</a></li>
+      <li class="subnav"><a th:href="@{/newProject}">Create Project</a></li>
+      <li class="subnav"><a th:href="@{/selectProject}">Assign Tasks</a></li>
       </ul>
       </li>
       <li class="headmenu"><a th:href="@{/task}">Task</a>
         <ul class="dropdown">
-      <li><a th:href="@{/newTask}">Create Task</a></li>
-      <li><a th:href="@{/selectTask}">Assign Task</a></li>
+      <li class="subnav"><a th:href="@{/newTask}">Create Task</a></li>
+      <li class="subnav"><a th:href="@{/selectTask}">Assign User</a></li>
       </ul>
         </li>
       <li class="headmenu"><a th:href="@{/allUsers}">View All Users</a>
          <ul class="dropdown">
-      <li><a th:href="@{/newRoles}">Assign Roles</a></li>
-      <li><a th:href="@{/delete}">Delete Users</a></li>
+      <li class="subnav"><a th:href="@{/newRoles}">Assign Roles</a></li>
+      <li class="subnav"><a th:href="@{/delete}">Delete Users</a></li>
       </ul>
         </li>
       <li class="menulogout"><a th:href="@{/logout}">Logout</a></li>
