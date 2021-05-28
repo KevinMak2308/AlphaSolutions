@@ -204,6 +204,43 @@ input[type=submit]{
     height: 142px;
 }
 
+/*display allusers */
+.displayallusers {
+    margin: 12px;
+    margin-top: 48px;
+}
+
+.deleteuser {
+    position: relative;
+    color: #ffffff;
+    width: 100%;
+    height: 200px;
+}
+
+.deleteform {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: max-content;
+    text-align: center;
+    background: rgba(0,0,0,.5);
+    padding: 25px;
+}
+
+.useremail {
+    text-align: center;
+}
+
+.wrapper{
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    width: 98vw;
+}
+
 /* view project */
 .displayproject {
     position: relative;
@@ -253,17 +290,14 @@ input[type=submit]{
 
 .startdate {
     font-size: 1.0em;
-
-
 }
+
 .deadline{
     font-size: 1.0em;
-
 }
 
 .topviewproject{
     margin-right: 40px;
-
 }
 
 .date {

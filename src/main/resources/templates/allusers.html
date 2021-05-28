@@ -1,30 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org/%22%3E">
 <head>
   <meta charset="UTF-8">
-  <title>Account</title>
+<title>Account</title>
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
 <h1>Overview of all registered users</h1>
 <div class="wrapper_contents">
-  <div class="flex-wrapper">
-    <div class="container">The content>
-      <div class="flex-container">
-        <div class="forms">
-          <tr th:each="user : ${allusers}">
-            <div>
-            <p>Email: <span th:text="${user.userEmail}"> </span></p>
-            <p>Password: <span th:text="${user.userPassword}"> </span></p>
-            </div>
-        </div>
+  <div class="deleteuser">
+    <form class="deleteform" action="deleteUser" method="post">
+      <h2> Select user to delete</h2>
+      <div class="deletebutton">
       </div>
-    </div>
-    <div class="push"></div>
+      <select class="select" name="Delete User">
+        <option class="option" th:each="user : ${allusers}" th:value="${user.userEmail}" th:text="${user.userEmail}">
+        </option>
+      </select>
+      <div class="submit">
+        <input type="submit" value="Delete User">
+      </div>
+    </form>
   </div>
-</div>
+  <div class="wrapper">
+    <tr th:each="user : ${allusers}">
+      <div class="displayallusers">
+        <img class="profilepic" src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png">
+        <p class="useremail">Email: <span th:text="${user.userEmail}"> </span></p>
+      </div>
+      <div class="push"></div>
+  </div>
+  </div>
 <div class="footer">
-  <footer th:replace="fragments/footer.html"></footer>
+<footer th:replace="fragments/footer.html"></footer>
 </div>
 </body>
 </html>
