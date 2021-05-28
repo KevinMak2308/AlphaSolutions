@@ -6,25 +6,24 @@
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<h1>Assign Role to the User</h1>
 <div class="wrapper_contents">
-<form action="assignRoles" method="post">
+<form class="forms" action="assignRoles" method="post">
+<h1>Assign Role to the User</h1>
     <div>
-        <select name="roleID">
-            <option value="1">Software Developer</option>
-            <option value="2">Manager</option>
-        </select>
+        <label class="label">Role:</label> <br>
+        <select class="select" name="roleID"> <br>
+            <option class="option" value="1">Software Developer</option>
+            <option class="option" value="2">Manager</option>
+        </select> <br><br>
     </div>
-
     <div>
-        <select name="useremail">
-            <option th:each="user : ${allusers}" th:value="${user.userEmail}" th:text="${user.userEmail}"> test
+        <label class="label">User:</label> <br>
+        <select class="select" name="useremail"> <br>
+            <option class="option" th:each="user : ${allusers}" th:value="${user.userEmail}" th:text="${user.userEmail}"> test
             </option>
-        </select>
+        </select> <br> <br>
     </div>
-
-
-    <div>
+    <div class="submit">
         <input type="submit" value="Confirm Roles">
     </div>
 

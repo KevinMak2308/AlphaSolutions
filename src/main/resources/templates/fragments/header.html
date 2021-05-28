@@ -25,7 +25,6 @@
       <li class="headmenu"><a th:href="@{/allUsers}">View All Users</a>
          <ul class="dropdown">
       <li class="subnav"><a th:href="@{/newRoles}">Assign Roles</a></li>
-      <li class="subnav"><a th:href="@{/delete}">Delete Users</a></li>
       </ul>
         </li>
       <li class="menulogout"><a th:href="@{/logout}">Logout</a></li>
@@ -36,15 +35,23 @@
 
 
     <span th:case="'2'"><nav class="nav" >
-    <ul>
-      <li class="leftnav"><a th:href="@{user}">Profile</a></li>
-      <li><a th:href="@{project}">View Projects</a></li>
-      <li><a th:href="@{newProject}">Create Project</a></li>
-      <li><a th:href="@{selectProject}">Assign Tasks to Project</a></li>
-      <li><a th:href="@{task}">View Task</a></li>
-      <li><a th:href="@{newTask}">Create Task</a></li>
-      <li><a th:href="@{selectTask}">Assign Task</a></li>
-      <li><a th:href="@{logout}">Logout</a></li>
+
+       <ul>
+      <li class="headmenu"><a th:href="@{/user}">Profile</a>
+      </li>
+      <li class="headmenu"><a th:href="@{/project}">Projects</a>
+        <ul class="dropdown">
+      <li class="subnav"><a th:href="@{/newProject}">Create Project</a></li>
+      <li class="subnav"><a th:href="@{/selectProject}">Assign Tasks</a></li>
+      </ul>
+      </li>
+      <li class="headmenu"><a th:href="@{/task}">Task</a>
+        <ul class="dropdown">
+      <li class="subnav"><a th:href="@{/newTask}">Create Task</a></li>
+      <li class="subnav"><a th:href="@{/selectTask}">Assign User</a></li>
+      </ul>
+        </li>
+      <li class="menulogout"><a th:href="@{/logout}">Logout</a></li>
     </ul>
   </nav></span>
 

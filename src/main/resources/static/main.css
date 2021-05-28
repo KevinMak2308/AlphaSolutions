@@ -229,9 +229,16 @@ input[type=submit]{
     background: rgba(0,0,0,.5);
     padding: 25px;
 }
+.profilepic{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    display: block;
+}
 
-.useremail {
-    text-align: center;
+
+.profileText {
+    font-size: 1.5em;
 }
 
 .wrapper{
@@ -342,3 +349,73 @@ input[type=submit]{
 
 }
 
+/* Detailed project */
+
+.detailedproject {
+    position: relative;
+    color: #ffffff;
+    border-style: double;
+    width: 60%;
+    height: 350px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 50px;
+    overflow: hidden;
+}
+.detailtitle{
+    font-size: 4.0em;
+    margin-top: 24px;
+    margin-left: 24px;
+}
+
+.detailemail{
+    font-size: 1.3em;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    color: #dadde1;
+    font-size: 1.0em;
+    margin-top: 24px;
+    margin-left: 24px;
+    top:3px;
+}
+
+.detailtartdate {
+    font-size: 1.0em;
+}
+
+.detaildeadline{
+    font-size: 1.0em;
+}
+
+.topviewproject{
+    margin-right: 40px;
+}
+
+.detaildate {
+    font-size: 2.0em;
+    position: absolute;
+    bottom: 30%;
+    left: 75%;
+}
+
+.detaildescription{
+    font-size: 1.2em;
+    margin-top: 24px;
+    margin-left: 24px;
+    border-color: #ffffff;
+    width: 900px;
+    height: 15px;
+}
+
+.detailestimatedtime {
+    font-size: 1.6em;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    color: #FFFFFF;
+    margin-top: 24px;
+    margin-right: 24px;
+    top:8px;
+    right: 0;
+}
