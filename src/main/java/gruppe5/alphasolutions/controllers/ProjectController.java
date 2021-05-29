@@ -2,7 +2,6 @@ package gruppe5.alphasolutions.controllers;
 
 import gruppe5.alphasolutions.models.Project;
 import gruppe5.alphasolutions.models.Task;
-import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.ProjectRepository;
 import gruppe5.alphasolutions.repositories.TaskRepository;
 import gruppe5.alphasolutions.services.Calculator;
@@ -32,22 +31,17 @@ public class ProjectController {
     @GetMapping("/project/{projectID}")
     public String projectDetails(@PathVariable("projectID") int projectID, Model model, HttpServletRequest request) {
         roleChecker.roleChecker(model, request);
-
         Project projectdetails = proRepo.projectDetails(projectID);
         model.addAttribute("project", projectdetails);
-
         ArrayList<Task> taskdetails = taskRepo.getAllProjectTasks(projectID);
         model.addAttribute("task", taskdetails);
-
         int taskTime = calculater.estimatedProjectTime(projectID);
         model.addAttribute("tasktime", taskTime);
-
         return "projectdetails";
 }
 
     @GetMapping("/project")
     public String project(Model model, HttpServletRequest request) {
-        DBManager.getConnection();
         HttpSession session = request.getSession();
         String currentUser = (String) session.getAttribute("useremail");
 
@@ -66,7 +60,6 @@ public class ProjectController {
 
     @PostMapping("/makeProject")
     public String makeProject(HttpServletRequest request, @RequestParam("title") String title, @RequestParam("descriptions") String descriptions, @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate, @RequestParam("deadline") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate deadline) {
-        DBManager.getConnection();
         HttpSession session = request.getSession();
         String useremail = (String) session.getAttribute("useremail");
         proRepo.sendData(title, descriptions, startDate, deadline, useremail);
@@ -75,7 +68,6 @@ public class ProjectController {
 
     @GetMapping("/allProjects")
     public String allProjects(Model model, HttpServletRequest request) {
-        DBManager.getConnection();
         ArrayList<Project> allProjects = proRepo.showAllData();
         model.addAttribute("allprojects", allProjects);
         roleChecker.roleChecker(model, request);
@@ -85,7 +77,6 @@ public class ProjectController {
 
     @GetMapping("/selectProject")
     public String selectTask(Model model,HttpServletRequest request) {
-        DBManager.getConnection();
         HttpSession session = request.getSession();
         String userProject = (String) session.getAttribute("useremail");
 
@@ -100,7 +91,6 @@ public class ProjectController {
 
     @PostMapping("/assignProject")
     public String assignTask(@RequestParam("projectID") int projectID, @RequestParam("taskID") int taskID) {
-        DBManager.getConnection();
         proRepo.assignProject(projectID, taskID);
         return "redirect:/project";
     }

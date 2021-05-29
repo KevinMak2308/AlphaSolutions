@@ -27,7 +27,6 @@ public class RoleController {
 
     @GetMapping("/roles")
     public String roles(Model model, HttpServletRequest request) {
-        DBManager.getConnection();
         ArrayList<Roles> tmproles = roleRepo.getAllRoles();
         model.addAttribute("userroles", tmproles);
         roleChecker.roleChecker(model, request);
@@ -37,7 +36,6 @@ public class RoleController {
 
     @GetMapping("/newRoles")
     public String doRole(Model model, HttpServletRequest request) {
-        DBManager.getConnection();
         ArrayList<User> allUsers = userRepo.showAllData();
         model.addAttribute("allusers", allUsers);
         roleChecker.roleChecker(model, request);
@@ -46,7 +44,6 @@ public class RoleController {
 
     @PostMapping("/assignRoles")
     public String assignRoles(@RequestParam("roleID") int roleID, @RequestParam("useremail") String userEmail) {
-        DBManager.getConnection();
         roleRepo.assignRole(roleID, userEmail);
         return "redirect:/roles";
     }

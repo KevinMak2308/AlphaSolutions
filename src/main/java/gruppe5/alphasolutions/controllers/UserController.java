@@ -25,7 +25,6 @@ public class UserController {
 
     @GetMapping("/user")
     public String user(Model model, HttpServletRequest request) {
-        DBManager.getConnection();
         HttpSession session = request.getSession();
         String userEmail = (String) session.getAttribute("useremail");
         User currentUser = userRepo.getData(userEmail);
@@ -49,7 +48,6 @@ public class UserController {
 
     @PostMapping("/makeUser")
     public String makeAccount(@RequestParam("userEmail") String userEmail, @RequestParam("userPassword") String userPassword, HttpServletRequest request) {
-        DBManager.getConnection();
         userRepo.sendData(userEmail, userPassword);
 
         HttpSession session = request.getSession();
@@ -60,7 +58,6 @@ public class UserController {
 
     @GetMapping("/allUsers")
     public String allUsers(Model model, HttpServletRequest request) {
-        DBManager.getConnection();
         ArrayList<User> allUsers = userRepo.showAllData();
         model.addAttribute("allusers", allUsers);
         roleChecker.roleChecker(model, request);

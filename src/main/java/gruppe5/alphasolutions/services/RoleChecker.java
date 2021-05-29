@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 public class RoleChecker {
     public void roleChecker(Model model, HttpServletRequest request){
         RoleRepository roleRepo = new RoleRepository();
-        DBManager.getConnection();
+       // DBManager.getConnection();
         HttpSession session = request.getSession();
         String userEmail = (String) session.getAttribute("useremail");
         int accessRoles = roleRepo.checkRole(userEmail);
