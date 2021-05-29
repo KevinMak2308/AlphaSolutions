@@ -13,25 +13,24 @@
       <li class="headmenu"><a th:href="@{/allProjects}">Projects</a>
         <ul class="dropdown">
       <li class="subnav"><a th:href="@{/newProject}">Create Project</a></li>
-      <li class="subnav"><a th:href="@{/selectProject}">Assign Tasks</a></li>
+      <li class="subnav"><a th:href="@{/selectProject}">Assign Task to Project</a></li>
       </ul>
       </li>
       <li class="headmenu"><a th:href="@{/allTasks}">Task</a>
         <ul class="dropdown">
       <li class="subnav"><a th:href="@{/newTask}">Create Task</a></li>
-      <li class="subnav"><a th:href="@{/selectTask}">Assign User</a></li>
+      <li class="subnav"><a th:href="@{/selectTask}">Assign User to Task</a></li>
       </ul>
         </li>
       <li class="headmenu"><a th:href="@{/allUsers}">View All Users</a>
          <ul class="dropdown">
-      <li class="subnav"><a th:href="@{/newRoles}">Assign Roles</a></li>
+      <li class="subnav"><a th:href="@{/newRoles}">Assign Role to User</a></li>
       </ul>
         </li>
       <li class="menulogout"><a th:href="@{/logout}">Logout</a></li>
     </ul>
   </nav>
     </span>
-
 
 
     <span th:case="'2'"><nav class="nav" >
@@ -42,13 +41,13 @@
       <li class="headmenu"><a th:href="@{/project}">Projects</a>
         <ul class="dropdown">
       <li class="subnav"><a th:href="@{/newProject}">Create Project</a></li>
-      <li class="subnav"><a th:href="@{/selectProject}">Assign Tasks</a></li>
+      <li class="subnav"><a th:href="@{/selectProject}">Assign Task to Project</a></li>
       </ul>
       </li>
       <li class="headmenu"><a th:href="@{/task}">Task</a>
         <ul class="dropdown">
       <li class="subnav"><a th:href="@{/newTask}">Create Task</a></li>
-      <li class="subnav"><a th:href="@{/selectTask}">Assign User</a></li>
+      <li class="subnav"><a th:href="@{/selectTask}">Assign User to Task</a></li>
       </ul>
         </li>
       <li class="menulogout"><a th:href="@{/logout}">Logout</a></li>
@@ -58,10 +57,10 @@
 
     <span th:case="'1'" ><nav class="nav">
     <ul>
-      <li class="leftnav"><a th:href="@{user}">Profile</a></li>
-      <li><a th:href="@{project}">View Project</a></li>
-      <li><a th:href="@{task}">View Task</a></li>
-       <li><a th:href="@{logout}">Logout</a></li>
+      <li class="headmenu"><a th:href="@{user}">Profile</a></li>
+      <li class="headmenu"><a th:href="@{project}">View Project</a></li>
+      <li class="headmenu"><a th:href="@{task}">View Task</a></li>
+      <li class="menulogout"><a th:href="@{logout}">Logout</a></li>
     </ul>
   </nav></span>
   </td>

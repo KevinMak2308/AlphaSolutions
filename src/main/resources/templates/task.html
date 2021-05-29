@@ -8,21 +8,21 @@
 <header th:replace="fragments/header.html"></header>
 <h1 class="h1outofforms">Here you can see your Tasks</h1>
 <div class="wrapper_contents">
-<div class="wrapper">
-    <tr th:each="task : ${usertasks}">
-        <div class="displayproject">
-            <p class="topviewproject"><span class="title" th:text="${task.title}"></span>
-            <p class="time">Expected time in hours:<span th:text="${task.estimatedtime}"></span></p>
-            <div class="date">
-                <span>Start date:</span><span class="startdate" th:text="${task.startDate}"></span><br><br>
-                <span>Deadline:</span><span class="deadline" th:text="${task.deadline}"></span>
+    <div class="wrapper">
+        <tr th:each="task : ${usertasks}">
+            <div class="displayproject">
+                <p class="topviewproject"><span class="title" th:text="${task.title}"></span>
+                <p class="time">Expected time in hours: <span th:text="${task.estimatedtime}"></span></p>
+                <div class="date">
+                    <span>Start date: </span><span class="startdate" th:text="${task.startDate}"></span><br><br>
+                    <span>Deadline: </span><span class="deadline" th:text="${task.deadline}"></span>
+                </div>
+                <p class="description"><span th:text="${task.description}"></span></p>
+                <div><button class="taskdetailbutton"><a th:href="@{'task/' + ${task.taskID}}">View Details</a></button></div>
             </div>
-            <p class="description"><span th:text="${task.description}"></span></p>
-
-        </div>
-    </tr>
-</div>
-<div class="push"></div>
+        </tr>
+    </div>
+    <div class="push"></div>
 </div>
 <div class="footer">
     <footer th:replace="fragments/footer.html"></footer>

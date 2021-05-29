@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://thymeleaf.org/%22%3E">
 <head>
   <meta charset="UTF-8">
-<title>Account</title>
+  <title>Account</title>
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
@@ -10,7 +10,7 @@
 <div class="wrapper_contents">
   <div class="deleteuser">
     <form class="deleteform" action="deleteUser" method="post">
-      <h2> Select user to delete</h2>
+      <h2>Select user to delete</h2>
       <div class="deletebutton">
       </div>
       <select class="select" name="userEmail">
@@ -31,9 +31,10 @@
       </div>
   </div>
       <div class="push"></div>
-  </div>
+  <div class="push"></div>
+</div>
 <div class="footer">
-<footer th:replace="fragments/footer.html"></footer>
+  <footer th:replace="fragments/footer.html"></footer>
 </div>
 </body>
 </html>

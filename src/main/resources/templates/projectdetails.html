@@ -9,32 +9,31 @@
 <h1 class="h1outofforms">Detailed view of Project</h1>
 <div class="wrapper_contents">
     <h2 class="projecth2">Project</h2>
-        <div class="detailedproject">
-            <p class="topviewproject">
-                <span class="detailtitle" th:text="${project.title}"></span>
-                <span class="detailemail" th:text="${project.userEmail}"></span></p>
-            <div class="detaildate">
-                <span>Start date:</span><span class="detailstartdate"  th:text="${project.startDate}"></span> <br><br>
-                <span>Deadline:</span><span class="detaildeadline" th:text="${project.deadline}"></span>
-            </div>
-
-            <p class="detaildescription"><span th:text="${project.description}"></span></p>
-            <p class="detailestimatedtime">Estimated time of project in hours: <span th:text="${tasktime}"></span></p>
+    <div class="detailedproject">
+        <p class="topviewproject">
+            <span class="projectdetailtitle" th:text="${project.title}"></span>
+            <span class="projectdetailemail" th:text="${project.userEmail}"></span></p>
+        <div class="projectdetaildate">
+            <span class="projectdetaildatetext">Start date: </span><span class="projectdetailstartdate" th:text="${project.startDate}"></span> <br><br>
+            <span class="projectdetaildatetext">Deadline: </span><span class="projectdetaildeadline" th:text="${project.deadline}"></span>
         </div>
 
-    <tr th:each="task : ${task}">
-
-        <div>
-            <span class="title" th:text="${task.title}"></span>
-            <span class="estimatedtime" th:text="${task.estimatedtime}"></span>
-            <div class="date">
-                <span>Start date:</span><span class="startdate"  th:text="${task.startDate}"></span>
-                <span>Deadline:</span><span class="deadline" th:text="${task.deadline}"></span>
+        <p class="projectdetaildescription"><span th:text="${project.description}"></span></p>
+        <p class="projectdetailestimatedtime">Estimated hours: <span th:text="${tasktime}"></span></p>
+    </div>
+    <div class="wrapper">
+        <tr th:each="task : ${task}">
+            <div class="displaytask">
+                <span class="tasktitle" th:text="${task.title}"></span>
+                <p class="tasktime">Expected hours: <span class="taskestimatedtime" th:text="${task.estimatedtime}"></span></p>
+                <div class="taskdate">
+                    <span>Start date: </span><span class="taskstartdate"  th:text="${task.startDate}"></span><br>
+                    <span>Deadline: </span><span class="taskdeadline" th:text="${task.deadline}"></span>
+                </div>
+                <div><button class="taskprojectdetailbutton"><a th:href="@{'task/' + ${task.taskID}}">View Details</a></button></div>
             </div>
-            <p class="description"><span th:text="${task.description}"></span></p>
-            <div> <a th:href="@{'task/' + ${task.taskID}}">View Details of the Task</a></div>
-        </div>
-    </tr>
+        </tr>
+    </div>
     <div class="push"></div>
 </div>
 <div class="footer">

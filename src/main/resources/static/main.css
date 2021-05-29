@@ -11,6 +11,7 @@ html, body {
     height: 100vh;
 
 }
+
 .h1outofforms{
     display: flex;
     flex-direction: column;
@@ -18,7 +19,7 @@ html, body {
     padding: 14px 16px;
     text-decoration: none;
     font-size: 3.0em;
-    font-family: Roboto;
+    font-family: 'EB Garamond', serif;
     color: #FFFFFF;
 }
 
@@ -29,8 +30,8 @@ html, body {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 2.5em;
-    font-family: Roboto;
+    font-size: 1.9em;
+    font-family: 'EB Garamond', serif;
     color: #FFFFFF;
 }
 
@@ -68,10 +69,11 @@ body{
 }
 
 .label {
-    font-family: sans-serif;
-    letter-spacing: 3px;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    font-size: .8em;
+    font-size: 0.8em;
     color: #FFF;
 }
 
@@ -82,6 +84,7 @@ input[type=text]{
     width: 350px;
     margin: 10px 0;
     background: transparent;
+    font-size: 1em;
     color: #FFF;
 }
 
@@ -92,6 +95,7 @@ input[type=date]{
     width: 350px;
     margin: 10px 0;
     background: transparent;
+    font-size: 1em;
     color: #FFF;
 }
 
@@ -102,6 +106,7 @@ input[type=number]{
     width: 350px;
     margin: 10px 0;
     background: transparent;
+    font-size: 1em;
     color: #FFF;
 }
 
@@ -112,6 +117,7 @@ input[type=password]{
     width: 350px;
     margin: 10px 0;
     background: transparent;
+    font-size: 1em;
     color: #FFF;
 }
 
@@ -122,23 +128,20 @@ input[type=email]{
     width: 350px;
     margin: 10px 0;
     background: transparent;
+    font-size: 1em;
     color: #FFF;
 }
 
 input[type=submit]{
     background: transparent;
     color: #FFFFFF;
-    font-family: sans-serif;
+    font-family: 'EB Garamond', serif;
     text-transform: uppercase;
     letter-spacing: 3px;
     margin: 20px 0;
     padding: 10px 30px;
     border: 2px solid #FFFFFF;
     text-align: center;
-    align-content: center;
-    align-items: center;
-    justify-items-content: center;
-    align-content: center;
 }
 
 .submit {
@@ -146,30 +149,31 @@ input[type=submit]{
 }
 
 .signupparagraph{
-    font-family: sans-serif;
+    font-family: 'EB Garamond', serif;
     letter-spacing: 3px;
     text-transform: uppercase;
     font-size: .8em;
     color: #FFF;
     text-align: center;
 }
+
 .signuplink{
     color: cyan;
 }
 
 .signupspan{
-    font-family: Arial;
+    font-family: 'EB Garamond', serif;
 }
 .loginfail {
     color: #f2f2f2;
     margin-bottom: 30px;
-    font-family: Roboto;
+    font-family: 'EB Garamond', serif;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .h1frontpage{
-    font-family: 'EB Garamond';
+    font-family: 'EB Garamond', serif;
     font-size: 3.0em;
     display: flex;
     flex-direction: column;
@@ -234,18 +238,6 @@ input[type=submit]{
     height: 200px;
 }
 
-.deleteform {
-    position: absolute;
-    margin: auto;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    width: max-content;
-    text-align: center;
-    background: rgba(0,0,0,.5);
-    padding: 25px;
-}
 .profilepic{
     margin-left: auto;
     margin-right: auto;
@@ -278,11 +270,43 @@ input[type=submit]{
     overflow: hidden;
 }
 
+/*displayallusers*/
+.displayallusers {
+    margin: 12px;
+    margin-top: 48px;
+}
+
+
+
+/*delete users*/
+.deleteuser {
+    position: relative;
+    color: #ffffff;
+    width: 100%;
+    height: 200px;
+}
+
+.deleteform {
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: max-content;
+    text-align: center;
+    background: rgba(0,0,0,.5);
+    padding: 25px;
+}
+
+.useremail {
+}
+
 .wrapper{
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
-    margin-left: 150px;
+    width: 98vw;
 }
 
 .wrapper_contents {
@@ -315,6 +339,7 @@ input[type=submit]{
 
 .startdate {
     font-size: 1.0em;
+    text-align: right;
 }
 
 .deadline{
@@ -322,22 +347,22 @@ input[type=submit]{
 }
 
 .topviewproject{
-    margin-right: 40px;
+
 }
 
 .date {
     position: absolute;
     bottom: 40%;
-    left: 75%;
+    left: 74%;
 }
 
 .description{
     font-size: 1.0em;
     margin-top: 24px;
     margin-left: 24px;
-    border-color: #ffffff;
-    width: 480px;
+    width: 28vw;
     height: 8px;
+    word-break: break-word;
 }
 
 .time {
@@ -354,7 +379,7 @@ input[type=submit]{
 }
 .detailbutton{
     position: absolute;
-    left: 75%;
+    left: 74%;
     bottom: 5%;
     background: transparent;
     color: #FFFFFF;
@@ -375,7 +400,7 @@ input[type=submit]{
     justify-content: center;
     text-align: center;
     font-size: 2.0em;
-    font-family: Roboto;
+    font-family: 'EB Garamond', serif;
     color: #FFFFFF;
     padding: 14px 16px;
 }
@@ -384,21 +409,107 @@ input[type=submit]{
     position: relative;
     color: #ffffff;
     border-style: double;
-    width: 60%;
-    height: 350px;
+    width: 80vw;
+    min-height: 20vw;
     margin-right: auto;
     margin-left: auto;
     margin-bottom: 50px;
-    overflow: hidden;
 }
-.detailtitle{
-    font-size: 4.0em;
+
+.projectdetailtitle{
+    font-size: 2.5em;
     margin-top: 24px;
     margin-left: 24px;
 }
 
-.detailemail{
-    font-size: 1.3em;
+.projectdetailemail{
+    font-size: 1.2em;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    color: #dadde1;
+    margin-top: 24px;
+    margin-left: 24px;
+    top:3px;
+}
+
+.projectdetaildatetext {
+    font-size: 1.2em;
+}
+
+.projectdetaildate {
+    position: absolute;
+    bottom: 40%;
+    left: 80vw;
+    font-size: 1.2em;
+}
+
+.projectdetailstartdate {
+    font-size: 1.2em;
+}
+
+.projectdetaildeadline {
+    font-size: 1.2em;
+}
+
+.topviewproject{
+}
+
+.projectdetaildate {
+    font-size: 1.2em;
+    position: absolute;
+    bottom: 30%;
+    left: 80%;
+}
+
+.projectdetaildescription{
+    font-size: 1.2em;
+    margin-top: 24px;
+    margin-left: 24px;
+    border-color: #ffffff;
+    width: 60vw;
+    height: fit-content;
+    overflow: auto;
+}
+
+.projectdetailestimatedtime {
+    font-size: 1.2em;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+    color: #FFFFFF;
+    margin-top: 24px;
+    margin-right: 24px;
+    top:8px;
+    left: 80%
+}
+
+/*Task*/
+.taskwrapper {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    width: 98vw;
+}
+
+.displaytask {
+    position: relative;
+    color: #ffffff;
+    border-style: double;
+    width: 30%;
+    height: 120px;
+    margin-left: 32px;
+    margin-bottom: 32px;
+    overflow: hidden;
+}
+
+.tasktitle{
+    font-size: 2.0em;
+    margin-top: 24px;
+    margin-left: 24px;
+}
+
+.taskemail{
     position: absolute;
     text-align: center;
     margin: 0 auto;
@@ -409,42 +520,62 @@ input[type=submit]{
     top:3px;
 }
 
-.detailtartdate {
+.taskstartdate {
+    font-size: 1.0em;
+    text-align: right;
+}
+
+.taskdeadline{
     font-size: 1.0em;
 }
 
-.detaildeadline{
-    font-size: 1.0em;
-}
-
-.topviewproject{
-    margin-right: 40px;
-}
-
-.detaildate {
-    font-size: 2.0em;
+.taskdate {
     position: absolute;
-    bottom: 30%;
-    left: 75%;
+    bottom: 40%;
+    left: 60%;
 }
 
-.detaildescription{
-    font-size: 1.2em;
+.taskdescription{
+    font-size: 1.0em;
     margin-top: 24px;
     margin-left: 24px;
-    border-color: #ffffff;
-    width: 900px;
-    height: 15px;
+    width: 20vw;
+    height: 8px;
+    word-break: break-word;
 }
 
-.detailestimatedtime {
-    font-size: 1.6em;
+.tasktime {
     position: absolute;
-    text-align: center;
-    margin: 0 auto;
     color: #FFFFFF;
-    margin-top: 24px;
-    margin-right: 24px;
-    top:8px;
-    right: 0;
+    font-size: 1.0em;
+    left: 60%;
+    top: 10%;
+}
+
+.taskprojectdetailbutton{
+    position: absolute;
+    left: 60%;
+    bottom: 5%;
+    background: transparent;
+    color: #FFFFFF;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.0em;
+    border: 2px solid #FFFFFF;
+    text-align: center;
+}
+
+.taskdetailbutton{
+    position: absolute;
+    left: 74%;
+    bottom: 5%;
+    background: transparent;
+    color: #FFFFFF;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.0em;
+    border: 2px solid #FFFFFF;
+    text-align: center;
 }

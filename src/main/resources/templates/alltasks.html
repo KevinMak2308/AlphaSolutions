@@ -8,14 +8,21 @@
 <header th:replace="fragments/header.html"></header>
 <h1 class="h1outofforms">Overview of all active tasks</h1>
 <div class="wrapper_contents">
-    <tr th:each="task : ${alltasks}">
-        <div class="displaytext">
-            <p class="text-success">Title: <span th:text="${task.title}"> </span></p>
-            <p class="text-success">Description: <span th:text="${task.description}"> </span></p>
-            <p class="text-success">Start Date: <span th:text="${task.startDate}"> </span></p>
-            <p class="text-success">Deadline: <span th:text="${task.deadline}"> </span></p>
-        </div>
-        <div class="push"></div>
+    <div class="wrapper">
+        <tr th:each="task : ${alltasks}">
+            <div class="displayproject">
+                <p class="topviewproject"><span class="title" th:text="${task.title}"></span>
+                <p class="time">Expected hours: <span th:text="${task.estimatedtime}"></span></p></p>
+                <div class="date">
+                    <span>Start date: </span><span class="startdate" th:text="${task.startDate}"></span><br><br>
+                    <span>Deadline: </span><span class="deadline" th:text="${task.deadline}"></span>
+                </div>
+                <p class="description"><span th:text="${task.description}"></span></p>
+                <div><button class="taskdetailbutton"><a th:href="@{'task/' + ${task.taskID}}">View Details</a></button></div>
+            </div>
+        </tr>
+    </div>
+    <div class="push"></div>
 </div>
 <div class="footer">
     <footer th:replace="fragments/footer.html"></footer>
