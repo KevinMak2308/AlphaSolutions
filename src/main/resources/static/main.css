@@ -11,15 +11,25 @@ html, body {
     height: 100vh;
 
 }
+.h1outofforms{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 3.0em;
+    font-family: Roboto;
+    color: #FFFFFF;
+}
 
-h1{
+.h1informs{
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 1.5em;
+    font-size: 2.5em;
     font-family: Roboto;
     color: #FFFFFF;
 }
@@ -161,6 +171,13 @@ input[type=submit]{
 .h1frontpage{
     font-family: 'EB Garamond';
     font-size: 3.0em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: #FFFFFF;
 }
 
 .alertemoji{
@@ -248,14 +265,15 @@ input[type=submit]{
     width: 98vw;
 }
 
-/* view project */
+/* view projects */
 .displayproject {
     position: relative;
     color: #ffffff;
     border-style: double;
-    width: 40%;
+    width: 41%;
     height: 200px;
-    margin-right: 150px;
+    margin-right: 50px;
+    margin-left: 50px;
     margin-bottom: 50px;
     overflow: hidden;
 }
@@ -350,6 +368,17 @@ input[type=submit]{
 }
 
 /* Detailed project */
+
+.projecth2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 2.0em;
+    font-family: Roboto;
+    color: #FFFFFF;
+    padding: 14px 16px;
+}
 
 .detailedproject {
     position: relative;

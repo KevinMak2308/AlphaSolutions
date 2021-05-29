@@ -61,6 +61,8 @@ public class UserController {
         ArrayList<User> allUsers = userRepo.showAllData();
         model.addAttribute("allusers", allUsers);
         roleChecker.roleChecker(model, request);
+        ArrayList<Roles> tmproles = roleRepo.getAllRoles();
+        model.addAttribute("userroles", tmproles);
         return "allusers";
     }
 

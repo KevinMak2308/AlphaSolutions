@@ -8,17 +8,17 @@
 <header th:replace="fragments/header.html"></header>
 <div class="wrapper_contents">
 <form class="forms" action="assignRoles" method="post">
-<h1>Assign Role to the User</h1>
+<h1 class="h1outofforms">Assign Role to the User</h1>
     <div>
         <label class="label">Role:</label> <br>
         <select class="select" name="roleID"> <br>
-            <option class="option" value="1">Software Developer</option>
+            <option class="option" value="1">User</option>
             <option class="option" value="2">Manager</option>
         </select> <br><br>
     </div>
     <div>
         <label class="label">User:</label> <br>
-        <select class="select" name="useremail"> <br>
+        <select class="select" name="useremail"><br>
             <option class="option" th:each="user : ${allusers}" th:value="${user.userEmail}" th:text="${user.userEmail}"> test
             </option>
         </select> <br> <br>

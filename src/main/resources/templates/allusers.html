@@ -6,7 +6,7 @@
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<h1>Overview of all registered users</h1>
+<h1 class="h1outofforms">Overview of all registered users</h1>
 <div class="wrapper_contents">
   <div class="deleteuser">
     <form class="deleteform" action="deleteUser" method="post">
@@ -23,10 +23,11 @@
     </form>
   </div>
   <div class="wrapper">
-    <tr th:each="user : ${allusers}">
+    <tr th:each="roles : ${userroles}">
       <div class="displayallusers">
         <img class="profilepic" src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png">
-        <p class="useremail">Email: <span th:text="${user.userEmail}"> </span></p>
+        <p class="useremail">Email: <span th:text="${roles.userEmail}"></span></p>
+        <p class="text">Role: <span th:text="${roles.rolename}"> </span></p>
       </div>
   </div>
       <div class="push"></div>

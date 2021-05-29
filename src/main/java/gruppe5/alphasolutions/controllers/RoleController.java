@@ -23,16 +23,13 @@ public class RoleController {
     UserRepository userRepo = new UserRepository();
     RoleChecker roleChecker = new RoleChecker();
 
-
-
-    @GetMapping("/roles")
+   /* @GetMapping("/roles")
     public String roles(Model model, HttpServletRequest request) {
         ArrayList<Roles> tmproles = roleRepo.getAllRoles();
         model.addAttribute("userroles", tmproles);
         roleChecker.roleChecker(model, request);
         return "roles";
-    }
-
+    }*/
 
     @GetMapping("/newRoles")
     public String doRole(Model model, HttpServletRequest request) {
@@ -45,6 +42,6 @@ public class RoleController {
     @PostMapping("/assignRoles")
     public String assignRoles(@RequestParam("roleID") int roleID, @RequestParam("useremail") String userEmail) {
         roleRepo.assignRole(roleID, userEmail);
-        return "redirect:/roles";
+        return "redirect:/allUsers";
     }
 }
