@@ -31,7 +31,7 @@ public class Calculator {
                  sum += listOfProjectTasks.get(i);
             }
 
-        System.out.println(sum);
+
         return sum;
 
     }
