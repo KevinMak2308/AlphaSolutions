@@ -1,5 +1,6 @@
 package gruppe5.alphasolutions.controllers;
 
+import gruppe5.alphasolutions.models.Project;
 import gruppe5.alphasolutions.models.Task;
 import gruppe5.alphasolutions.models.User;
 import gruppe5.alphasolutions.repositories.DBManager;
@@ -39,6 +40,15 @@ public class TaskController {
         roleChecker.roleChecker(model, request);
 
         return "task";
+    }
+
+    @GetMapping("/allTasks")
+    public String allTasks(Model model, HttpServletRequest request) {
+        DBManager.getConnection();
+        ArrayList<Task> allTasks = taskRepo.showAllData();
+        model.addAttribute("alltasks", allTasks);
+        roleChecker.roleChecker(model, request);
+        return "alltasks";
     }
 
     @GetMapping("/newTask")
