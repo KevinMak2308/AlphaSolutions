@@ -51,6 +51,7 @@ public class UserController {
     public String makeAccount(@RequestParam("userEmail") String userEmail, @RequestParam("userPassword") String userPassword, HttpServletRequest request) {
         DBManager.getConnection();
         userRepo.sendData(userEmail, userPassword);
+
         HttpSession session = request.getSession();
         session.setAttribute("useremail", userEmail);
         roleRepo.assignRole(1,userEmail);
@@ -69,14 +70,6 @@ public class UserController {
     @PostMapping("/deleteUser")
     public String deleteUser(@RequestParam("userEmail") String userEmail){
         userRepo.deleteData(userEmail);
-        return "redirect:delete";
-    }
-    @GetMapping("/delete")
-    public String deletePage(Model model, HttpServletRequest request){
-        DBManager.getConnection();
-        ArrayList<User> allUsers = userRepo.showAllData();
-        model.addAttribute("allusers", allUsers);
-        roleChecker.roleChecker(model, request);
-        return "delete";
+        return "redirect:allUsers";
     }
 }

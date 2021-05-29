@@ -13,7 +13,7 @@
       <h2> Select user to delete</h2>
       <div class="deletebutton">
       </div>
-      <select class="select" name="Delete User">
+      <select class="select" name="userEmail">
         <option class="option" th:each="user : ${allusers}" th:value="${user.userEmail}" th:text="${user.userEmail}">
         </option>
       </select>

@@ -45,8 +45,6 @@ public class ProjectController {
         return "projectdetails";
 }
 
-
-
     @GetMapping("/project")
     public String project(Model model, HttpServletRequest request) {
         DBManager.getConnection();
