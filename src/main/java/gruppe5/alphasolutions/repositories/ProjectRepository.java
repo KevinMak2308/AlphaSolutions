@@ -11,10 +11,11 @@ import java.util.ArrayList;
 
 public class ProjectRepository {
 
+    Connection connection = DBManager.getConnection();
 
     public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline, String useremail) {
         try {
-            Connection proConn = DBManager.getConnection();
+            Connection proConn = connection;
             String projectQuery = "Insert into projects (title, descriptions, startdate, deadline, useremail) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "', '" + useremail + "')";
             PreparedStatement proStatement = proConn.prepareStatement(projectQuery);
 
@@ -30,8 +31,8 @@ public class ProjectRepository {
         ArrayList<Project> allProjects = new ArrayList<>();
 
         try {
-            Connection proConnection = DBManager.getConnection();
-            PreparedStatement proStatement = proConnection.prepareStatement("Select * From projects");
+            Connection proConn = connection;
+            PreparedStatement proStatement = proConn.prepareStatement("Select * From projects");
             ResultSet proResult = proStatement.executeQuery();
 
             while (proResult.next()) {
@@ -52,7 +53,7 @@ public class ProjectRepository {
         ArrayList<Project> userProjects = new ArrayList<>();
 
         try {
-            Connection proConn = DBManager.getConnection();
+            Connection proConn = connection;
             String projectQuery = "Select * From projects Where useremail = ?";
             PreparedStatement projectStatement = proConn.prepareStatement(projectQuery);
             projectStatement.setString(1, useremail);
@@ -73,9 +74,9 @@ public class ProjectRepository {
     public void assignProject(int projectID, int taskID) {
 
         try {
-            Connection taskConn = DBManager.getConnection();
+            Connection proConn = connection;
             String taskQuery = "Insert Into project_tasks(projectID, taskID) Values(" + projectID + ", " + taskID + ")";
-            PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
+            PreparedStatement taskStatement = proConn.prepareStatement(taskQuery);
             taskStatement.executeUpdate();
             taskStatement.close();
 
@@ -90,9 +91,9 @@ public class ProjectRepository {
     public ArrayList<Integer> getProjectTaskTime (int projectID) {
         ArrayList<Integer> projectTasks = new ArrayList<>();
         try {
-            Connection projectConn = DBManager.getConnection();
+            Connection proConn = connection;
             String projectQuery = "Select tasks.estimatedtime From projects Join project_tasks On projects.projectID = project_tasks.projectID Join tasks On tasks.taskID = project_tasks.taskID Where projects.projectID = ?";
-            PreparedStatement projectStatement = projectConn.prepareStatement(projectQuery);
+            PreparedStatement projectStatement = proConn.prepareStatement(projectQuery);
             projectStatement.setInt(1, projectID);
             ResultSet proResult = projectStatement.executeQuery();
 
@@ -112,9 +113,9 @@ public class ProjectRepository {
     public Project projectDetails (int projectID) {
         Project tmp = null;
         try {
-            Connection projectConn = DBManager.getConnection();
+            Connection proConn = connection;
             String projectQuery = "Select * From projects Where projectID = ?";
-            PreparedStatement projectStatement = projectConn.prepareStatement(projectQuery);
+            PreparedStatement projectStatement = proConn.prepareStatement(projectQuery);
             projectStatement.setInt(1, projectID);
             ResultSet proResult = projectStatement.executeQuery();
 

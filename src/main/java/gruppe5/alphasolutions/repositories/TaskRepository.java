@@ -10,9 +10,11 @@ import java.util.ArrayList;
 
 public class TaskRepository {
 
+    Connection connection = DBManager.getConnection();
+
     public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline, int estimatedtime){
         try {
-            Connection taskConn = DBManager.getConnection();
+            Connection taskConn = connection;
             String taskQuery = "Insert into tasks (title, descriptions, startdate, deadline, estimatedtime) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "', " + estimatedtime +")";
             PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
             taskStatement.executeUpdate();
@@ -27,7 +29,7 @@ public class TaskRepository {
         ArrayList<Task> allTask = new ArrayList<>();
 
         try {
-            Connection taskConnection = DBManager.getConnection();
+            Connection taskConnection = connection;
             String taskQuery = "Select users.useremail, tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline, tasks.estimatedtime From users Join user_tasks On users.useremail = user_tasks.useremail Join tasks On tasks.taskID = user_tasks.taskID Where users.useremail = ?";
             PreparedStatement taskStatement = taskConnection.prepareStatement(taskQuery);
             taskStatement.setString(1, useremail);
@@ -49,7 +51,7 @@ public class TaskRepository {
         ArrayList<Task> allTasks = new ArrayList<>();
 
         try {
-            Connection userConnection = DBManager.getConnection();
+            Connection userConnection = connection;
             PreparedStatement taskStatement = userConnection.prepareStatement("Select * From tasks");
             ResultSet taskResult = taskStatement.executeQuery();
 
@@ -71,7 +73,7 @@ public class TaskRepository {
     public void assignTask(int taskID, String useremail) {
 
         try {
-            Connection taskConn = DBManager.getConnection();
+            Connection taskConn = connection;
             String taskQuery = "Insert Into user_tasks(taskID, useremail) Values(" + taskID + ", '" + useremail + "')";
             PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
             taskStatement.executeUpdate();
@@ -91,7 +93,7 @@ public class TaskRepository {
 
         ArrayList<Task> viewOverProjectTasks = new ArrayList<>();
         try {
-            Connection projectConn = DBManager.getConnection();
+            Connection projectConn = connection;
             String projectQuery = "Select projects.projectID, tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline, tasks.estimatedtime From projects Join project_tasks On projects.projectID = project_tasks.projectID Join tasks On tasks.taskID = project_tasks.taskID Where projects.projectID = ?";
 
             PreparedStatement projectStatement = projectConn.prepareStatement(projectQuery);
@@ -113,7 +115,7 @@ public class TaskRepository {
     public Task taskDetails(int taskID) {
         Task tmp = null;
         try {
-            Connection taskConn = DBManager.getConnection();
+            Connection taskConn = connection;
             String taskQuery = "Select * From tasks Where taskID = ?";
             PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
             taskStatement.setInt(1, taskID);
@@ -132,7 +134,7 @@ public class TaskRepository {
     public void deleteData(int taskID) {
         try {
 
-            Connection connection = DBManager.getConnection();
+            Connection taskConn = connection;
             PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM projects WHERE taskID = ?");
             preparedStatement1.setInt(1, taskID);
             preparedStatement1.executeUpdate();

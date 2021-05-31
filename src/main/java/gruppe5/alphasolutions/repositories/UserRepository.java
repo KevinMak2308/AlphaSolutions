@@ -9,11 +9,12 @@ import java.util.ArrayList;
 
 public class UserRepository {
 
+    Connection connection = DBManager.getConnection();
 
     public void sendData(String userEmail, String userPassword) {
 
         try {
-            Connection userConnection = DBManager.getConnection();
+            Connection userConnection = connection;
             PreparedStatement userStatement = userConnection.prepareStatement("Insert into users(useremail, userpassword)" + "Values ('" + userEmail + "', '" + userPassword + "')");
             userStatement.executeUpdate();
             userStatement.close();
@@ -28,7 +29,7 @@ public class UserRepository {
         ArrayList<User> allUsers = new ArrayList<>();
 
         try {
-            Connection userConnection = DBManager.getConnection();
+            Connection userConnection = connection;
             PreparedStatement userStatement = userConnection.prepareStatement("Select * From users");
             ResultSet userResult = userStatement.executeQuery();
 
@@ -49,7 +50,7 @@ public class UserRepository {
         User tmp = null;
 
         try {
-            Connection userConn = DBManager.getConnection();
+            Connection userConn = connection;
             PreparedStatement userStatement = userConn.prepareStatement("SELECT * FROM users Where useremail = ?");
             userStatement.setString(1, userEmail);
 
@@ -69,7 +70,7 @@ public class UserRepository {
 
         ArrayList<User> viewOverTaskUsers = new ArrayList<>();
         try {
-            Connection taskConn = DBManager.getConnection();
+            Connection taskConn = connection;
             String taskQuery = "Select users.useremail, tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline, tasks.estimatedtime From tasks Join user_tasks on tasks.taskID = user_tasks.taskID Join users on users.useremail = user_tasks.useremail Where tasks.taskID = ?";
             PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
             taskStatement.setInt(1, taskID);
@@ -92,7 +93,7 @@ public class UserRepository {
     public boolean validateData(String userEmail, String userPassword) {
 
         try {
-            Connection userConn = DBManager.getConnection();
+            Connection userConn = connection;
             PreparedStatement userStatement = userConn.prepareStatement
                     ("SELECT useremail, userpassword  FROM users WHERE useremail = ? and userpassword = ?");
             userStatement.setString(1, userEmail);
@@ -118,7 +119,7 @@ public class UserRepository {
 
         try {
 
-            Connection connection = DBManager.getConnection();
+            Connection userConn = connection;
             PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM users WHERE useremail = ?");
             preparedStatement1.setString(1, userEmail);
             preparedStatement1.executeUpdate();
