@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{/main.css}">
+    <link rel="stylesheet" th:href="@{/header.css}">
     <meta charset="UTF-8">
     <title>Tasks</title>
 </head>
@@ -18,7 +20,9 @@
                     <span>Deadline: </span><span class="deadline" th:text="${task.deadline}"></span>
                 </div>
                 <p class="description"><span th:text="${task.description}"></span></p>
-                <div><button class="taskdetailbutton"><a th:href="@{'task/' + ${task.taskID}}">View Details</a></button></div>
+                <div>
+                    <button class="taskdetailbutton"><a th:href="@{'task/' + ${task.taskID}}">View Details</a></button>
+                </div>
             </div>
         </tr>
     </div>

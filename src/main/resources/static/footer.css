@@ -1,9 +1,9 @@
-html, body{
+html, body {
     position: relative;
     height: 100%;
 }
 
-.footer{
+.footer {
     bottom: 0px;
     width: 100%;
 }
@@ -31,7 +31,7 @@ html, body{
     margin-left: 0px;
 }
 
-.ul-alpha-contact{
+.ul-alpha-contact {
     top: 0;
     bottom: 0;
     left: 33%;
@@ -40,7 +40,7 @@ html, body{
     width: 500px;
 }
 
-.item-flex{
+.item-flex {
     padding-left: 10px;
     padding-right: 10px;
     margin-top: auto;
@@ -48,16 +48,16 @@ html, body{
     width: max-content;
 }
 
-.ul-footer-gruppe5{
+.ul-footer-gruppe5 {
     top: 0;
     bottom: 0;
     list-style: none;
     display: flex;
-    justify-content:space-around;
+    justify-content: space-around;
     right: 2%;
 }
 
-.p-footer{
+.p-footer {
     color: white;
 }
 

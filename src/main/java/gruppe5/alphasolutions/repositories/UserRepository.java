@@ -1,21 +1,19 @@
 package gruppe5.alphasolutions.repositories;
 
-import gruppe5.alphasolutions.models.Roles;
-import gruppe5.alphasolutions.models.Task;
 import gruppe5.alphasolutions.models.User;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class UserRepository {
-
     Connection connection = DBManager.getConnection();
+
 
     public void sendData(String userEmail, String userPassword) {
 
         try {
-            Connection userConnection = connection;
-            PreparedStatement userStatement = userConnection.prepareStatement("Insert into users(useremail, userpassword)" + "Values ('" + userEmail + "', '" + userPassword + "')");
+            Connection userConn = connection;
+            PreparedStatement userStatement = userConn.prepareStatement("Insert into users(useremail, userpassword)" + "Values ('" + userEmail + "', '" + userPassword + "')");
             userStatement.executeUpdate();
             userStatement.close();
 
@@ -29,11 +27,11 @@ public class UserRepository {
         ArrayList<User> allUsers = new ArrayList<>();
 
         try {
-            Connection userConnection = connection;
-            PreparedStatement userStatement = userConnection.prepareStatement("Select * From users");
+            Connection userConn = connection;
+            PreparedStatement userStatement = userConn.prepareStatement("Select * From users");
             ResultSet userResult = userStatement.executeQuery();
 
-            while(userResult.next()) {
+            while (userResult.next()) {
                 User tmp = new User(userResult.getString(1), userResult.getString(2));
                 allUsers.add(tmp);
 
@@ -43,7 +41,8 @@ public class UserRepository {
 
         } catch (SQLException error) {
             System.out.println(error.getMessage());
-        } return allUsers;
+        }
+        return allUsers;
     }
 
     public User getData(String userEmail) {
@@ -70,16 +69,18 @@ public class UserRepository {
 
         ArrayList<User> viewOverTaskUsers = new ArrayList<>();
         try {
-            Connection taskConn = connection;
+            Connection userConn = connection;
             String taskQuery = "Select users.useremail, tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline, tasks.estimatedtime From tasks Join user_tasks on tasks.taskID = user_tasks.taskID Join users on users.useremail = user_tasks.useremail Where tasks.taskID = ?";
-            PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
+            PreparedStatement taskStatement = userConn.prepareStatement(taskQuery);
             taskStatement.setInt(1, taskID);
             ResultSet taskResult = taskStatement.executeQuery();
 
             while (taskResult.next()) {
-                User tmp = new User (taskResult.getString(1), taskResult.getString(2));
+                User tmp = new User(taskResult.getString(1), taskResult.getString(2));
                 viewOverTaskUsers.add(tmp);
             }
+
+            taskStatement.close();
 
         } catch (SQLException error) {
             System.out.println(error.getMessage());
@@ -87,7 +88,6 @@ public class UserRepository {
         return viewOverTaskUsers;
 
     }
-
 
 
     public boolean validateData(String userEmail, String userPassword) {
@@ -102,11 +102,13 @@ public class UserRepository {
             ResultSet userResult = userStatement.executeQuery();
             while (userResult.next()) {
 
-                if (userResult.equals(userEmail) && userResult.equals(userPassword) ) {
+                if (userResult.equals(userEmail) && userResult.equals(userPassword)) {
                 }
                 userStatement.close();
                 return true;
             }
+
+            userStatement.close();
 
         } catch (SQLException error) {
             System.out.println(error.getMessage());
@@ -120,7 +122,7 @@ public class UserRepository {
         try {
 
             Connection userConn = connection;
-            PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM users WHERE useremail = ?");
+            PreparedStatement preparedStatement1 = userConn.prepareStatement("DELETE FROM users WHERE useremail = ?");
             preparedStatement1.setString(1, userEmail);
             preparedStatement1.executeUpdate();
             preparedStatement1.close();

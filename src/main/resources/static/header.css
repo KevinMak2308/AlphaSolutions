@@ -9,6 +9,7 @@ a {
     border-bottom-color: #FFFFFF;
     height: 60px;
 }
+
 ul {
     background: transparent;
     list-style: none;
@@ -32,9 +33,10 @@ li a {
 }
 
 li:hover {
-    background: #c85f7b ;
+    background: #c85f7b;
     cursor: pointer;
 }
+
 .headmenu {
     width: 160px;
     text-align: center;
@@ -74,17 +76,18 @@ ul li ul li {
     clear: both;
     width: 100%;
 }
-.dropdown{
+
+.dropdown {
     width: 160px;
     font-size: 0.7em;
     z-index: 3;
 }
 
-.subnav{
+.subnav {
     background-color: #c85f7b;
 }
 
-.subnav:hover{
+.subnav:hover {
     background-color: #AC526A;
 
 }

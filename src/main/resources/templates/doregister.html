@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Register Account</title>
+    <meta charset="UTF-8">
+    <title>Register Account</title>
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
 <div class="wrapper_contents">
-  <h1 class="h1frontpage">Calculation Tool K-OSS</h1>
-  <form class="forms" action="/makeUser" method="post">
-    <h1 class="h1informs">Create User</h1>
-    <label class="label">E-mail:</label><br>
-    <input type="email" name="userEmail"  required minlength="3" maxlength="50"/><br>
-    <label class="label">Password: </label> </br>
-    <input type="Password" name="userPassword" required minlength="1" maxlength="20"/><br>
-    <div class="submit">
-      <input type="submit" value="Create user">
-    </div>
-  </form>
-  <div class="push"></div>
+    <h1 class="h1frontpage">Calculation Tool K-OSS</h1>
+    <form class="forms" action="makeUser" method="post">
+        <h1 class="h1informs">Create User</h1>
+        <label class="label">E-mail:</label><br>
+        <input type="email" name="userEmail" required minlength="3" maxlength="50"/><br>
+        <label class="label">Password: </label> </br>
+        <input type="Password" name="userPassword" required minlength="1" maxlength="20"/><br>
+        <div class="submit">
+            <input type="submit" value="Create user">
+        </div>
+    </form>
+    <div class="push"></div>
 </div>
 <div class="footer">
-  <footer th:replace="fragments/footer.html"></footer>
+    <footer th:replace="fragments/footer.html"></footer>
 </div>
 </body>
 </html>

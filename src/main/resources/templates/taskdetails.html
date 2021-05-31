@@ -2,11 +2,11 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-<title>Project Details</title>
+    <title>Project Details</title>
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
-<h1 class="h1outofforms" >Detailed view of Tasks </h1>
+<h1 class="h1outofforms">Detailed view of Tasks </h1>
 <div class="wrapper_contents">
     <h2 class="projecth2">Project</h2>
     <div class="wrapper">
@@ -14,8 +14,10 @@
             <p class="topviewproject">
                 <span class="projectdetailtitle" th:text="${task.title}"></span>
             <div class="projectdetaildate">
-                <span class="projectdetailstartdate">Start date: </span><span class="projectdetailstartdate"  th:text="${task.startDate}"></span><br><br>
-                <span class="projectdetaildatetext">Deadline: </span><span class="projectdetaildeadline" th:text="${task.deadline}"></span></p>
+                <span class="projectdetailstartdate">Start date: </span><span class="projectdetailstartdate"
+                                                                              th:text="${task.startDate}"></span><br><br>
+                <span class="projectdetaildatetext">Deadline: </span><span class="projectdetaildeadline"
+                                                                           th:text="${task.deadline}"></span></p>
             </div>
             </p>
             <p class="projectdetaildescription"><span th:text="${task.description}"></span></p>
@@ -23,11 +25,12 @@
         </div>
     </div>
     <div class="wrapper">
-    <tr th:each="user : ${user}">
-        <div class="displayallusers">
-            <img class="profilepic" src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png">
-            <p>Email: <span class="useremail" th:text="${user.userEmail}"></span></p>
-        </div>
+        <tr th:each="user : ${user}">
+            <div class="displayallusers">
+                <img class="profilepic"
+                     src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png">
+                <p>Email: <span class="useremail" th:text="${user.userEmail}"></span></p>
+            </div>
     </div>
     </tr>
     <div class="push"></div>

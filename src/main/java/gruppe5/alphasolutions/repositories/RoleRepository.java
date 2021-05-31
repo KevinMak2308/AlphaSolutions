@@ -1,7 +1,6 @@
 package gruppe5.alphasolutions.repositories;
 
 import gruppe5.alphasolutions.models.Roles;
-import gruppe5.alphasolutions.models.User;
 
 
 import java.sql.Connection;
@@ -12,6 +11,7 @@ import java.util.ArrayList;
 
 
 public class RoleRepository {
+    Connection connection = DBManager.getConnection();
 
     Connection connection = DBManager.getConnection();
 
@@ -42,6 +42,8 @@ public class RoleRepository {
             String query = "INSERT INTO user_roles(roleID, useremail) VALUES (" + roleID + ", '" + userEmail + "')";
             PreparedStatement roleStatement = roleConn.prepareStatement(query);
             roleStatement.executeUpdate();
+
+            roleStatement.close();
 
         } catch (SQLException error) {
             System.out.printf(error.getMessage());

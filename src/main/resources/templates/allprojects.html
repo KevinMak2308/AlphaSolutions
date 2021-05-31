@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-<title>All Projects</title>
+    <meta charset="UTF-8">
+    <title>All Projects</title>
 </head>
 <body>
 <header th:replace="fragments/header.html"></header>
 <h1 class="h1outofforms">Overview of all active projects</h1>
 <div class="wrapper_contents">
-  <div class="wrapper">
-    <tr th:each="project : ${allprojects}">
-      <div class="displayproject">
-        <p class="topviewproject"><span class="title" th:text="${project.title}"></span>
-          <span class="email" th:text="${project.userEmail}"></span></p>
-        <div class="date">
-          <span>Start date: </span><span class="startdate"  th:text="${project.startDate}"></span><br><br>
-          <span>Deadline: </span><span class="deadline" th:text="${project.deadline}"></span>
-        </div>
-        </p>
-        <p class="description"><span th:text="${project.description}"></span></p>
-        <div> <button class="detailbutton"><a th:href="@{'project/' + ${project.projectID}}">View Details</a></button></div>
-      </div>
-    </tr>
-  </div>
-  <div class="push"></div>
+    <div class="wrapper">
+        <tr th:each="project : ${allprojects}">
+            <div class="displayproject">
+                <p class="topviewproject"><span class="title" th:text="${project.title}"></span>
+                    <span class="email" th:text="${project.userEmail}"></span></p>
+                <div class="date">
+                    <span>Start date: </span><span class="startdate" th:text="${project.startDate}"></span><br><br>
+                    <span>Deadline: </span><span class="deadline" th:text="${project.deadline}"></span>
+                </div>
+                </p>
+                <p class="description"><span th:text="${project.description}"></span></p>
+                <div>
+                    <button class="detailbutton"><a th:href="@{'project/' + ${project.projectID}}">View Details</a>
+                    </button>
+                </div>
+            </div>
+        </tr>
+    </div>
+    <div class="push"></div>
 </div>
 <div class="footer">
-  <footer th:replace="fragments/footer.html"></footer>
+    <footer th:replace="fragments/footer.html"></footer>
 </div>
 </body>
 </html>

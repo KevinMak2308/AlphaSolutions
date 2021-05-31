@@ -1,4 +1,5 @@
 package gruppe5.alphasolutions.repositories;
+
 import gruppe5.alphasolutions.models.Task;
 
 import java.sql.Connection;
@@ -9,13 +10,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskRepository {
-
     Connection connection = DBManager.getConnection();
 
-    public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline, int estimatedtime){
+    public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline, int estimatedtime) {
         try {
             Connection taskConn = connection;
-            String taskQuery = "Insert into tasks (title, descriptions, startdate, deadline, estimatedtime) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "', " + estimatedtime +")";
+            String taskQuery = "Insert into tasks (title, descriptions, startdate, deadline, estimatedtime) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "', " + estimatedtime + ")";
             PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
             taskStatement.executeUpdate();
             taskStatement.close();
@@ -29,13 +29,13 @@ public class TaskRepository {
         ArrayList<Task> allTask = new ArrayList<>();
 
         try {
-            Connection taskConnection = connection;
+            Connection taskConn = connection;
             String taskQuery = "Select users.useremail, tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline, tasks.estimatedtime From users Join user_tasks On users.useremail = user_tasks.useremail Join tasks On tasks.taskID = user_tasks.taskID Where users.useremail = ?";
-            PreparedStatement taskStatement = taskConnection.prepareStatement(taskQuery);
+            PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
             taskStatement.setString(1, useremail);
             ResultSet taskResult = taskStatement.executeQuery();
 
-            while(taskResult.next()) {
+            while (taskResult.next()) {
                 Task tmp = new Task(taskResult.getInt(2), taskResult.getString(3), taskResult.getString(4), taskResult.getDate(5).toLocalDate(), taskResult.getDate(6).toLocalDate(), taskResult.getInt(7));
                 allTask.add(tmp);
 
@@ -44,18 +44,19 @@ public class TaskRepository {
             taskStatement.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } return allTask;
+        }
+        return allTask;
     }
 
     public ArrayList<Task> showAllData() {
         ArrayList<Task> allTasks = new ArrayList<>();
 
         try {
-            Connection userConnection = connection;
-            PreparedStatement taskStatement = userConnection.prepareStatement("Select * From tasks");
+            Connection taskConn = connection;
+            PreparedStatement taskStatement = taskConn.prepareStatement("Select * From tasks");
             ResultSet taskResult = taskStatement.executeQuery();
 
-            while(taskResult.next()) {
+            while (taskResult.next()) {
                 Task tmp = new Task(taskResult.getInt(1), taskResult.getString(2), taskResult.getString(3), taskResult.getDate(4).toLocalDate(), taskResult.getDate(5).toLocalDate(), taskResult.getInt(6));
                 allTasks.add(tmp);
 
@@ -65,9 +66,9 @@ public class TaskRepository {
 
         } catch (SQLException error) {
             System.out.println(error.getMessage());
-        } return allTasks;
+        }
+        return allTasks;
     }
-
 
 
     public void assignTask(int taskID, String useremail) {
@@ -80,8 +81,6 @@ public class TaskRepository {
             taskStatement.close();
 
 
-
-            taskStatement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -93,18 +92,19 @@ public class TaskRepository {
 
         ArrayList<Task> viewOverProjectTasks = new ArrayList<>();
         try {
-            Connection projectConn = connection;
+            Connection taskConn = connection;
             String projectQuery = "Select projects.projectID, tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline, tasks.estimatedtime From projects Join project_tasks On projects.projectID = project_tasks.projectID Join tasks On tasks.taskID = project_tasks.taskID Where projects.projectID = ?";
 
-            PreparedStatement projectStatement = projectConn.prepareStatement(projectQuery);
+            PreparedStatement projectStatement = taskConn.prepareStatement(projectQuery);
             projectStatement.setInt(1, projectID);
             ResultSet proResult = projectStatement.executeQuery();
 
             while (proResult.next()) {
-                Task tmp = new Task (proResult.getInt(2), proResult.getString(3), proResult.getString(4), proResult.getDate(5).toLocalDate(), proResult.getDate(6).toLocalDate(), proResult.getInt(7));
+                Task tmp = new Task(proResult.getInt(2), proResult.getString(3), proResult.getString(4), proResult.getDate(5).toLocalDate(), proResult.getDate(6).toLocalDate(), proResult.getInt(7));
                 viewOverProjectTasks.add(tmp);
             }
 
+            projectStatement.close();
         } catch (SQLException error) {
             System.out.println(error.getMessage());
         }
@@ -121,28 +121,15 @@ public class TaskRepository {
             taskStatement.setInt(1, taskID);
             ResultSet taskResult = taskStatement.executeQuery();
 
-            if(taskResult.next()) {
+            if (taskResult.next()) {
                 tmp = new Task(taskResult.getInt(1), taskResult.getString(2), taskResult.getString(3), taskResult.getDate(4).toLocalDate(), taskResult.getDate(5).toLocalDate(), taskResult.getInt(6));
             }
 
-            } catch (SQLException error) {
+            taskStatement.close();
+        } catch (SQLException error) {
             System.out.println(error.getMessage());
         }
         return tmp;
-    }
-
-    public void deleteData(int taskID) {
-        try {
-
-            Connection taskConn = connection;
-            PreparedStatement preparedStatement1 = connection.prepareStatement("DELETE FROM projects WHERE taskID = ?");
-            preparedStatement1.setInt(1, taskID);
-            preparedStatement1.executeUpdate();
-            preparedStatement1.close();
-
-        } catch (SQLException e) {
-            System.out.printf(e.getMessage());
-        }
     }
 
 }

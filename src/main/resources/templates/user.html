@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Users</title>
+    <meta charset="UTF-8">
+    <title>Users</title>
 </head>
 <header th:replace="fragments/header.html"></header>
 <body>
 <h1 class="h1outofforms">Profile Page</h1>
 <div class="wrapper_contents">
-  <div class="forms">
-    <div class="profileText">
-      <img class="profilepic" src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png">
-      <p class="userprofile">E-mail: <span th:text="${user.userEmail}"> </span> <br/>
-      <p class="userprofile">Password: <span th:text="${user.userPassword}"> </span><br/>
+    <div class="forms">
+        <div class="profileText">
+            <img class="profilepic" src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png">
+            <p class="userprofile">E-mail: <span th:text="${user.userEmail}"> </span> <br/>
+            <p class="userprofile">Password: <span th:text="${user.userPassword}"> </span><br/>
+        </div>
     </div>
-  </div>
-  <div class="push"></div>
+    <div class="push"></div>
 </div>
 <div class="footer">
-  <footer th:replace="fragments/footer.html"></footer>
+    <footer th:replace="fragments/footer.html"></footer>
 </div>
 </body>
 </html>

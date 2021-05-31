@@ -18,7 +18,9 @@
                     <span>Deadline: </span><span class="deadline" th:text="${task.deadline}"></span>
                 </div>
                 <p class="description"><span th:text="${task.description}"></span></p>
-                <div><button class="taskdetailbutton"><a th:href="@{'task/' + ${task.taskID}}">View Details</a></button></div>
+                <div>
+                    <button class="taskdetailbutton"><a th:href="@{'task/' + ${task.taskID}}">View Details</a></button>
+                </div>
             </div>
         </tr>
     </div>

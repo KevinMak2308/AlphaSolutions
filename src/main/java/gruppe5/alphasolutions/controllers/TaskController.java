@@ -3,7 +3,6 @@ package gruppe5.alphasolutions.controllers;
 
 import gruppe5.alphasolutions.models.Task;
 import gruppe5.alphasolutions.models.User;
-import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.TaskRepository;
 import gruppe5.alphasolutions.repositories.UserRepository;
 import gruppe5.alphasolutions.services.RoleChecker;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
@@ -26,8 +26,6 @@ public class TaskController {
     RoleChecker roleChecker = new RoleChecker();
 
 
-
-
     @GetMapping("/task")
     public String task(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -35,7 +33,6 @@ public class TaskController {
         ArrayList<Task> allUserTasks = taskRepo.getAllUserTasks(task);
         model.addAttribute("usertasks", allUserTasks);
         roleChecker.roleChecker(model, request);
-
         return "task";
     }
 
@@ -61,13 +58,15 @@ public class TaskController {
 
 
     @GetMapping("/selectTask")
-    public String selectTask(Model model,HttpServletRequest request) {
+    public String selectTask(Model model, HttpServletRequest request) {
         ArrayList<User> allUsers = userRepo.showAllData();
         model.addAttribute("allusers", allUsers);
 
         ArrayList<Task> allTasks = taskRepo.showAllData();
         model.addAttribute("alltasks", allTasks);
+
         roleChecker.roleChecker(model, request);
+
         return "assigntask";
     }
 
@@ -80,13 +79,13 @@ public class TaskController {
 
     @GetMapping("project/task/{taskID}")
     public String taskDetails(@PathVariable("taskID") int taskID, Model model, HttpServletRequest request) {
-       roleChecker.roleChecker(model, request);
+        roleChecker.roleChecker(model, request);
 
-       Task taskDetails = taskRepo.taskDetails(taskID);
-       model.addAttribute("task", taskDetails);
+        Task taskDetails = taskRepo.taskDetails(taskID);
+        model.addAttribute("task", taskDetails);
 
-       ArrayList<User> taskUsers = userRepo.getAllTaskUsers(taskID);
-       model.addAttribute("user", taskUsers);
+        ArrayList<User> taskUsers = userRepo.getAllTaskUsers(taskID);
+        model.addAttribute("user", taskUsers);
 
         return "taskdetails";
     }

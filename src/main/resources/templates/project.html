@@ -5,8 +5,8 @@
     <title>Projects</title>
 </head>
 <body>
-    <header th:replace="fragments/header.html"></header>
-    <h1 class="h1outofforms">Overview of Projects</h1>
+<header th:replace="fragments/header.html"></header>
+<h1 class="h1outofforms">Overview of Projects</h1>
 <div class="wrapper_contents">
     <div class="wrapper">
         <tr th:each="project : ${userprojects}">
@@ -18,7 +18,10 @@
                     <span>Deadline: </span><span class="deadline" th:text="${project.deadline}"></span>
                 </div>
                 <p class="description"><span th:text="${project.description}"></span></p>
-                <div><button class="detailbutton"><a th:href="@{'project/' + ${project.projectID}}">View Details</a></button></div>
+                <div>
+                    <button class="detailbutton"><a th:href="@{'project/' + ${project.projectID}}">View Details</a>
+                    </button>
+                </div>
             </div>
         </tr>
     </div>

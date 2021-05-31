@@ -2,7 +2,6 @@ package gruppe5.alphasolutions.controllers;
 
 import gruppe5.alphasolutions.models.Roles;
 import gruppe5.alphasolutions.models.User;
-import gruppe5.alphasolutions.repositories.DBManager;
 import gruppe5.alphasolutions.repositories.RoleRepository;
 import gruppe5.alphasolutions.repositories.UserRepository;
 import gruppe5.alphasolutions.services.RoleChecker;
@@ -41,7 +40,6 @@ public class UserController {
 
     @GetMapping("/register")
     public String registerAccount() {
-        DBManager.getConnection();
         return "doregister";
     }
 
@@ -52,7 +50,7 @@ public class UserController {
 
         HttpSession session = request.getSession();
         session.setAttribute("useremail", userEmail);
-        roleRepo.assignRole(1,userEmail);
+        roleRepo.assignRole(1, userEmail);
         return "redirect:/user?useremail=" + userEmail;
     }
 
@@ -67,8 +65,8 @@ public class UserController {
     }
 
     @PostMapping("/deleteUser")
-    public String deleteUser(@RequestParam("userEmail") String userEmail){
+    public String deleteUser(@RequestParam("userEmail") String userEmail) {
         userRepo.deleteData(userEmail);
-        return "redirect:allUsers";
+        return "redirect:/allUsers";
     }
 }

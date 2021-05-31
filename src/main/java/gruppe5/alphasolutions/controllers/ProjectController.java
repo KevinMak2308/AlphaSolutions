@@ -27,18 +27,20 @@ public class ProjectController {
     Calculator calculater = new Calculator();
 
 
-
     @GetMapping("/project/{projectID}")
     public String projectDetails(@PathVariable("projectID") int projectID, Model model, HttpServletRequest request) {
         roleChecker.roleChecker(model, request);
+
         Project projectdetails = proRepo.projectDetails(projectID);
         model.addAttribute("project", projectdetails);
+
         ArrayList<Task> taskdetails = taskRepo.getAllProjectTasks(projectID);
         model.addAttribute("task", taskdetails);
+
         int taskTime = calculater.estimatedProjectTime(projectID);
         model.addAttribute("tasktime", taskTime);
         return "projectdetails";
-}
+    }
 
     @GetMapping("/project")
     public String project(Model model, HttpServletRequest request) {
@@ -76,7 +78,7 @@ public class ProjectController {
 
 
     @GetMapping("/selectProject")
-    public String selectTask(Model model,HttpServletRequest request) {
+    public String selectTask(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         String userProject = (String) session.getAttribute("useremail");
 

@@ -2,16 +2,17 @@ package gruppe5.alphasolutions.repositories;
 
 
 import gruppe5.alphasolutions.models.Project;
-import gruppe5.alphasolutions.models.Task;
 
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+
 public class ProjectRepository {
 
     Connection connection = DBManager.getConnection();
+
 
     public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline, String useremail) {
         try {
@@ -65,6 +66,7 @@ public class ProjectRepository {
                 userProjects.add(tmp);
             }
 
+            projectStatement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -81,14 +83,13 @@ public class ProjectRepository {
             taskStatement.close();
 
 
-            taskStatement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
 
     }
 
-    public ArrayList<Integer> getProjectTaskTime (int projectID) {
+    public ArrayList<Integer> getProjectTaskTime(int projectID) {
         ArrayList<Integer> projectTasks = new ArrayList<>();
         try {
             Connection proConn = connection;
@@ -97,20 +98,22 @@ public class ProjectRepository {
             projectStatement.setInt(1, projectID);
             ResultSet proResult = projectStatement.executeQuery();
 
+
             while (proResult.next()) {
                 int tmp = (proResult.getInt(1));
                 projectTasks.add(tmp);
             }
 
+            projectStatement.close();
         } catch (SQLException error) {
             System.out.println(error.getMessage());
         }
-                return projectTasks;
+        return projectTasks;
 
-        }
+    }
 
 
-    public Project projectDetails (int projectID) {
+    public Project projectDetails(int projectID) {
         Project tmp = null;
         try {
             Connection proConn = connection;
@@ -120,9 +123,10 @@ public class ProjectRepository {
             ResultSet proResult = projectStatement.executeQuery();
 
             if (proResult.next()) {
-                tmp = new Project (proResult.getInt(2), proResult.getString(3), proResult.getString(4), proResult.getDate(5).toLocalDate(), proResult.getDate(6).toLocalDate(), proResult.getString(1));
+                tmp = new Project(proResult.getInt(2), proResult.getString(3), proResult.getString(4), proResult.getDate(5).toLocalDate(), proResult.getDate(6).toLocalDate(), proResult.getString(1));
             }
 
+            projectStatement.close();
         } catch (SQLException error) {
             System.out.println(error.getMessage());
         }
@@ -131,4 +135,4 @@ public class ProjectRepository {
     }
 
 
-    }
+}
