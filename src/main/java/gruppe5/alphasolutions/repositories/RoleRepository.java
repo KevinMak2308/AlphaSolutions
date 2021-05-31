@@ -13,8 +13,6 @@ import java.util.ArrayList;
 public class RoleRepository {
     Connection connection = DBManager.getConnection();
 
-    Connection connection = DBManager.getConnection();
-
     public ArrayList<Roles> getAllRoles() {
         ArrayList<Roles> getRoles = new ArrayList<>();
         try {
