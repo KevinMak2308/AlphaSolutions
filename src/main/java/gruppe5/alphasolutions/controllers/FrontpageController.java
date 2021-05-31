@@ -9,7 +9,6 @@ public class FrontpageController {
 
     @GetMapping("/")
     public String frontpage() {
-        System.out.println("In here");
         return "frontpage";
     }
 }
