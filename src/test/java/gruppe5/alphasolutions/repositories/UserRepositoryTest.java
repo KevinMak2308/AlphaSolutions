@@ -25,14 +25,12 @@ class UserRepositoryTest {
     @Test
     @DisplayName("Check if showAllData method works")
     void showAllData() {
-        User user1 = new User("doggyboi@gmail.com", "1234");
-        User user2 = new User("gg@gmail.com", "246");
-        User user3 = new User("simon@mail.dk", "1234");
+        User user1 = new User("admin@gmail.com", "246");
+        User user2 = new User("simon@mail.dk", "1234");
 
         ArrayList<User> allUsers1 = new ArrayList<>();
         allUsers1.add(user1);
         allUsers1.add(user2);
-        allUsers1.add(user3);
 
         ArrayList allUsers2 = userRepository.showAllData();
 
@@ -43,8 +41,8 @@ class UserRepositoryTest {
     @Test
     @DisplayName("Check if getData method works")
     void getData() {
-        String userEmail = "gg@gmail.com";
-        User user1 = new User("gg@gmail.com", "1234");
+        String userEmail = "admin@gmail.com";
+        User user1 = new User("admin@gmail.com", "246");
         User user2 = userRepository.getData(userEmail);
         assertEquals("Does email = new User", user1.getUserEmail(), user2.getUserEmail());
     }
@@ -61,8 +59,8 @@ class UserRepositoryTest {
     @Test
     @DisplayName("Check if deleteData method works")
     void deleteData() {
-        String userEmail = "gg@gmail.com";
-        String userPassword = "246";
+        String userEmail = "simon@mail.dk";
+        String userPassword = "1234";
         userRepository.deleteData(userEmail);
         boolean isItInTheDatabase = userRepository.validateData(userEmail, userPassword);
         assertEquals("Does the user exist in the database after deletion", false, isItInTheDatabase);
