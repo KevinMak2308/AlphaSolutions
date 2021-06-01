@@ -26,11 +26,13 @@ class UserRepositoryTest {
     @DisplayName("Check if showAllData method works")
     void showAllData() {
         User user1 = new User("admin@gmail.com", "246");
-        User user2 = new User("simon@mail.dk", "1234");
+        User user2 = new User("manager@mail.com", "147");
+        User user3 = new User("simon@mail.dk", "1234");
 
         ArrayList<User> allUsers1 = new ArrayList<>();
         allUsers1.add(user1);
         allUsers1.add(user2);
+        allUsers1.add(user3);
 
         ArrayList allUsers2 = userRepository.showAllData();
 
@@ -48,14 +50,14 @@ class UserRepositoryTest {
     }
 
     @Test
-    @DisplayName("Check if getAllTaskUsers mwethod works")
+    @DisplayName("Check if getAllTaskUsers method works")
     void getAllTaskUsers() {
-        User admin = new User("admin@gmail.com", "246");
+        User userTest = new User("manager@mail.com", "147");
         ArrayList<User> viewOverTaskUsersTest = new ArrayList<>();
-        viewOverTaskUsersTest.add(admin);
+        viewOverTaskUsersTest.add(userTest);
         int taskID = 1;
         ArrayList<User> viewOverTaskUsers = userRepository.getAllTaskUsers(taskID);
-        assertEquals("Does admin come up when searching users to a task he is assigned to", viewOverTaskUsersTest.toString().contains("admin@gmail.com"),viewOverTaskUsers.toString().contains("admin@gmail.com"));
+        assertEquals("Does the user come up when searching users to a task he is assigned to", viewOverTaskUsersTest.toString().contains("manager@mail.com"),viewOverTaskUsers.toString().contains("manager@mail.com"));
     }
 
     @Test
