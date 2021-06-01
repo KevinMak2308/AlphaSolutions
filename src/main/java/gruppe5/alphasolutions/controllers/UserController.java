@@ -51,7 +51,7 @@ public class UserController {
         HttpSession session = request.getSession();
         session.setAttribute("useremail", userEmail);
         roleRepo.assignRole(1, userEmail);
-        return "redirect:/user/user?useremail=" + userEmail;
+        return "redirect:/user?useremail=" + userEmail;
     }
 
     @GetMapping("/allUsers")
@@ -67,6 +67,6 @@ public class UserController {
     @PostMapping("/deleteUser")
     public String deleteUser(@RequestParam("userEmail") String userEmail) {
         userRepo.deleteData(userEmail);
-        return "redirect:/user/allUsers";
+        return "redirect:/allUsers";
     }
 }

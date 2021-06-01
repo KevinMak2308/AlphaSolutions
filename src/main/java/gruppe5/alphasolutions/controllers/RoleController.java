@@ -31,6 +31,6 @@ public class RoleController {
     @PostMapping("/assignRoles")
     public String assignRoles(@RequestParam("roleID") int roleID, @RequestParam("useremail") String userEmail) {
         roleRepo.assignRole(roleID, userEmail);
-        return "redirect:/user/allUsers";
+        return "redirect:/allUsers";
     }
 }

@@ -65,7 +65,7 @@ public class ProjectController {
         HttpSession session = request.getSession();
         String useremail = (String) session.getAttribute("useremail");
         proRepo.sendData(title, descriptions, startDate, deadline, useremail);
-        return "redirect:/project/project";
+        return "redirect:/project";
     }
 
     @GetMapping("/allProjects")
@@ -94,6 +94,6 @@ public class ProjectController {
     @PostMapping("/assignProject")
     public String assignTask(@RequestParam("projectID") int projectID, @RequestParam("taskID") int taskID) {
         proRepo.assignProject(projectID, taskID);
-        return "redirect:/project/project";
+        return "redirect:/project";
     }
 }
