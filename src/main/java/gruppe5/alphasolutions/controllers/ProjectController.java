@@ -39,7 +39,7 @@ public class ProjectController {
 
         int taskTime = calculater.estimatedProjectTime(projectID);
         model.addAttribute("tasktime", taskTime);
-        return "projectdetails";
+        return "project/projectdetails";
     }
 
     @GetMapping("/project")
@@ -51,13 +51,13 @@ public class ProjectController {
         model.addAttribute("userprojects", userProjects);
 
         roleChecker.roleChecker(model, request);
-        return "project";
+        return "project/project";
     }
 
     @GetMapping("/newProject")
     public String doProject(Model model, HttpServletRequest request) {
         roleChecker.roleChecker(model, request);
-        return "doproject";
+        return "project/doproject";
     }
 
     @PostMapping("/makeProject")
@@ -65,7 +65,7 @@ public class ProjectController {
         HttpSession session = request.getSession();
         String useremail = (String) session.getAttribute("useremail");
         proRepo.sendData(title, descriptions, startDate, deadline, useremail);
-        return "redirect:/project";
+        return "redirect:/project/project";
     }
 
     @GetMapping("/allProjects")
@@ -73,7 +73,7 @@ public class ProjectController {
         ArrayList<Project> allProjects = proRepo.showAllData();
         model.addAttribute("allprojects", allProjects);
         roleChecker.roleChecker(model, request);
-        return "allprojects";
+        return "project/allprojects";
     }
 
 
@@ -88,12 +88,12 @@ public class ProjectController {
         ArrayList<Task> allTasks = taskRepo.showAllData();
         model.addAttribute("alltasks", allTasks);
         roleChecker.roleChecker(model, request);
-        return "assignproject";
+        return "project/assignproject";
     }
 
     @PostMapping("/assignProject")
     public String assignTask(@RequestParam("projectID") int projectID, @RequestParam("taskID") int taskID) {
         proRepo.assignProject(projectID, taskID);
-        return "redirect:/project";
+        return "redirect:/project/project";
     }
 }

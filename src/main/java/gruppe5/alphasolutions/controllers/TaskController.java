@@ -33,7 +33,7 @@ public class TaskController {
         ArrayList<Task> allUserTasks = taskRepo.getAllUserTasks(task);
         model.addAttribute("usertasks", allUserTasks);
         roleChecker.roleChecker(model, request);
-        return "task";
+        return "task/task";
     }
 
     @GetMapping("/allTasks")
@@ -41,19 +41,19 @@ public class TaskController {
         ArrayList<Task> allTasks = taskRepo.showAllData();
         model.addAttribute("alltasks", allTasks);
         roleChecker.roleChecker(model, request);
-        return "alltasks";
+        return "task/alltasks";
     }
 
     @GetMapping("/newTask")
     public String doTask(Model model, HttpServletRequest request) {
         roleChecker.roleChecker(model, request);
-        return "dotask";
+        return "task/dotask";
     }
 
     @PostMapping("/makeTask")
     public String makeTask(@RequestParam("title") String title, @RequestParam("descriptions") String descriptions, @RequestParam("startDate") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate startDate, @RequestParam("deadline") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate deadline, @RequestParam("estimatedtime") int estimatedtime) {
         taskRepo.sendData(title, descriptions, startDate, deadline, estimatedtime);
-        return "redirect:/selectTask";
+        return "redirect:/task/selectTask";
     }
 
 
@@ -67,13 +67,13 @@ public class TaskController {
 
         roleChecker.roleChecker(model, request);
 
-        return "assigntask";
+        return "task/assigntask";
     }
 
     @PostMapping("/assignTask")
     public String assignTask(@RequestParam("taskID") int taskID, @RequestParam("useremail") String useremail) {
         taskRepo.assignTask(taskID, useremail);
-        return "redirect:/allTasks";
+        return "redirect:/task/allTasks";
     }
 
 
@@ -87,7 +87,7 @@ public class TaskController {
         ArrayList<User> taskUsers = userRepo.getAllTaskUsers(taskID);
         model.addAttribute("user", taskUsers);
 
-        return "taskdetails";
+        return "task/taskdetails";
     }
 
     @GetMapping("task/{taskID}")
@@ -100,7 +100,7 @@ public class TaskController {
         ArrayList<User> taskUsers = userRepo.getAllTaskUsers(taskID);
         model.addAttribute("user", taskUsers);
 
-        return "taskdetails";
+        return "task/taskdetails";
     }
 
 

@@ -25,12 +25,12 @@ public class RoleController {
         ArrayList<User> allUsers = userRepo.showAllData();
         model.addAttribute("allusers", allUsers);
         roleChecker.roleChecker(model, request);
-        return "dorole";
+        return "user/userrole/dorole";
     }
 
     @PostMapping("/assignRoles")
     public String assignRoles(@RequestParam("roleID") int roleID, @RequestParam("useremail") String userEmail) {
         roleRepo.assignRole(roleID, userEmail);
-        return "redirect:/allUsers";
+        return "redirect:/user/allUsers";
     }
 }

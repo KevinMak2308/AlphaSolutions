@@ -48,6 +48,17 @@ class UserRepositoryTest {
     }
 
     @Test
+    @DisplayName("Check if getAllTaskUsers mwethod works")
+    void getAllTaskUsers() {
+        User admin = new User("admin@gmail.com", "246");
+        ArrayList<User> viewOverTaskUsersTest = new ArrayList<>();
+        viewOverTaskUsersTest.add(admin);
+        int taskID = 1;
+        ArrayList<User> viewOverTaskUsers = userRepository.getAllTaskUsers(taskID);
+        assertEquals("Does admin come up when searching users to a task he is assigned to", viewOverTaskUsersTest.toString().contains("admin@gmail.com"),viewOverTaskUsers.toString().contains("admin@gmail.com"));
+    }
+
+    @Test
     @DisplayName("Check if validateData method works")
     void validateData() {
         String userEmail = "simon@mail.dk";

@@ -35,12 +35,12 @@ public class UserController {
 
         model.addAttribute("user", currentUser);
 
-        return "user";
+        return "user/user";
     }
 
     @GetMapping("/register")
     public String registerAccount() {
-        return "doregister";
+        return "user/doregister";
     }
 
 
@@ -51,7 +51,7 @@ public class UserController {
         HttpSession session = request.getSession();
         session.setAttribute("useremail", userEmail);
         roleRepo.assignRole(1, userEmail);
-        return "redirect:/user?useremail=" + userEmail;
+        return "redirect:/user/user?useremail=" + userEmail;
     }
 
     @GetMapping("/allUsers")
@@ -61,12 +61,12 @@ public class UserController {
         roleChecker.roleChecker(model, request);
         ArrayList<Roles> tmproles = roleRepo.getAllRoles();
         model.addAttribute("userroles", tmproles);
-        return "allusers";
+        return "user/allusers";
     }
 
     @PostMapping("/deleteUser")
     public String deleteUser(@RequestParam("userEmail") String userEmail) {
         userRepo.deleteData(userEmail);
-        return "redirect:/allUsers";
+        return "redirect:/user/allUsers";
     }
 }
