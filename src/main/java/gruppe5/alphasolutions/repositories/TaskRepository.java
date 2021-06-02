@@ -14,11 +14,9 @@ public class TaskRepository {
 
     public void sendData(String title, String descriptions, LocalDate startDate, LocalDate deadline, int estimatedtime) {
         try {
-            Connection taskConn = connection;
             String taskQuery = "Insert into tasks (title, descriptions, startdate, deadline, estimatedtime) values('" + title + "', '" + descriptions + "', '" + startDate + "', '" + deadline + "', " + estimatedtime + ")";
-            PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
+            PreparedStatement taskStatement = connection.prepareStatement(taskQuery);
             taskStatement.executeUpdate();
-            taskStatement.close();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -29,9 +27,8 @@ public class TaskRepository {
         ArrayList<Task> allTask = new ArrayList<>();
 
         try {
-            Connection taskConn = connection;
             String taskQuery = "Select users.useremail, tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline, tasks.estimatedtime From users Join user_tasks On users.useremail = user_tasks.useremail Join tasks On tasks.taskID = user_tasks.taskID Where users.useremail = ?";
-            PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
+            PreparedStatement taskStatement = connection.prepareStatement(taskQuery);
             taskStatement.setString(1, useremail);
             ResultSet taskResult = taskStatement.executeQuery();
 
@@ -41,7 +38,6 @@ public class TaskRepository {
 
             }
 
-            taskStatement.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -52,8 +48,7 @@ public class TaskRepository {
         ArrayList<Task> allTasks = new ArrayList<>();
 
         try {
-            Connection taskConn = connection;
-            PreparedStatement taskStatement = taskConn.prepareStatement("Select * From tasks");
+            PreparedStatement taskStatement = connection.prepareStatement("Select * From tasks");
             ResultSet taskResult = taskStatement.executeQuery();
 
             while (taskResult.next()) {
@@ -61,7 +56,6 @@ public class TaskRepository {
                 allTasks.add(tmp);
 
             }
-            taskStatement.close();
 
 
         } catch (SQLException error) {
@@ -74,11 +68,9 @@ public class TaskRepository {
     public void assignTask(int taskID, String useremail) {
 
         try {
-            Connection taskConn = connection;
             String taskQuery = "Insert Into user_tasks(taskID, useremail) Values(" + taskID + ", '" + useremail + "')";
-            PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
+            PreparedStatement taskStatement = connection.prepareStatement(taskQuery);
             taskStatement.executeUpdate();
-            taskStatement.close();
 
 
         } catch (SQLException throwables) {
@@ -92,10 +84,9 @@ public class TaskRepository {
 
         ArrayList<Task> viewOverProjectTasks = new ArrayList<>();
         try {
-            Connection taskConn = connection;
             String projectQuery = "Select projects.projectID, tasks.taskID, tasks.title, tasks.descriptions, tasks.startdate, tasks.deadline, tasks.estimatedtime From projects Join project_tasks On projects.projectID = project_tasks.projectID Join tasks On tasks.taskID = project_tasks.taskID Where projects.projectID = ?";
 
-            PreparedStatement projectStatement = taskConn.prepareStatement(projectQuery);
+            PreparedStatement projectStatement = connection.prepareStatement(projectQuery);
             projectStatement.setInt(1, projectID);
             ResultSet proResult = projectStatement.executeQuery();
 
@@ -104,7 +95,6 @@ public class TaskRepository {
                 viewOverProjectTasks.add(tmp);
             }
 
-            projectStatement.close();
         } catch (SQLException error) {
             System.out.println(error.getMessage());
         }
@@ -115,9 +105,8 @@ public class TaskRepository {
     public Task taskDetails(int taskID) {
         Task tmp = null;
         try {
-            Connection taskConn = connection;
             String taskQuery = "Select * From tasks Where taskID = ?";
-            PreparedStatement taskStatement = taskConn.prepareStatement(taskQuery);
+            PreparedStatement taskStatement = connection.prepareStatement(taskQuery);
             taskStatement.setInt(1, taskID);
             ResultSet taskResult = taskStatement.executeQuery();
 
@@ -125,7 +114,6 @@ public class TaskRepository {
                 tmp = new Task(taskResult.getInt(1), taskResult.getString(2), taskResult.getString(3), taskResult.getDate(4).toLocalDate(), taskResult.getDate(5).toLocalDate(), taskResult.getInt(6));
             }
 
-            taskStatement.close();
         } catch (SQLException error) {
             System.out.println(error.getMessage());
         }

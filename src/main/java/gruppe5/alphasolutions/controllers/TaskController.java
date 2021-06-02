@@ -102,6 +102,5 @@ public class TaskController {
 
         return "task/taskdetails";
     }
-
-
+    
 }

@@ -16,8 +16,7 @@ public class RoleRepository {
     public ArrayList<Roles> getAllRoles() {
         ArrayList<Roles> getRoles = new ArrayList<>();
         try {
-            Connection roleConn = connection;
-            PreparedStatement roleStatement = roleConn.prepareStatement("Select users.useremail, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID");
+            PreparedStatement roleStatement = connection.prepareStatement("Select users.useremail, roles.roleID, roles.rolename From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID");
             ResultSet roleResult = roleStatement.executeQuery();
 
             while (roleResult.next()) {
@@ -25,7 +24,6 @@ public class RoleRepository {
                 getRoles.add(tmp);
             }
 
-            roleStatement.close();
         } catch (SQLException error) {
             System.out.println(error.getMessage());
 
@@ -36,12 +34,10 @@ public class RoleRepository {
     public void assignRole(int roleID, String userEmail) {
 
         try {
-            Connection roleConn = connection;
             String query = "INSERT INTO user_roles(roleID, useremail) VALUES (" + roleID + ", '" + userEmail + "')";
-            PreparedStatement roleStatement = roleConn.prepareStatement(query);
+            PreparedStatement roleStatement = connection.prepareStatement(query);
             roleStatement.executeUpdate();
 
-            roleStatement.close();
 
         } catch (SQLException error) {
             System.out.printf(error.getMessage());
@@ -52,9 +48,8 @@ public class RoleRepository {
         int tmp = 0;
 
         try {
-            Connection roleConn = connection;
             String checkroleQuery = "Select roles.roleID From users Join user_roles ON users.useremail = user_roles.useremail Join roles On roles.roleID = user_roles.roleID Where users.useremail = ? ";
-            PreparedStatement userStatement = roleConn.prepareStatement(checkroleQuery);
+            PreparedStatement userStatement = connection.prepareStatement(checkroleQuery);
             userStatement.setString(1, useremail);
 
             ResultSet rolesResult = userStatement.executeQuery();
@@ -62,7 +57,6 @@ public class RoleRepository {
 
                 tmp = rolesResult.getInt(1);
 
-            userStatement.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

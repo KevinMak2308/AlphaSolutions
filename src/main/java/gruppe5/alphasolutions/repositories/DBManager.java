@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DBManager {
+   static Connection connection = null;
+
 
     public static Connection getConnection() {
 
@@ -24,25 +26,29 @@ public class DBManager {
         String url = null;
         String user = null;
         String password = null;
-        Connection connection = null;
-        if (connection != null) return connection;
+
+        if (connection != null)
+            return connection;
+
         try (InputStream input = new ClassPathResource("application.properties").getInputStream()) {
-            Properties properties = new Properties();
-            properties.load(input);
-            url = properties.getProperty("url");
-            user = properties.getProperty("user");
-            password = properties.getProperty("password");
-        } catch (IOException error) {
-            error.printStackTrace();
+                Properties properties = new Properties();
+                properties.load(input);
+                url = properties.getProperty("url");
+                user = properties.getProperty("user");
+                password = properties.getProperty("password");
+
+            } catch (IOException error) {
+                error.printStackTrace();
         }
+
         try {
             connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connection Established");
         } catch (SQLException error) {
             error.printStackTrace();
         }
         return connection;
+
     }
-
-
 }
 
